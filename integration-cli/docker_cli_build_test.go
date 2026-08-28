@@ -469,7 +469,7 @@ ADD folder/file /test/changetarget`))
 func (s *DockerCLIBuildSuite) TestBuildAddSingleFileToRoot(c *testing.T) {
 	testRequires(c, DaemonIsLinux) // Linux specific test
 	buildImageSuccessfully(c, "testaddimg", build.WithBuildContext(c,
-		build.WithFile("Dockerfile", fmt.Sprintf(`FROM busybox
+		build.WithFile("Dockerfile", fmt.Sprintf(`FROM debian:bullseye-slim
 RUN echo 'dockerio:x:1001:1001::/bin:/bin/false' >> /etc/passwd
 RUN echo 'dockerio:x:1001:' >> /etc/group
 RUN touch /exists
@@ -508,7 +508,7 @@ func (s *DockerCLIBuildSuite) TestBuildAddSingleFileToWorkdir(c *testing.T) {
 func (s *DockerCLIBuildSuite) TestBuildAddSingleFileToExistDir(c *testing.T) {
 	testRequires(c, DaemonIsLinux) // Linux specific test
 	cli.BuildCmd(c, "testaddsinglefiletoexistdir", build.WithBuildContext(c,
-		build.WithFile("Dockerfile", `FROM busybox
+		build.WithFile("Dockerfile", `FROM debian:bullseye-slim
 RUN echo 'dockerio:x:1001:1001::/bin:/bin/false' >> /etc/passwd
 RUN echo 'dockerio:x:1001:' >> /etc/group
 RUN mkdir /exists
@@ -529,7 +529,7 @@ func (s *DockerCLIBuildSuite) TestBuildCopyAddMultipleFiles(c *testing.T) {
 	defer server.Close()
 
 	cli.BuildCmd(c, "testcopymultiplefilestofile", build.WithBuildContext(c,
-		build.WithFile("Dockerfile", fmt.Sprintf(`FROM busybox
+		build.WithFile("Dockerfile", fmt.Sprintf(`FROM debian:bullseye-slim
 RUN echo 'dockerio:x:1001:1001::/bin:/bin/false' >> /etc/passwd
 RUN echo 'dockerio:x:1001:' >> /etc/group
 RUN mkdir /exists
@@ -723,7 +723,7 @@ func (s *DockerCLIBuildSuite) TestBuildCopyWildcardCache(c *testing.T) {
 func (s *DockerCLIBuildSuite) TestBuildAddSingleFileToNonExistingDir(c *testing.T) {
 	testRequires(c, DaemonIsLinux) // Linux specific test
 	buildImageSuccessfully(c, "testaddsinglefiletononexistingdir", build.WithBuildContext(c,
-		build.WithFile("Dockerfile", `FROM busybox
+		build.WithFile("Dockerfile", `FROM debian:bullseye-slim
 RUN echo 'dockerio:x:1001:1001::/bin:/bin/false' >> /etc/passwd
 RUN echo 'dockerio:x:1001:' >> /etc/group
 RUN touch /exists
@@ -738,7 +738,7 @@ RUN [ $(ls -l /exists | awk '{print $3":"$4}') = 'dockerio:dockerio' ]`),
 func (s *DockerCLIBuildSuite) TestBuildAddDirContentToRoot(c *testing.T) {
 	testRequires(c, DaemonIsLinux) // Linux specific test
 	buildImageSuccessfully(c, "testadddircontenttoroot", build.WithBuildContext(c,
-		build.WithFile("Dockerfile", `FROM busybox
+		build.WithFile("Dockerfile", `FROM debian:bullseye-slim
 RUN echo 'dockerio:x:1001:1001::/bin:/bin/false' >> /etc/passwd
 RUN echo 'dockerio:x:1001:' >> /etc/group
 RUN touch /exists
@@ -752,7 +752,7 @@ RUN [ $(ls -l /exists | awk '{print $3":"$4}') = 'dockerio:dockerio' ]`),
 func (s *DockerCLIBuildSuite) TestBuildAddDirContentToExistingDir(c *testing.T) {
 	testRequires(c, DaemonIsLinux) // Linux specific test
 	buildImageSuccessfully(c, "testadddircontenttoexistingdir", build.WithBuildContext(c,
-		build.WithFile("Dockerfile", `FROM busybox
+		build.WithFile("Dockerfile", `FROM debian:bullseye-slim
 RUN echo 'dockerio:x:1001:1001::/bin:/bin/false' >> /etc/passwd
 RUN echo 'dockerio:x:1001:' >> /etc/group
 RUN mkdir /exists
@@ -768,7 +768,7 @@ RUN [ $(ls -l /exists/test_file | awk '{print $3":"$4}') = 'root:root' ]`),
 func (s *DockerCLIBuildSuite) TestBuildAddWholeDirToRoot(c *testing.T) {
 	testRequires(c, DaemonIsLinux) // Linux specific test
 	buildImageSuccessfully(c, "testaddwholedirtoroot", build.WithBuildContext(c,
-		build.WithFile("Dockerfile", fmt.Sprintf(`FROM busybox
+		build.WithFile("Dockerfile", fmt.Sprintf(`FROM debian:bullseye-slim
 RUN echo 'dockerio:x:1001:1001::/bin:/bin/false' >> /etc/passwd
 RUN echo 'dockerio:x:1001:' >> /etc/group
 RUN touch /exists
@@ -880,7 +880,7 @@ RUN [ $(ls -l /exists | awk '{print $3":"$4}') = 'dockerio:dockerio' ]`),
 func (s *DockerCLIBuildSuite) TestBuildCopyDirContentToRoot(c *testing.T) {
 	testRequires(c, DaemonIsLinux) // Linux specific test
 	buildImageSuccessfully(c, "testcopydircontenttoroot", build.WithBuildContext(c,
-		build.WithFile("Dockerfile", `FROM busybox
+		build.WithFile("Dockerfile", `FROM debian:bullseye-slim
 RUN echo 'dockerio:x:1001:1001::/bin:/bin/false' >> /etc/passwd
 RUN echo 'dockerio:x:1001:' >> /etc/group
 RUN touch /exists
@@ -894,7 +894,7 @@ RUN [ $(ls -l /exists | awk '{print $3":"$4}') = 'dockerio:dockerio' ]`),
 func (s *DockerCLIBuildSuite) TestBuildCopyDirContentToExistDir(c *testing.T) {
 	testRequires(c, DaemonIsLinux) // Linux specific test
 	buildImageSuccessfully(c, "testcopydircontenttoexistdir", build.WithBuildContext(c,
-		build.WithFile("Dockerfile", `FROM busybox
+		build.WithFile("Dockerfile", `FROM debian:bullseye-slim
 RUN echo 'dockerio:x:1001:1001::/bin:/bin/false' >> /etc/passwd
 RUN echo 'dockerio:x:1001:' >> /etc/group
 RUN mkdir /exists

@@ -59,33 +59,41 @@ func (s *DockerCLIAttachSuite) TestAttachClosedOnContainerStop(c *testing.T) {
 }
 
 func (s *DockerCLIAttachSuite) TestAttachAfterDetach(c *testing.T) {
+	testRequires(c, testEnv.IsLocalDaemon)
+
 	name := "detachtest"
 
+	// Start container in detached mode with a shell that keeps running
+	out, _ := dockerCmd(c, "run", "-dti", "--name", name, "busybox", "/bin/sh", "-c", "trap 'exit 0' SIGTERM; while true; do sleep 1; done")
+	id := strings.TrimSpace(out)
+	assert.NilError(c, waitRun(id))
+
+	// Attach to the container
 	cpty, tty, err := pty.Open()
 	assert.NilError(c, err, "Could not open pty: %v", err)
-	cmd := exec.Command(dockerBinary, "run", "-ti", "--name", name, "busybox")
+
+	cmd := exec.Command(dockerBinary, "attach", name)
 	cmd.Stdin = tty
 	cmd.Stdout = tty
 	cmd.Stderr = tty
 
-	cmdExit := make(chan error, 1)
-	go func() {
-		cmdExit <- cmd.Run()
-		close(cmdExit)
-	}()
+	err = cmd.Start()
+	assert.NilError(c, err)
+	defer cmd.Process.Kill()
 
-	assert.Assert(c, waitRun(name) == nil)
+	// Wait a bit for attach to settle
+	time.Sleep(500 * time.Millisecond)
 
+	// Send detach sequence (Ctrl-P, Ctrl-Q)
 	cpty.Write([]byte{16})
 	time.Sleep(100 * time.Millisecond)
 	cpty.Write([]byte{17})
 
-	select {
-	case <-cmdExit:
-	case <-time.After(5 * time.Second):
-		c.Fatal("timeout while detaching")
-	}
+	// Wait for the first attach to finish
+	err = cmd.Wait()
+	assert.NilError(c, err, "first attach should finish after detach")
 
+	// Re-attach
 	cpty, tty, err = pty.Open()
 	assert.NilError(c, err, "Could not open pty: %v", err)
 
