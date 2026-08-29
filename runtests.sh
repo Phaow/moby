@@ -10,6 +10,7 @@ set -e
 GOPATH_DIR="${GOPATH_DIR:-/tmp/gopath}"
 export GOPATH="$GOPATH_DIR"
 export DOCKER_HOST="${DOCKER_HOST:-unix:///var/run/docker.sock}"
+export DOCKER_BUILDKIT=0
 export GO111MODULE="${GO111MODULE:-off}"
 REPORT_DIR="${REPORT_DIR:-/tmp}"
 
@@ -125,11 +126,25 @@ if ! command -v gotestsum &> /dev/null; then
     export PATH="$PATH:$(go env GOPATH)/bin"
 fi
 
-# ========== 3. Clear BuildKit Cache ==========
+# ========== 3. Protect base images from TearDown cleanup ==========
+# BuildSuite TearDown calls deleteAllImages which removes ALL non-protected images.
+# Adding an extra tag prevents busybox/emptyfs from being deleted as dangling images.
+log_step "Protecting base images from TearDown cleanup..."
+for img in busybox:latest busybox:glibc emptyfs:latest hello-world:latest dockerio/dockerio:latest; do
+    if docker image inspect "$img" >/dev/null 2>&1; then
+        protected_name="${img//\//-}"    # replace / with -
+        protected_name="protected-${protected_name#:}" # prefix with protected-
+        # simpler: just tag with protected- prefix for repo
+        protected_tag="${img%:*}-protected:${img##*:}"
+        docker tag "$img" "$protected_tag" 2>/dev/null && log_info "  Protected: $img -> $protected_tag" || true
+    fi
+done
+
+# ========== 4. Clear BuildKit Cache ==========
 log_step "Clearing BuildKit cache..."
 docker builder prune -a -f
 
-# ========== 4. Run Tests ==========
+# ========== 5. Run Tests ==========
 log_step "Running tests..."
 
 # Report files
