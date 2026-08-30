@@ -12,7 +12,7 @@ export GOPATH="$GOPATH_DIR"
 export DOCKER_HOST="${DOCKER_HOST:-unix:///var/run/docker.sock}"
 export DOCKER_BUILDKIT=0
 export GO111MODULE="${GO111MODULE:-off}"
-REPORT_DIR="${REPORT_DIR:-/tmp}"
+REPORT_DIR="${REPORT_DIR:-$(pwd)/report-$(date +%Y%m%d_%H%M%S)}"
 
 # Color output
 RED='\033[0;31m'
@@ -55,10 +55,9 @@ echo_error() { log_error "$@"; }
 SUDO=${SUDO:-sudo}
 
 # Default tests to skip (known incompatibilities)
-# NOTE: These tests fail due to:
-#   1. BuildKit/Legacy builder output format changes (stdout vs stderr)
-#   2. BuildKit/Legacy builder caching behavior (Using cache bypasses output)
-SKIP_TESTS="${SKIP_TESTS:-TestDockerCLIBuildSuite/TestBuildCancellationKillsSleep|TestDockerCLIBuildSuite/TestBuildBuildTimeArg|TestDockerCLIBuildSuite/TestBuildCacheFrom|TestDockerCLIBuildSuite/TestBuildAddFileNotFound|DockerAPISuite/TestAPIStatsNoStreamGetCpu|TestDockerCLIBuildSuite/TestBuildBuildTimeArgExpansionOverride}"
+# NOTE: Add patterns here as tests are discovered to be incompatible.
+# Usage: SKIP_TESTS="Pattern1|Pattern2" runtests.sh
+SKIP_TESTS="${SKIP_TESTS:-}"
 
 # Core CLI API compatibility suites (focus mode)
 # -run accepts a regex: suite|suite|... to run only matching TestSuite names
@@ -140,12 +139,23 @@ docker builder prune -a -f
 log_step "Running tests..."
 
 # Report files
-TIMESTAMP=$(date +%Y%m%d_%H%M%S)
-JSON_REPORT="${REPORT_DIR}/test-report-${TIMESTAMP}.json"
-XML_REPORT="${REPORT_DIR}/test-report-${TIMESTAMP}.xml"
+JSON_REPORT="${REPORT_DIR}/test-report.json"
+XML_REPORT="${REPORT_DIR}/test-report.xml"
+
+# Create report directory
+mkdir -p "$REPORT_DIR"
 
 # Default timeout
-TIMEOUT="${TIMEOUT:-4h}"
+TIMEOUT="${TIMEOUT:-6h}"
+
+# Record start time for elapsed calculation
+TEST_START=$(date +%s)
+
+# Build skip arg only if SKIP_TESTS is non-empty
+SKIP_ARGS=()
+if [ -n "$SKIP_TESTS" ]; then
+    SKIP_ARGS=("-test.skip" "$SKIP_TESTS")
+fi
 
 # Run tests with gotestsum for structured reporting
 gotestsum --format=standard-verbose \
@@ -154,11 +164,31 @@ gotestsum --format=standard-verbose \
     -- \
     -timeout "$TIMEOUT" ./integration-cli/... \
     -run "$FOCUS_SUITES" \
-    -test.skip "$SKIP_TESTS" \
+    "${SKIP_ARGS[@]}" \
     -count=1 \
     "$@" || true
+TEST_END=$(date +%s)
+TEST_ELAPSED=$((TEST_END - TEST_START))
+
+# Format elapsed time
+format_elapsed() {
+    local s=$1
+    local h=$((s / 3600))
+    local m=$(((s % 3600) / 60))
+    local sec=$((s % 60))
+    if [ $h -gt 0 ]; then
+        printf "%dh %dm %ds" $h $m $sec
+    elif [ $m -gt 0 ]; then
+        printf "%dm %ds" $m $sec
+    else
+        printf "%ds" $sec
+    fi
+}
+
+TEST_ELAPSED_FMT=$(format_elapsed $TEST_ELAPSED)
 
 log_step "Tests completed!"
-log_info "Report files:"
+log_info "Total elapsed time: ${TEST_ELAPSED_FMT} (${TEST_ELAPSED}s)"
+log_info "Report directory: ${REPORT_DIR}"
 log_info "  - JSON: ${JSON_REPORT}"
 log_info "  - XML:  ${XML_REPORT}"
