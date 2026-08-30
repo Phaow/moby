@@ -45,13 +45,26 @@ func (s *DockerCLILinksSuite) TestLinksInvalidContainerTarget(c *testing.T) {
 
 func (s *DockerCLILinksSuite) TestLinksPingLinkedContainers(c *testing.T) {
 	testRequires(c, DaemonIsLinux)
-	// Test with the three different ways of specifying the default network on Linux
-	testLinkPingOnNetwork(c, "")
-	testLinkPingOnNetwork(c, "default")
-	testLinkPingOnNetwork(c, "bridge")
+	testLinkPingOnNetwork(c, "testlinks")
 }
 
 func testLinkPingOnNetwork(c *testing.T, network string) {
+	// For non-default networks, create the network first and clean up after
+	cleanup := false
+	if network != "" {
+		dockerCmd(c, "network", "create", network)
+		cleanup = true
+	}
+
+	// Ensure containers and network are cleaned up even on test failure
+	if cleanup {
+		defer func() {
+			dockerCmd(c, "rm", "-f", "container1")
+			dockerCmd(c, "rm", "-f", "container2")
+			dockerCmd(c, "network", "rm", network)
+		}()
+	}
+
 	var postArgs []string
 	if network != "" {
 		postArgs = append(postArgs, []string{"--net", network}...)

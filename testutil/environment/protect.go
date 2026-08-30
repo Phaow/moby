@@ -11,7 +11,7 @@ import (
 	"gotest.tools/v3/assert"
 )
 
-var frozenImages = []string{"busybox:latest", "busybox:glibc", "hello-world:frozen", "debian:bullseye-slim"}
+var frozenImages = []string{"busybox:latest", "hello-world:latest", "hello-world:frozen", "debian:bullseye-slim"}
 
 type protectedElements struct {
 	containers map[string]struct{}

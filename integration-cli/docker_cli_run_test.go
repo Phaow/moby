@@ -304,14 +304,14 @@ func (s *DockerCLIRunSuite) TestUserDefinedNetworkAlias(c *testing.T) {
 	testRequires(c, DaemonIsLinux, NotUserNamespace)
 	dockerCmd(c, "network", "create", "-d", "bridge", "net1")
 
-	cid1, _ := dockerCmd(c, "run", "-d", "--net=net1", "--name=first", "--net-alias=foo1", "--net-alias=foo2", "busybox:glibc", "top")
+	cid1, _ := dockerCmd(c, "run", "-d", "--net=net1", "--name=first", "--net-alias=foo1", "--net-alias=foo2", "busybox:latest", "top")
 	assert.Assert(c, waitRun("first") == nil)
 
 	// Check if default short-id alias is added automatically
 	id := strings.TrimSpace(cid1)
 	aliases := inspectField(c, id, "NetworkSettings.Networks.net1.Aliases")
 	assert.Assert(c, strings.Contains(aliases, stringid.TruncateID(id)))
-	cid2, _ := dockerCmd(c, "run", "-d", "--net=net1", "--name=second", "busybox:glibc", "top")
+	cid2, _ := dockerCmd(c, "run", "-d", "--net=net1", "--name=second", "busybox:latest", "top")
 	assert.Assert(c, waitRun("second") == nil)
 
 	// Check if default short-id alias is added automatically
