@@ -1,0 +1,976 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuites tests="748" failures="60" errors="0" time="12792.310461">
+	<testsuite tests="748" failures="60" skipped="35" time="12792.310000" name="github.com/docker/docker/integration-cli" timestamp="2026-08-30T15:19:55+08:00">
+		<properties>
+			<property name="go.version" value="go1.20.14 linux/amd64"></property>
+		</properties>
+		<testcase classname="github.com/docker/docker/integration-cli" name="TestDockerAPISuite/TestAPIStatsNetworkStats" time="36.540000">
+			<failure message="Failed" type="">=== RUN   TestDockerAPISuite/TestAPIStatsNetworkStats&#xA;    docker_api_stats_test.go:148: assertion failed: error is not nil: exit status 1&#xA;--- FAIL: TestDockerAPISuite/TestAPIStatsNetworkStats (36.54s)&#xA;</failure>
+		</testcase>
+		<testcase classname="github.com/docker/docker/integration-cli" name="TestDockerAPISuite/TestAPIStatsNoStreamGetCpu" time="16.510000">
+			<failure message="Failed" type="">=== RUN   TestDockerAPISuite/TestAPIStatsNoStreamGetCpu&#xA;    docker_api_stats_test.go:64: assertion failed: cpuPercent is 0.0: docker stats with no-stream get cpu usage failed: was 0&#xA;--- FAIL: TestDockerAPISuite/TestAPIStatsNoStreamGetCpu (16.51s)&#xA;</failure>
+		</testcase>
+		<testcase classname="github.com/docker/docker/integration-cli" name="TestDockerAPISuite" time="2734.190000">
+			<failure message="Failed" type="">=== RUN   TestDockerAPISuite&#xA;--- FAIL: TestDockerAPISuite (2734.19s)&#xA;</failure>
+		</testcase>
+		<testcase classname="github.com/docker/docker/integration-cli" name="TestDockerCLIAttachSuite/TestAttachAfterDetach" time="16.079000">
+			<failure message="Failed" type="">=== RUN   TestDockerCLIAttachSuite/TestAttachAfterDetach&#xA;    docker_cli_attach_unix_test.go:94: assertion failed: error is not nil: exit status 1: first attach should finish after detach&#xA;--- FAIL: TestDockerCLIAttachSuite/TestAttachAfterDetach (16.08s)&#xA;</failure>
+		</testcase>
+		<testcase classname="github.com/docker/docker/integration-cli" name="TestDockerCLIAttachSuite" time="111.240000">
+			<failure message="Failed" type="">=== RUN   TestDockerCLIAttachSuite&#xA;--- FAIL: TestDockerCLIAttachSuite (111.24s)&#xA;</failure>
+		</testcase>
+		<testcase classname="github.com/docker/docker/integration-cli" name="TestDockerCLICpSuite/TestCpUnprivilegedUser" time="15.470000">
+			<failure message="Failed" type="">=== RUN   TestDockerCLICpSuite/TestCpUnprivilegedUser&#xA;    docker_cli_cp_test.go:383: assertion failed: &#xA;        Command:  su unprivilegeduser -c /usr/bin/docker cp a03aa52756ea553554611c681f652538f322026b93d9f639a1628e273d76a761:test /tmp/docker-integration572488999&#xA;        ExitCode: 1&#xA;        Error:    exit status 1&#xA;        Stdout:   &#xA;        Stderr:   su: user unprivilegeduser does not exist or the user entry does not contain all the required fields&#xA;        &#xA;        &#xA;        Failures:&#xA;        ExitCode was 1 expected 0&#xA;        Expected no error&#xA;--- FAIL: TestDockerCLICpSuite/TestCpUnprivilegedUser (15.47s)&#xA;</failure>
+		</testcase>
+		<testcase classname="github.com/docker/docker/integration-cli" name="TestDockerCLICpSuite" time="736.810000">
+			<failure message="Failed" type="">=== RUN   TestDockerCLICpSuite&#xA;--- FAIL: TestDockerCLICpSuite (736.81s)&#xA;</failure>
+		</testcase>
+		<testcase classname="github.com/docker/docker/integration-cli" name="TestDockerCLIInspectSuite/TestInspectImage" time="30.050000">
+			<failure message="Failed" type="">=== RUN   TestDockerCLIInspectSuite/TestInspectImage&#xA;    docker_cli_inspect_test.go:50: assertion failed: error is not nil: failed to inspect emptyfs: &#xA;        Error: No such object: emptyfs&#xA;        &#xA;--- FAIL: TestDockerCLIInspectSuite/TestInspectImage (30.05s)&#xA;</failure>
+		</testcase>
+		<testcase classname="github.com/docker/docker/integration-cli" name="TestDockerCLIInspectSuite/TestInspectImageFilterInt" time="30.050000">
+			<failure message="Failed" type="">=== RUN   TestDockerCLIInspectSuite/TestInspectImageFilterInt&#xA;    docker_cli_inspect_test.go:145: assertion failed: error is not nil: failed to inspect emptyfs: &#xA;        Error: No such object: emptyfs&#xA;        &#xA;--- FAIL: TestDockerCLIInspectSuite/TestInspectImageFilterInt (30.05s)&#xA;</failure>
+		</testcase>
+		<testcase classname="github.com/docker/docker/integration-cli" name="TestDockerCLIInspectSuite/TestInspectStopWhenNotFound" time="15.870000">
+			<failure message="Failed" type="">=== RUN   TestDockerCLIInspectSuite/TestInspectStopWhenNotFound&#xA;    docker_cli_inspect_test.go:375: assertion failed: expression is false: strings.Contains(result.Stderr(), &#34;Error: No such container: missing&#34;)&#xA;--- FAIL: TestDockerCLIInspectSuite/TestInspectStopWhenNotFound (15.87s)&#xA;</failure>
+		</testcase>
+		<testcase classname="github.com/docker/docker/integration-cli" name="TestDockerCLIInspectSuite/TestInspectTemplateError" time="15.490000">
+			<failure message="Failed" type="">=== RUN   TestDockerCLIInspectSuite/TestInspectTemplateError&#xA;    docker_cli_inspect_test.go:342: assertion failed: expression is false: strings.Contains(out, &#34;Template parsing error&#34;)&#xA;--- FAIL: TestDockerCLIInspectSuite/TestInspectTemplateError (15.49s)&#xA;</failure>
+		</testcase>
+		<testcase classname="github.com/docker/docker/integration-cli" name="TestDockerCLIInspectSuite" time="506.010000">
+			<failure message="Failed" type="">=== RUN   TestDockerCLIInspectSuite&#xA;--- FAIL: TestDockerCLIInspectSuite (506.01s)&#xA;</failure>
+		</testcase>
+		<testcase classname="github.com/docker/docker/integration-cli" name="TestDockerCLINetworkSuite/TestDockerInspectMultipleNetworksIncludingNonexistent" time="15.030000">
+			<failure message="Failed" type="">=== RUN   TestDockerCLINetworkSuite/TestDockerInspectMultipleNetworksIncludingNonexistent&#xA;    docker_cli_network_unix_test.go:450: assertion failed: &#xA;        Command:  /usr/bin/docker network inspect host nonexistent&#xA;        ExitCode: 1&#xA;        Error:    exit status 1&#xA;        Stdout:   [&#xA;            {&#xA;                &#34;Name&#34;: &#34;host&#34;,&#xA;                &#34;Id&#34;: &#34;5c4840ae2f1b75f00c4ce593ec2ab1c546005150a2c823414b3cf676a6c12823&#34;,&#xA;                &#34;Created&#34;: &#34;2026-08-28T13:40:18.807925699+08:00&#34;,&#xA;                &#34;Scope&#34;: &#34;local&#34;,&#xA;                &#34;Driver&#34;: &#34;host&#34;,&#xA;                &#34;EnableIPv6&#34;: false,&#xA;                &#34;IPAM&#34;: {&#xA;                    &#34;Driver&#34;: &#34;default&#34;,&#xA;                    &#34;Options&#34;: null,&#xA;                    &#34;Config&#34;: []&#xA;                },&#xA;                &#34;Internal&#34;: false,&#xA;                &#34;Attachable&#34;: false,&#xA;                &#34;Ingress&#34;: false,&#xA;                &#34;ConfigFrom&#34;: {&#xA;                    &#34;Network&#34;: &#34;&#34;&#xA;                },&#xA;                &#34;ConfigOnly&#34;: false,&#xA;                &#34;Containers&#34;: {},&#xA;                &#34;Options&#34;: {},&#xA;                &#34;Labels&#34;: {}&#xA;            }&#xA;        ]&#xA;        &#xA;        Stderr:   Error response from daemon: network nonexistent not found&#xA;        &#xA;        &#xA;        Failures:&#xA;        Expected stderr to contain &#34;Error: No such network: nonexistent&#34;&#xA;--- FAIL: TestDockerCLINetworkSuite/TestDockerInspectMultipleNetworksIncludingNonexistent (15.03s)&#xA;</failure>
+		</testcase>
+		<testcase classname="github.com/docker/docker/integration-cli" name="TestDockerCLINetworkSuite/TestDockerNetworkInternalMode" time="15.210000">
+			<failure message="Failed" type="">=== RUN   TestDockerCLINetworkSuite/TestDockerNetworkInternalMode&#xA;    docker_cli_network_unix_test.go:1595: assertion failed: &#xA;        Command:  /usr/bin/docker run -d --net=internal --name=first busybox:glibc top&#xA;        ExitCode: 125&#xA;        Error:    exit status 125&#xA;        Stdout:   &#xA;        Stderr:   Unable to find image &#39;busybox:glibc&#39; locally&#xA;        docker: Error response from daemon: Get &#34;https://registry-1.docker.io/v2/&#34;: dial tcp 115.126.100.160:443: connect: connection refused.&#xA;        See &#39;docker run --help&#39;.&#xA;        &#xA;        &#xA;        Failures:&#xA;        ExitCode was 125 expected 0&#xA;        Expected no error&#xA;--- FAIL: TestDockerCLINetworkSuite/TestDockerNetworkInternalMode (15.21s)&#xA;</failure>
+		</testcase>
+		<testcase classname="github.com/docker/docker/integration-cli" name="TestDockerCLINetworkSuite/TestUserDefinedNetworkConnectDisconnectAlias" time="15.510000">
+			<failure message="Failed" type="">=== RUN   TestDockerCLINetworkSuite/TestUserDefinedNetworkConnectDisconnectAlias&#xA;    docker_cli_network_unix_test.go:1494: assertion failed: &#xA;        Command:  /usr/bin/docker run -d --net=net1 --name=first --net-alias=foo busybox:glibc top&#xA;        ExitCode: 125&#xA;        Error:    exit status 125&#xA;        Stdout:   &#xA;        Stderr:   Unable to find image &#39;busybox:glibc&#39; locally&#xA;        docker: Error response from daemon: Get &#34;https://registry-1.docker.io/v2/&#34;: dial tcp 115.126.100.160:443: connect: connection refused.&#xA;        See &#39;docker run --help&#39;.&#xA;        &#xA;        &#xA;        Failures:&#xA;        ExitCode was 125 expected 0&#xA;        Expected no error&#xA;--- FAIL: TestDockerCLINetworkSuite/TestUserDefinedNetworkConnectDisconnectAlias (15.51s)&#xA;</failure>
+		</testcase>
+		<testcase classname="github.com/docker/docker/integration-cli" name="TestDockerCLINetworkSuite/TestUserDefinedNetworkConnectivity" time="15.300000">
+			<failure message="Failed" type="">=== RUN   TestDockerCLINetworkSuite/TestUserDefinedNetworkConnectivity&#xA;    docker_cli_network_unix_test.go:1547: assertion failed: &#xA;        Command:  /usr/bin/docker run -d --net=br.net1 --name=c1.net1 busybox:glibc top&#xA;        ExitCode: 125&#xA;        Error:    exit status 125&#xA;        Stdout:   &#xA;        Stderr:   Unable to find image &#39;busybox:glibc&#39; locally&#xA;        docker: Error response from daemon: Get &#34;https://registry-1.docker.io/v2/&#34;: dial tcp 115.126.100.160:443: connect: connection refused.&#xA;        See &#39;docker run --help&#39;.&#xA;        &#xA;        &#xA;        Failures:&#xA;        ExitCode was 125 expected 0&#xA;        Expected no error&#xA;--- FAIL: TestDockerCLINetworkSuite/TestUserDefinedNetworkConnectivity (15.30s)&#xA;</failure>
+		</testcase>
+		<testcase classname="github.com/docker/docker/integration-cli" name="TestDockerCLINetworkSuite" time="219.230000">
+			<failure message="Failed" type="">=== RUN   TestDockerCLINetworkSuite&#xA;--- FAIL: TestDockerCLINetworkSuite (219.23s)&#xA;</failure>
+		</testcase>
+		<testcase classname="github.com/docker/docker/integration-cli" name="TestDockerCLIRunSuite/TestLegacyRunNoNewPrivSetuid" time="15.050000">
+			<failure message="Failed" type="">=== RUN   TestDockerCLIRunSuite/TestLegacyRunNoNewPrivSetuid&#xA;    fixtures_linux_daemon_test.go:101: assertion failed: error is not nil: exit status 1: /usr/bin/ld: cannot find -lc: No such file or directory&#xA;        collect2: error: ld returned 1 exit status&#xA;        &#xA;--- FAIL: TestDockerCLIRunSuite/TestLegacyRunNoNewPrivSetuid (15.05s)&#xA;</failure>
+		</testcase>
+		<testcase classname="github.com/docker/docker/integration-cli" name="TestDockerCLIRunSuite/TestRunAddDeviceCgroupRule" time="15.440000">
+			<failure message="Failed" type="">=== RUN   TestDockerCLIRunSuite/TestRunAddDeviceCgroupRule&#xA;    docker_cli_run_test.go:4419: assertion failed: &#xA;        Command:  /usr/bin/docker run --rm busybox cat /sys/fs/cgroup/devices/devices.list&#xA;        ExitCode: 1&#xA;        Error:    exit status 1&#xA;        Stdout:   &#xA;        Stderr:   cat: can&#39;t open &#39;/sys/fs/cgroup/devices/devices.list&#39;: No such file or directory&#xA;        &#xA;        &#xA;        Failures:&#xA;        ExitCode was 1 expected 0&#xA;        Expected no error&#xA;--- FAIL: TestDockerCLIRunSuite/TestRunAddDeviceCgroupRule (15.44s)&#xA;</failure>
+		</testcase>
+		<testcase classname="github.com/docker/docker/integration-cli" name="TestDockerCLIRunSuite/TestRunCidFileCleanupIfEmpty" time="15.060000">
+			<failure message="Failed" type="">=== RUN   TestDockerCLIRunSuite/TestRunCidFileCleanupIfEmpty&#xA;    docker_cli_run_test.go:1952: Run without command failed with wrong output. out=Unable to find image &#39;emptyfs:latest&#39; locally&#xA;        docker: Error response from daemon: Get &#34;https://registry-1.docker.io/v2/&#34;: dial tcp 199.59.149.232:443: connect: connection refused.&#xA;        See &#39;docker run --help&#39;.&#xA;        &#xA;        err=&#xA;        Command:  /usr/bin/docker run --cidfile /tmp/TestRunCidFile2331009455/cid emptyfs&#xA;        ExitCode: 125&#xA;        Error:    exit status 125&#xA;        Stdout:   &#xA;        Stderr:   Unable to find image &#39;emptyfs:latest&#39; locally&#xA;        docker: Error response from daemon: Get &#34;https://registry-1.docker.io/v2/&#34;: dial tcp 199.59.149.232:443: connect: connection refused.&#xA;        See &#39;docker run --help&#39;.&#xA;        &#xA;        &#xA;        Failures:&#xA;        ExitCode was 125 expected 0&#xA;        Expected no error&#xA;--- FAIL: TestDockerCLIRunSuite/TestRunCidFileCleanupIfEmpty (15.06s)&#xA;</failure>
+		</testcase>
+		<testcase classname="github.com/docker/docker/integration-cli" name="TestDockerCLIRunSuite/TestRunContainerWithCgroupMountRO" time="15.450000">
+			<failure message="Failed" type="">=== RUN   TestDockerCLIRunSuite/TestRunContainerWithCgroupMountRO&#xA;    docker_cli_run_test.go:3302: expected output from failure to contain Read-only file system but contains touch: /sys/fs/cgroup/devices/test123: No such file or directory&#xA;--- FAIL: TestDockerCLIRunSuite/TestRunContainerWithCgroupMountRO (15.45s)&#xA;</failure>
+		</testcase>
+		<testcase classname="github.com/docker/docker/integration-cli" name="TestDockerCLIRunSuite/TestRunContainerWithCgroupParent" time="15.030000">
+			<failure message="Failed" type="">=== RUN   TestDockerCLIRunSuite/TestRunContainerWithCgroupParent&#xA;    docker_cli_run_test.go:3230: unexpected failure when running container with --cgroup-parent option - docker: Error response from daemon: cgroup-parent for systemd cgroup should be a valid slice named as &#34;xxx.slice&#34;.&#xA;        See &#39;docker run --help&#39;.&#xA;        &#xA;        &#xA;        Command:  /usr/bin/docker run --cgroup-parent test --name cgroup-test busybox cat /proc/self/cgroup&#xA;        ExitCode: 125&#xA;        Error:    exit status 125&#xA;        Stdout:   &#xA;        Stderr:   docker: Error response from daemon: cgroup-parent for systemd cgroup should be a valid slice named as &#34;xxx.slice&#34;.&#xA;        See &#39;docker run --help&#39;.&#xA;        &#xA;        &#xA;        Failures:&#xA;        ExitCode was 125 expected 0&#xA;        Expected no error&#xA;--- FAIL: TestDockerCLIRunSuite/TestRunContainerWithCgroupParent (15.03s)&#xA;</failure>
+		</testcase>
+		<testcase classname="github.com/docker/docker/integration-cli" name="TestDockerCLIRunSuite/TestRunCopyVolumeUIDGID" time="16.230000">
+			<failure message="Failed" type="">=== RUN   TestDockerCLIRunSuite/TestRunCopyVolumeUIDGID&#xA;    docker_cli_run_test.go:1670: assertion failed: &#xA;        Command:  /usr/bin/docker build -t testrunvolumesuidgid -&#xA;        ExitCode: 1&#xA;        Error:    exit status 1&#xA;        Stdout:   Sending build context to Docker daemon  2.048kB&#xD;&#xD;&#xA;        Step 1/4 : FROM busybox&#xA;         ---&gt; c6348fa86ba0&#xA;        Step 2/4 : RUN echo &#39;dockerio:x:1001:1001::/bin:/bin/false&#39; &gt;&gt; /etc/passwd&#xA;         ---&gt; Running in 4dbfd1c0bf8c&#xA;        Removing intermediate container 4dbfd1c0bf8c&#xA;         ---&gt; 08ec11e48636&#xA;        Step 3/4 : RUN echo &#39;dockerio:x:1001:&#39; &gt;&gt; /etc/group&#xA;         ---&gt; Running in 60f36e837435&#xA;        Removing intermediate container 60f36e837435&#xA;         ---&gt; 2caba97f1530&#xA;        Step 4/4 : RUN mkdir -p /hello &amp;&amp; touch /hello/test &amp;&amp; chown dockerio.dockerio /hello&#xA;         ---&gt; Running in 3b4109d1e06f&#xA;        �[91mchown: unknown user dockerio.dockerio&#xA;        �[0m&#xA;        Stderr:   DEPRECATED: The legacy builder is deprecated and will be removed in a future release.&#xA;                    BuildKit is currently disabled; enable it by removing the DOCKER_BUILDKIT=0&#xA;                    environment-variable.&#xA;        &#xA;        The command &#39;/bin/sh -c mkdir -p /hello &amp;&amp; touch /hello/test &amp;&amp; chown dockerio.dockerio /hello&#39; returned a non-zero code: 1&#xA;        &#xA;        &#xA;        Failures:&#xA;        ExitCode was 1 expected 0&#xA;        Expected no error&#xA;--- FAIL: TestDockerCLIRunSuite/TestRunCopyVolumeUIDGID (16.23s)&#xA;</failure>
+		</testcase>
+		<testcase classname="github.com/docker/docker/integration-cli" name="TestDockerCLIRunSuite/TestRunInvalidCPUShares" time="15.280000">
+			<failure message="Failed" type="">=== RUN   TestDockerCLIRunSuite/TestRunInvalidCPUShares&#xA;    docker_cli_run_unix_test.go:744: assertion failed: expression is false: strings.Contains(out, expected)&#xA;--- FAIL: TestDockerCLIRunSuite/TestRunInvalidCPUShares (15.28s)&#xA;</failure>
+		</testcase>
+		<testcase classname="github.com/docker/docker/integration-cli" name="TestDockerCLIRunSuite/TestRunInvalidCgroupParent" time="15.030000">
+			<failure message="Failed" type="">=== RUN   TestDockerCLIRunSuite/TestRunInvalidCgroupParent&#xA;    docker_cli_run_test.go:3264: unexpected failure when running container with --cgroup-parent option - docker: Error response from daemon: cgroup-parent for systemd cgroup should be a valid slice named as &#34;xxx.slice&#34;.&#xA;        See &#39;docker run --help&#39;.&#xA;        &#xA;        &#xA;        Command:  /usr/bin/docker run --cgroup-parent ../../../../../../../../SHOULD_NOT_EXIST --name cgroup-invalid-test busybox cat /proc/self/cgroup&#xA;        ExitCode: 125&#xA;        Error:    exit status 125&#xA;        Stdout:   &#xA;        Stderr:   docker: Error response from daemon: cgroup-parent for systemd cgroup should be a valid slice named as &#34;xxx.slice&#34;.&#xA;        See &#39;docker run --help&#39;.&#xA;        &#xA;        &#xA;        Failures:&#xA;        ExitCode was 125 expected 0&#xA;        Expected no error&#xA;--- FAIL: TestDockerCLIRunSuite/TestRunInvalidCgroupParent (15.03s)&#xA;</failure>
+		</testcase>
+		<testcase classname="github.com/docker/docker/integration-cli" name="TestDockerCLIRunSuite/TestRunNoNewPrivSetuid" time="15.050000">
+			<failure message="Failed" type="">=== RUN   TestDockerCLIRunSuite/TestRunNoNewPrivSetuid&#xA;    fixtures_linux_daemon_test.go:101: assertion failed: error is not nil: exit status 1: /usr/bin/ld: cannot find -lc: No such file or directory&#xA;        collect2: error: ld returned 1 exit status&#xA;        &#xA;--- FAIL: TestDockerCLIRunSuite/TestRunNoNewPrivSetuid (15.05s)&#xA;</failure>
+		</testcase>
+		<testcase classname="github.com/docker/docker/integration-cli" name="TestDockerCLIRunSuite/TestRunPIDsLimit" time="15.450000">
+			<failure message="Failed" type="">=== RUN   TestDockerCLIRunSuite/TestRunPIDsLimit&#xA;    docker_cli_run_unix_test.go:1397: assertion failed: &#xA;        Command:  /usr/bin/docker run --name skittles --pids-limit 4 busybox cat /sys/fs/cgroup/pids/pids.max&#xA;        ExitCode: 1&#xA;        Error:    exit status 1&#xA;        Stdout:   &#xA;        Stderr:   cat: can&#39;t open &#39;/sys/fs/cgroup/pids/pids.max&#39;: No such file or directory&#xA;        &#xA;        &#xA;        Failures:&#xA;        ExitCode was 1 expected 0&#xA;        Expected no error&#xA;--- FAIL: TestDockerCLIRunSuite/TestRunPIDsLimit (15.45s)&#xA;</failure>
+		</testcase>
+		<testcase classname="github.com/docker/docker/integration-cli" name="TestDockerCLIRunSuite/TestRunPrivilegedAllowedDevices" time="15.470000">
+			<failure message="Failed" type="">=== RUN   TestDockerCLIRunSuite/TestRunPrivilegedAllowedDevices&#xA;    docker_cli_run_unix_test.go:1408: assertion failed: &#xA;        Command:  /usr/bin/docker run --privileged busybox cat /sys/fs/cgroup/devices/devices.list&#xA;        ExitCode: 1&#xA;        Error:    exit status 1&#xA;        Stdout:   &#xA;        Stderr:   cat: can&#39;t open &#39;/sys/fs/cgroup/devices/devices.list&#39;: No such file or directory&#xA;        &#xA;        &#xA;        Failures:&#xA;        ExitCode was 1 expected 0&#xA;        Expected no error&#xA;--- FAIL: TestDockerCLIRunSuite/TestRunPrivilegedAllowedDevices (15.47s)&#xA;</failure>
+		</testcase>
+		<testcase classname="github.com/docker/docker/integration-cli" name="TestDockerCLIRunSuite/TestRunSeccompAllowPrivCloneUserns" time="15.060000">
+			<failure message="Failed" type="">=== RUN   TestDockerCLIRunSuite/TestRunSeccompAllowPrivCloneUserns&#xA;    fixtures_linux_daemon_test.go:41: assertion failed: error is not nil: exit status 1: /usr/bin/ld: cannot find -lc: No such file or directory&#xA;        collect2: error: ld returned 1 exit status&#xA;        &#xA;--- FAIL: TestDockerCLIRunSuite/TestRunSeccompAllowPrivCloneUserns (15.06s)&#xA;</failure>
+		</testcase>
+		<testcase classname="github.com/docker/docker/integration-cli" name="TestDockerCLIRunSuite/TestRunSeccompDefaultProfileAcct" time="15.060000">
+			<failure message="Failed" type="">=== RUN   TestDockerCLIRunSuite/TestRunSeccompDefaultProfileAcct&#xA;    fixtures_linux_daemon_test.go:41: assertion failed: error is not nil: exit status 1: /usr/bin/ld: cannot find -lc: No such file or directory&#xA;        collect2: error: ld returned 1 exit status&#xA;        &#xA;--- FAIL: TestDockerCLIRunSuite/TestRunSeccompDefaultProfileAcct (15.06s)&#xA;</failure>
+		</testcase>
+		<testcase classname="github.com/docker/docker/integration-cli" name="TestDockerCLIRunSuite/TestRunSeccompDefaultProfileNS" time="15.060000">
+			<failure message="Failed" type="">=== RUN   TestDockerCLIRunSuite/TestRunSeccompDefaultProfileNS&#xA;    fixtures_linux_daemon_test.go:41: assertion failed: error is not nil: exit status 1: /usr/bin/ld: cannot find -lc: No such file or directory&#xA;        collect2: error: ld returned 1 exit status&#xA;        &#xA;--- FAIL: TestDockerCLIRunSuite/TestRunSeccompDefaultProfileNS (15.06s)&#xA;</failure>
+		</testcase>
+		<testcase classname="github.com/docker/docker/integration-cli" name="TestDockerCLIRunSuite/TestRunSeccompProfileAllow32Bit" time="15.070000">
+			<failure message="Failed" type="">=== RUN   TestDockerCLIRunSuite/TestRunSeccompProfileAllow32Bit&#xA;    fixtures_linux_daemon_test.go:41: assertion failed: error is not nil: exit status 1: /usr/bin/ld: cannot find -lc: No such file or directory&#xA;        collect2: error: ld returned 1 exit status&#xA;        &#xA;--- FAIL: TestDockerCLIRunSuite/TestRunSeccompProfileAllow32Bit (15.07s)&#xA;</failure>
+		</testcase>
+		<testcase classname="github.com/docker/docker/integration-cli" name="TestDockerCLIRunSuite/TestRunSeccompProfileDenyCloneUserns" time="15.060000">
+			<failure message="Failed" type="">=== RUN   TestDockerCLIRunSuite/TestRunSeccompProfileDenyCloneUserns&#xA;    fixtures_linux_daemon_test.go:41: assertion failed: error is not nil: exit status 1: /usr/bin/ld: cannot find -lc: No such file or directory&#xA;        collect2: error: ld returned 1 exit status&#xA;        &#xA;--- FAIL: TestDockerCLIRunSuite/TestRunSeccompProfileDenyCloneUserns (15.06s)&#xA;</failure>
+		</testcase>
+		<testcase classname="github.com/docker/docker/integration-cli" name="TestDockerCLIRunSuite/TestRunSeccompUnconfinedCloneUserns" time="15.060000">
+			<failure message="Failed" type="">=== RUN   TestDockerCLIRunSuite/TestRunSeccompUnconfinedCloneUserns&#xA;    fixtures_linux_daemon_test.go:41: assertion failed: error is not nil: exit status 1: /usr/bin/ld: cannot find -lc: No such file or directory&#xA;        collect2: error: ld returned 1 exit status&#xA;        &#xA;--- FAIL: TestDockerCLIRunSuite/TestRunSeccompUnconfinedCloneUserns (15.06s)&#xA;</failure>
+		</testcase>
+		<testcase classname="github.com/docker/docker/integration-cli" name="TestDockerCLIRunSuite/TestRunTLSVerify" time="15.050000">
+			<failure message="Failed" type="">=== RUN   TestDockerCLIRunSuite/TestRunTLSVerify&#xA;    docker_cli_run_test.go:2465: assertion failed: &#xA;        Command:  /usr/bin/docker --tlsverify=false ps&#xA;        ExitCode: 1&#xA;        Error:    exit status 1&#xA;        Stdout:   &#xA;        Stderr:   Failed to initialize: unable to resolve docker endpoint: open /root/.docker/ca.pem: no such file or directory&#xA;        &#xA;        &#xA;        Failures:&#xA;        Expected stderr to contain &#34;error during connect&#34;&#xA;--- FAIL: TestDockerCLIRunSuite/TestRunTLSVerify (15.05s)&#xA;</failure>
+		</testcase>
+		<testcase classname="github.com/docker/docker/integration-cli" name="TestDockerCLIRunSuite/TestRunUserDeviceAllowed" time="15.450000">
+			<failure message="Failed" type="">=== RUN   TestDockerCLIRunSuite/TestRunUserDeviceAllowed&#xA;    docker_cli_run_unix_test.go:1426: assertion failed: &#xA;        Command:  /usr/bin/docker run --device /dev/snd/timer:w busybox cat /sys/fs/cgroup/devices/devices.list&#xA;        ExitCode: 1&#xA;        Error:    exit status 1&#xA;        Stdout:   &#xA;        Stderr:   cat: can&#39;t open &#39;/sys/fs/cgroup/devices/devices.list&#39;: No such file or directory&#xA;        &#xA;        &#xA;        Failures:&#xA;        ExitCode was 1 expected 0&#xA;        Expected no error&#xA;--- FAIL: TestDockerCLIRunSuite/TestRunUserDeviceAllowed (15.45s)&#xA;</failure>
+		</testcase>
+		<testcase classname="github.com/docker/docker/integration-cli" name="TestDockerCLIRunSuite/TestRunWithBlkioWeight" time="15.460000">
+			<failure message="Failed" type="">=== RUN   TestDockerCLIRunSuite/TestRunWithBlkioWeight&#xA;    docker_cli_run_unix_test.go:546: assertion failed: &#xA;        Command:  /usr/bin/docker run --blkio-weight 300 --name test busybox cat /sys/fs/cgroup/blkio/blkio.weight&#xA;        ExitCode: 1&#xA;        Error:    exit status 1&#xA;        Stdout:   &#xA;        Stderr:   cat: can&#39;t open &#39;/sys/fs/cgroup/blkio/blkio.weight&#39;: No such file or directory&#xA;        &#xA;        &#xA;        Failures:&#xA;        ExitCode was 1 expected 0&#xA;        Expected no error&#xA;--- FAIL: TestDockerCLIRunSuite/TestRunWithBlkioWeight (15.46s)&#xA;</failure>
+		</testcase>
+		<testcase classname="github.com/docker/docker/integration-cli" name="TestDockerCLIRunSuite/TestRunWithCPUQuota" time="15.690000">
+			<failure message="Failed" type="">=== RUN   TestDockerCLIRunSuite/TestRunWithCPUQuota&#xA;    docker_cli_run_unix_test.go:463: assertion failed: &#xA;        Command:  /usr/bin/docker run --cpu-quota 8000 --name test busybox cat /sys/fs/cgroup/cpu/cpu.cfs_quota_us&#xA;        ExitCode: 1&#xA;        Error:    exit status 1&#xA;        Stdout:   &#xA;        Stderr:   cat: can&#39;t open &#39;/sys/fs/cgroup/cpu/cpu.cfs_quota_us&#39;: No such file or directory&#xA;        &#xA;        &#xA;        Failures:&#xA;        ExitCode was 1 expected 0&#xA;        Expected no error&#xA;--- FAIL: TestDockerCLIRunSuite/TestRunWithCPUQuota (15.69s)&#xA;</failure>
+		</testcase>
+		<testcase classname="github.com/docker/docker/integration-cli" name="TestDockerCLIRunSuite/TestRunWithCPUShares" time="15.450000">
+			<failure message="Failed" type="">=== RUN   TestDockerCLIRunSuite/TestRunWithCPUShares&#xA;    docker_cli_run_unix_test.go:504: assertion failed: &#xA;        Command:  /usr/bin/docker run --cpu-shares 1000 --name test busybox cat /sys/fs/cgroup/cpu/cpu.shares&#xA;        ExitCode: 1&#xA;        Error:    exit status 1&#xA;        Stdout:   &#xA;        Stderr:   cat: can&#39;t open &#39;/sys/fs/cgroup/cpu/cpu.shares&#39;: No such file or directory&#xA;        &#xA;        &#xA;        Failures:&#xA;        ExitCode was 1 expected 0&#xA;        Expected no error&#xA;--- FAIL: TestDockerCLIRunSuite/TestRunWithCPUShares (15.45s)&#xA;</failure>
+		</testcase>
+		<testcase classname="github.com/docker/docker/integration-cli" name="TestDockerCLIRunSuite/TestRunWithCpuPeriod" time="15.480000">
+			<failure message="Failed" type="">=== RUN   TestDockerCLIRunSuite/TestRunWithCpuPeriod&#xA;    docker_cli_run_unix_test.go:474: assertion failed: &#xA;        Command:  /usr/bin/docker run --cpu-period 50000 --name test busybox cat /sys/fs/cgroup/cpu/cpu.cfs_period_us&#xA;        ExitCode: 1&#xA;        Error:    exit status 1&#xA;        Stdout:   &#xA;        Stderr:   cat: can&#39;t open &#39;/sys/fs/cgroup/cpu/cpu.cfs_period_us&#39;: No such file or directory&#xA;        &#xA;        &#xA;        Failures:&#xA;        ExitCode was 1 expected 0&#xA;        Expected no error&#xA;--- FAIL: TestDockerCLIRunSuite/TestRunWithCpuPeriod (15.48s)&#xA;</failure>
+		</testcase>
+		<testcase classname="github.com/docker/docker/integration-cli" name="TestDockerCLIRunSuite/TestRunWithCpusetCpus" time="15.490000">
+			<failure message="Failed" type="">=== RUN   TestDockerCLIRunSuite/TestRunWithCpusetCpus&#xA;    docker_cli_run_unix_test.go:524: assertion failed: &#xA;        Command:  /usr/bin/docker run --cpuset-cpus 0 --name test busybox cat /sys/fs/cgroup/cpuset/cpuset.cpus&#xA;        ExitCode: 1&#xA;        Error:    exit status 1&#xA;        Stdout:   &#xA;        Stderr:   cat: can&#39;t open &#39;/sys/fs/cgroup/cpuset/cpuset.cpus&#39;: No such file or directory&#xA;        &#xA;        &#xA;        Failures:&#xA;        ExitCode was 1 expected 0&#xA;        Expected no error&#xA;--- FAIL: TestDockerCLIRunSuite/TestRunWithCpusetCpus (15.49s)&#xA;</failure>
+		</testcase>
+		<testcase classname="github.com/docker/docker/integration-cli" name="TestDockerCLIRunSuite/TestRunWithCpusetMems" time="15.030000">
+			<failure message="Failed" type="">=== RUN   TestDockerCLIRunSuite/TestRunWithCpusetMems&#xA;    docker_cli_run_unix_test.go:535: assertion failed: &#xA;        Command:  /usr/bin/docker run --cpuset-mems 0 --name test busybox cat /sys/fs/cgroup/cpuset/cpuset.mems&#xA;        ExitCode: 125&#xA;        Error:    exit status 125&#xA;        Stdout:   &#xA;        Stderr:   docker: Error response from daemon: Requested memory nodes are not available - requested 0, available: 1-4.&#xA;        See &#39;docker run --help&#39;.&#xA;        &#xA;        &#xA;        Failures:&#xA;        ExitCode was 125 expected 0&#xA;        Expected no error&#xA;--- FAIL: TestDockerCLIRunSuite/TestRunWithCpusetMems (15.03s)&#xA;</failure>
+		</testcase>
+		<testcase classname="github.com/docker/docker/integration-cli" name="TestDockerCLIRunSuite/TestRunWithMemoryLimit" time="15.450000">
+			<failure message="Failed" type="">=== RUN   TestDockerCLIRunSuite/TestRunWithMemoryLimit&#xA;    docker_cli_run_unix_test.go:615: assertion failed: &#xA;        Command:  /usr/bin/docker run -m 32M --name test busybox cat /sys/fs/cgroup/memory/memory.limit_in_bytes&#xA;        ExitCode: 1&#xA;        Error:    exit status 1&#xA;        Stdout:   &#xA;        Stderr:   cat: can&#39;t open &#39;/sys/fs/cgroup/memory/memory.limit_in_bytes&#39;: No such file or directory&#xA;        &#xA;        &#xA;        Failures:&#xA;        ExitCode was 1 expected 0&#xA;        Expected no error&#xA;--- FAIL: TestDockerCLIRunSuite/TestRunWithMemoryLimit (15.45s)&#xA;</failure>
+		</testcase>
+		<testcase classname="github.com/docker/docker/integration-cli" name="TestDockerCLIRunSuite/TestRunWithMemoryReservation" time="15.460000">
+			<failure message="Failed" type="">=== RUN   TestDockerCLIRunSuite/TestRunWithMemoryReservation&#xA;    docker_cli_run_unix_test.go:659: assertion failed: &#xA;        Command:  /usr/bin/docker run --memory-reservation 200M --name test busybox cat /sys/fs/cgroup/memory/memory.soft_limit_in_bytes&#xA;        ExitCode: 1&#xA;        Error:    exit status 1&#xA;        Stdout:   &#xA;        Stderr:   cat: can&#39;t open &#39;/sys/fs/cgroup/memory/memory.soft_limit_in_bytes&#39;: No such file or directory&#xA;        &#xA;        &#xA;        Failures:&#xA;        ExitCode was 1 expected 0&#xA;        Expected no error&#xA;--- FAIL: TestDockerCLIRunSuite/TestRunWithMemoryReservation (15.46s)&#xA;</failure>
+		</testcase>
+		<testcase classname="github.com/docker/docker/integration-cli" name="TestDockerCLIRunSuite/TestRunWithNanoCPUs" time="15.450000">
+			<failure message="Failed" type="">=== RUN   TestDockerCLIRunSuite/TestRunWithNanoCPUs&#xA;    docker_cli_run_unix_test.go:1559: assertion failed: &#xA;        Command:  /usr/bin/docker run --cpus 0.5 --name test busybox sh -c cat /sys/fs/cgroup/cpu/cpu.cfs_quota_us &amp;&amp; cat /sys/fs/cgroup/cpu/cpu.cfs_period_us&#xA;        ExitCode: 1&#xA;        Error:    exit status 1&#xA;        Stdout:   &#xA;        Stderr:   cat: can&#39;t open &#39;/sys/fs/cgroup/cpu/cpu.cfs_quota_us&#39;: No such file or directory&#xA;        &#xA;        &#xA;        Failures:&#xA;        ExitCode was 1 expected 0&#xA;        Expected no error&#xA;--- FAIL: TestDockerCLIRunSuite/TestRunWithNanoCPUs (15.45s)&#xA;</failure>
+		</testcase>
+		<testcase classname="github.com/docker/docker/integration-cli" name="TestDockerCLIRunSuite/TestRunWithNetAliasOnDefaultNetworks" time="15.040000">
+			<failure message="Failed" type="">=== RUN   TestDockerCLIRunSuite/TestRunWithNetAliasOnDefaultNetworks&#xA;    docker_cli_run_test.go:299: assertion failed: expression is false: strings.Contains(out, runconfig.ErrUnsupportedNetworkAndAlias.Error())&#xA;--- FAIL: TestDockerCLIRunSuite/TestRunWithNetAliasOnDefaultNetworks (15.04s)&#xA;</failure>
+		</testcase>
+		<testcase classname="github.com/docker/docker/integration-cli" name="TestDockerCLIRunSuite/TestUserNoEffectiveCapabilitiesChown" time="15.070000">
+			<failure message="Failed" type="">=== RUN   TestDockerCLIRunSuite/TestUserNoEffectiveCapabilitiesChown&#xA;    fixtures_linux_daemon_test.go:41: assertion failed: error is not nil: exit status 1: /usr/bin/ld: cannot find -lc: No such file or directory&#xA;        collect2: error: ld returned 1 exit status&#xA;        &#xA;--- FAIL: TestDockerCLIRunSuite/TestUserNoEffectiveCapabilitiesChown (15.07s)&#xA;</failure>
+		</testcase>
+		<testcase classname="github.com/docker/docker/integration-cli" name="TestDockerCLIRunSuite/TestUserNoEffectiveCapabilitiesChroot" time="15.060000">
+			<failure message="Failed" type="">=== RUN   TestDockerCLIRunSuite/TestUserNoEffectiveCapabilitiesChroot&#xA;    fixtures_linux_daemon_test.go:41: assertion failed: error is not nil: exit status 1: /usr/bin/ld: cannot find -lc: No such file or directory&#xA;        collect2: error: ld returned 1 exit status&#xA;        &#xA;--- FAIL: TestDockerCLIRunSuite/TestUserNoEffectiveCapabilitiesChroot (15.06s)&#xA;</failure>
+		</testcase>
+		<testcase classname="github.com/docker/docker/integration-cli" name="TestDockerCLIRunSuite/TestUserNoEffectiveCapabilitiesDacOverride" time="15.060000">
+			<failure message="Failed" type="">=== RUN   TestDockerCLIRunSuite/TestUserNoEffectiveCapabilitiesDacOverride&#xA;    fixtures_linux_daemon_test.go:41: assertion failed: error is not nil: exit status 1: /usr/bin/ld: cannot find -lc: No such file or directory&#xA;        collect2: error: ld returned 1 exit status&#xA;        &#xA;--- FAIL: TestDockerCLIRunSuite/TestUserNoEffectiveCapabilitiesDacOverride (15.06s)&#xA;</failure>
+		</testcase>
+		<testcase classname="github.com/docker/docker/integration-cli" name="TestDockerCLIRunSuite/TestUserNoEffectiveCapabilitiesFowner" time="15.060000">
+			<failure message="Failed" type="">=== RUN   TestDockerCLIRunSuite/TestUserNoEffectiveCapabilitiesFowner&#xA;    fixtures_linux_daemon_test.go:41: assertion failed: error is not nil: exit status 1: /usr/bin/ld: cannot find -lc: No such file or directory&#xA;        collect2: error: ld returned 1 exit status&#xA;        &#xA;--- FAIL: TestDockerCLIRunSuite/TestUserNoEffectiveCapabilitiesFowner (15.06s)&#xA;</failure>
+		</testcase>
+		<testcase classname="github.com/docker/docker/integration-cli" name="TestDockerCLIRunSuite/TestUserNoEffectiveCapabilitiesMknod" time="15.060000">
+			<failure message="Failed" type="">=== RUN   TestDockerCLIRunSuite/TestUserNoEffectiveCapabilitiesMknod&#xA;    fixtures_linux_daemon_test.go:41: assertion failed: error is not nil: exit status 1: /usr/bin/ld: cannot find -lc: No such file or directory&#xA;        collect2: error: ld returned 1 exit status&#xA;        &#xA;--- FAIL: TestDockerCLIRunSuite/TestUserNoEffectiveCapabilitiesMknod (15.06s)&#xA;</failure>
+		</testcase>
+		<testcase classname="github.com/docker/docker/integration-cli" name="TestDockerCLIRunSuite/TestUserNoEffectiveCapabilitiesNetBindService" time="15.060000">
+			<failure message="Failed" type="">=== RUN   TestDockerCLIRunSuite/TestUserNoEffectiveCapabilitiesNetBindService&#xA;    fixtures_linux_daemon_test.go:41: assertion failed: error is not nil: exit status 1: /usr/bin/ld: cannot find -lc: No such file or directory&#xA;        collect2: error: ld returned 1 exit status&#xA;        &#xA;--- FAIL: TestDockerCLIRunSuite/TestUserNoEffectiveCapabilitiesNetBindService (15.06s)&#xA;</failure>
+		</testcase>
+		<testcase classname="github.com/docker/docker/integration-cli" name="TestDockerCLIRunSuite/TestUserNoEffectiveCapabilitiesNetRaw" time="15.070000">
+			<failure message="Failed" type="">=== RUN   TestDockerCLIRunSuite/TestUserNoEffectiveCapabilitiesNetRaw&#xA;    fixtures_linux_daemon_test.go:41: assertion failed: error is not nil: exit status 1: /usr/bin/ld: cannot find -lc: No such file or directory&#xA;        collect2: error: ld returned 1 exit status&#xA;        &#xA;--- FAIL: TestDockerCLIRunSuite/TestUserNoEffectiveCapabilitiesNetRaw (15.07s)&#xA;</failure>
+		</testcase>
+		<testcase classname="github.com/docker/docker/integration-cli" name="TestDockerCLIRunSuite/TestUserNoEffectiveCapabilitiesSetgid" time="15.060000">
+			<failure message="Failed" type="">=== RUN   TestDockerCLIRunSuite/TestUserNoEffectiveCapabilitiesSetgid&#xA;    fixtures_linux_daemon_test.go:41: assertion failed: error is not nil: exit status 1: /usr/bin/ld: cannot find -lc: No such file or directory&#xA;        collect2: error: ld returned 1 exit status&#xA;        &#xA;--- FAIL: TestDockerCLIRunSuite/TestUserNoEffectiveCapabilitiesSetgid (15.06s)&#xA;</failure>
+		</testcase>
+		<testcase classname="github.com/docker/docker/integration-cli" name="TestDockerCLIRunSuite/TestUserNoEffectiveCapabilitiesSetuid" time="15.060000">
+			<failure message="Failed" type="">=== RUN   TestDockerCLIRunSuite/TestUserNoEffectiveCapabilitiesSetuid&#xA;    fixtures_linux_daemon_test.go:41: assertion failed: error is not nil: exit status 1: /usr/bin/ld: cannot find -lc: No such file or directory&#xA;        collect2: error: ld returned 1 exit status&#xA;        &#xA;--- FAIL: TestDockerCLIRunSuite/TestUserNoEffectiveCapabilitiesSetuid (15.06s)&#xA;</failure>
+		</testcase>
+		<testcase classname="github.com/docker/docker/integration-cli" name="TestDockerCLIRunSuite" time="5371.290000">
+			<failure message="Failed" type="">=== RUN   TestDockerCLIRunSuite&#xA;--- FAIL: TestDockerCLIRunSuite (5371.29s)&#xA;</failure>
+		</testcase>
+		<testcase classname="github.com/docker/docker/integration-cli" name="TestDockerCLIVolumeSuite/TestVolumeCLIInspectMulti" time="30.110000">
+			<failure message="Failed" type="">=== RUN   TestDockerCLIVolumeSuite/TestVolumeCLIInspectMulti&#xA;    docker_cli_volume_test.go:67: assertion failed: &#xA;        Command:  /usr/bin/docker volume inspect --format={{ .Name }} test1 test2 doesnotexist test3&#xA;        ExitCode: 1&#xA;        Error:    exit status 1&#xA;        Stdout:   test1&#xA;        test2&#xA;        test3&#xA;        &#xA;        Stderr:   Error response from daemon: get doesnotexist: no such volume&#xA;        &#xA;        &#xA;        Failures:&#xA;        Expected stderr to contain &#34;No such volume: doesnotexist&#34;&#xA;--- FAIL: TestDockerCLIVolumeSuite/TestVolumeCLIInspectMulti (30.11s)&#xA;</failure>
+		</testcase>
+		<testcase classname="github.com/docker/docker/integration-cli" name="TestDockerCLIVolumeSuite/TestVolumeCLIInspectTmplError" time="15.050000">
+			<failure message="Failed" type="">=== RUN   TestDockerCLIVolumeSuite/TestVolumeCLIInspectTmplError&#xA;    docker_cli_volume_test.go:251: assertion failed: expression is false: strings.Contains(out, &#34;Template parsing error&#34;)&#xA;--- FAIL: TestDockerCLIVolumeSuite/TestVolumeCLIInspectTmplError (15.05s)&#xA;</failure>
+		</testcase>
+		<testcase classname="github.com/docker/docker/integration-cli" name="TestDockerCLIVolumeSuite/TestVolumeCLINoArgs" time="15.070000">
+			<failure message="Failed" type="">=== RUN   TestDockerCLIVolumeSuite/TestVolumeCLINoArgs&#xA;    docker_cli_volume_test.go:226: assertion failed: expression is false: strings.Contains(out, usage)&#xA;--- FAIL: TestDockerCLIVolumeSuite/TestVolumeCLINoArgs (15.07s)&#xA;</failure>
+		</testcase>
+		<testcase classname="github.com/docker/docker/integration-cli" name="TestDockerCLIVolumeSuite" time="939.390000">
+			<failure message="Failed" type="">=== RUN   TestDockerCLIVolumeSuite&#xA;--- FAIL: TestDockerCLIVolumeSuite (939.39s)&#xA;</failure>
+		</testcase>
+		<testcase classname="github.com/docker/docker/integration-cli" name="TestDockerAPISuite/TestAPIImagesDelete" time="15.070000">
+			<skipped message="=== RUN   TestDockerAPISuite/TestAPIImagesDelete&#xA;    docker_api_images_test.go:82: unmatched requirement Network&#xA;--- SKIP: TestDockerAPISuite/TestAPIImagesDelete (15.07s)&#xA;"></skipped>
+		</testcase>
+		<testcase classname="github.com/docker/docker/integration-cli" name="TestDockerAPISuite/TestAPIImagesHistory" time="15.020000">
+			<skipped message="=== RUN   TestDockerAPISuite/TestAPIImagesHistory&#xA;    docker_api_images_test.go:106: unmatched requirement Network&#xA;--- SKIP: TestDockerAPISuite/TestAPIImagesHistory (15.02s)&#xA;"></skipped>
+		</testcase>
+		<testcase classname="github.com/docker/docker/integration-cli" name="TestDockerAPISuite/TestAPIImagesImportBadSrc" time="15.010000">
+			<skipped message="=== RUN   TestDockerAPISuite/TestAPIImagesImportBadSrc&#xA;    docker_api_images_test.go:127: unmatched requirement Network&#xA;--- SKIP: TestDockerAPISuite/TestAPIImagesImportBadSrc (15.01s)&#xA;"></skipped>
+		</testcase>
+		<testcase classname="github.com/docker/docker/integration-cli" name="TestDockerAPISuite/TestAPIImagesSaveAndLoad" time="15.020000">
+			<skipped message="=== RUN   TestDockerAPISuite/TestAPIImagesSaveAndLoad&#xA;    docker_api_images_test.go:56: unmatched requirement Network&#xA;--- SKIP: TestDockerAPISuite/TestAPIImagesSaveAndLoad (15.02s)&#xA;"></skipped>
+		</testcase>
+		<testcase classname="github.com/docker/docker/integration-cli" name="TestDockerAPISuite/TestAPIImagesSearchJSONContentType" time="15.010000">
+			<skipped message="=== RUN   TestDockerAPISuite/TestAPIImagesSearchJSONContentType&#xA;    docker_api_images_test.go:152: unmatched requirement Network&#xA;--- SKIP: TestDockerAPISuite/TestAPIImagesSearchJSONContentType (15.01s)&#xA;"></skipped>
+		</testcase>
+		<testcase classname="github.com/docker/docker/integration-cli" name="TestDockerAPISuite/TestContainerAPITopWindows" time="15.010000">
+			<skipped message="=== RUN   TestDockerAPISuite/TestContainerAPITopWindows&#xA;    docker_api_containers_test.go:418: unmatched requirement DaemonIsWindows&#xA;--- SKIP: TestDockerAPISuite/TestContainerAPITopWindows (15.01s)&#xA;"></skipped>
+		</testcase>
+		<testcase classname="github.com/docker/docker/integration-cli" name="TestDockerCLICreateSuite/TestCreateGrowRootfs" time="15.010000">
+			<skipped message="=== RUN   TestDockerCLICreateSuite/TestCreateGrowRootfs&#xA;    docker_cli_create_test.go:70: unmatched requirement Devicemapper&#xA;--- SKIP: TestDockerCLICreateSuite/TestCreateGrowRootfs (15.01s)&#xA;"></skipped>
+		</testcase>
+		<testcase classname="github.com/docker/docker/integration-cli" name="TestDockerCLICreateSuite/TestCreateShrinkRootfs" time="15.010000">
+			<skipped message="=== RUN   TestDockerCLICreateSuite/TestCreateShrinkRootfs&#xA;    docker_cli_create_test.go:82: unmatched requirement Devicemapper&#xA;--- SKIP: TestDockerCLICreateSuite/TestCreateShrinkRootfs (15.01s)&#xA;"></skipped>
+		</testcase>
+		<testcase classname="github.com/docker/docker/integration-cli" name="TestDockerCLIExecSuite/TestExecWindowsPathNotWiped" time="15.010000">
+			<skipped message="=== RUN   TestDockerCLIExecSuite/TestExecWindowsPathNotWiped&#xA;    docker_cli_exec_test.go:528: unmatched requirement DaemonIsWindows&#xA;--- SKIP: TestDockerCLIExecSuite/TestExecWindowsPathNotWiped (15.01s)&#xA;"></skipped>
+		</testcase>
+		<testcase classname="github.com/docker/docker/integration-cli" name="TestDockerCLIInspectSuite/TestInspectContainerGraphDriver" time="15.010000">
+			<skipped message="=== RUN   TestDockerCLIInspectSuite/TestInspectContainerGraphDriver&#xA;    docker_cli_inspect_test.go:199: unmatched requirement Devicemapper&#xA;--- SKIP: TestDockerCLIInspectSuite/TestInspectContainerGraphDriver (15.01s)&#xA;"></skipped>
+		</testcase>
+		<testcase classname="github.com/docker/docker/integration-cli" name="TestDockerCLIInspectSuite/TestInspectImageGraphDriver" time="15.010000">
+			<skipped message="=== RUN   TestDockerCLIInspectSuite/TestInspectImageGraphDriver&#xA;    docker_cli_inspect_test.go:181: unmatched requirement Devicemapper&#xA;--- SKIP: TestDockerCLIInspectSuite/TestInspectImageGraphDriver (15.01s)&#xA;"></skipped>
+		</testcase>
+		<testcase classname="github.com/docker/docker/integration-cli" name="TestDockerCLIInspectSuite/TestInspectPlugin" time="15.020000">
+			<skipped message="=== RUN   TestDockerCLIInspectSuite/TestInspectPlugin&#xA;    docker_cli_inspect_test.go:437: unmatched requirement Network&#xA;--- SKIP: TestDockerCLIInspectSuite/TestInspectPlugin (15.02s)&#xA;"></skipped>
+		</testcase>
+		<testcase classname="github.com/docker/docker/integration-cli" name="TestDockerCLIRunSuite/TestAppArmorDeniesChmodProc" time="15.010000">
+			<skipped message="=== RUN   TestDockerCLIRunSuite/TestAppArmorDeniesChmodProc&#xA;    docker_cli_run_test.go:3162: unmatched requirement Apparmor&#xA;--- SKIP: TestDockerCLIRunSuite/TestAppArmorDeniesChmodProc (15.01s)&#xA;"></skipped>
+		</testcase>
+		<testcase classname="github.com/docker/docker/integration-cli" name="TestDockerCLIRunSuite/TestAppArmorDeniesPtrace" time="15.010000">
+			<skipped message="=== RUN   TestDockerCLIRunSuite/TestAppArmorDeniesPtrace&#xA;    docker_cli_run_test.go:3140: unmatched requirement Apparmor&#xA;--- SKIP: TestDockerCLIRunSuite/TestAppArmorDeniesPtrace (15.01s)&#xA;"></skipped>
+		</testcase>
+		<testcase classname="github.com/docker/docker/integration-cli" name="TestDockerCLIRunSuite/TestAppArmorTraceSelf" time="15.010000">
+			<skipped message="=== RUN   TestDockerCLIRunSuite/TestAppArmorTraceSelf&#xA;    docker_cli_run_test.go:3152: unmatched requirement Apparmor&#xA;--- SKIP: TestDockerCLIRunSuite/TestAppArmorTraceSelf (15.01s)&#xA;"></skipped>
+		</testcase>
+		<testcase classname="github.com/docker/docker/integration-cli" name="TestDockerCLIRunSuite/TestRunApparmorProcDirectory" time="15.010000">
+			<skipped message="=== RUN   TestDockerCLIRunSuite/TestRunApparmorProcDirectory&#xA;    docker_cli_run_unix_test.go:1319: unmatched requirement Apparmor&#xA;--- SKIP: TestDockerCLIRunSuite/TestRunApparmorProcDirectory (15.01s)&#xA;"></skipped>
+		</testcase>
+		<testcase classname="github.com/docker/docker/integration-cli" name="TestDockerCLIRunSuite/TestRunCredentialSpecFailures" time="15.010000">
+			<skipped message="=== RUN   TestDockerCLIRunSuite/TestRunCredentialSpecFailures&#xA;    docker_cli_run_test.go:4030: unmatched requirement DaemonIsWindows&#xA;--- SKIP: TestDockerCLIRunSuite/TestRunCredentialSpecFailures (15.01s)&#xA;"></skipped>
+		</testcase>
+		<testcase classname="github.com/docker/docker/integration-cli" name="TestDockerCLIRunSuite/TestRunCredentialSpecWellFormed" time="15.010000">
+			<skipped message="=== RUN   TestDockerCLIRunSuite/TestRunCredentialSpecWellFormed&#xA;    docker_cli_run_test.go:4049: unmatched requirement DaemonIsWindows&#xA;--- SKIP: TestDockerCLIRunSuite/TestRunCredentialSpecWellFormed (15.01s)&#xA;"></skipped>
+		</testcase>
+		<testcase classname="github.com/docker/docker/integration-cli" name="TestDockerCLIRunSuite/TestRunHypervIsolationWithCPUCountCPUSharesAndCPUPercent" time="15.010000">
+			<skipped message="=== RUN   TestDockerCLIRunSuite/TestRunHypervIsolationWithCPUCountCPUSharesAndCPUPercent&#xA;    docker_cli_run_test.go:4132: unmatched requirement DaemonIsWindows&#xA;--- SKIP: TestDockerCLIRunSuite/TestRunHypervIsolationWithCPUCountCPUSharesAndCPUPercent (15.01s)&#xA;"></skipped>
+		</testcase>
+		<testcase classname="github.com/docker/docker/integration-cli" name="TestDockerCLIRunSuite/TestRunLookupGoogleDNS" time="15.020000">
+			<skipped message="=== RUN   TestDockerCLIRunSuite/TestRunLookupGoogleDNS&#xA;    docker_cli_run_test.go:84: unmatched requirement Network&#xA;--- SKIP: TestDockerCLIRunSuite/TestRunLookupGoogleDNS (15.02s)&#xA;"></skipped>
+		</testcase>
+		<testcase classname="github.com/docker/docker/integration-cli" name="TestDockerCLIRunSuite/TestRunNonRootUserResolvName" time="15.020000">
+			<skipped message="=== RUN   TestDockerCLIRunSuite/TestRunNonRootUserResolvName&#xA;    docker_cli_run_test.go:1413: unmatched requirement Network&#xA;--- SKIP: TestDockerCLIRunSuite/TestRunNonRootUserResolvName (15.02s)&#xA;"></skipped>
+		</testcase>
+		<testcase classname="github.com/docker/docker/integration-cli" name="TestDockerCLIRunSuite/TestRunProcessIsolationWithCPUCountCPUSharesAndCPUPercent" time="15.010000">
+			<skipped message="=== RUN   TestDockerCLIRunSuite/TestRunProcessIsolationWithCPUCountCPUSharesAndCPUPercent&#xA;    docker_cli_run_test.go:4115: unmatched requirement DaemonIsWindows&#xA;--- SKIP: TestDockerCLIRunSuite/TestRunProcessIsolationWithCPUCountCPUSharesAndCPUPercent (15.01s)&#xA;"></skipped>
+		</testcase>
+		<testcase classname="github.com/docker/docker/integration-cli" name="TestDockerCLIRunSuite/TestRunReadFilteredProc" time="15.010000">
+			<skipped message="=== RUN   TestDockerCLIRunSuite/TestRunReadFilteredProc&#xA;    docker_cli_run_test.go:2867: unmatched requirement Apparmor&#xA;--- SKIP: TestDockerCLIRunSuite/TestRunReadFilteredProc (15.01s)&#xA;"></skipped>
+		</testcase>
+		<testcase classname="github.com/docker/docker/integration-cli" name="TestDockerCLIRunSuite/TestRunReadProcLatency" time="15.010000">
+			<skipped message="=== RUN   TestDockerCLIRunSuite/TestRunReadProcLatency&#xA;    docker_cli_run_test.go:2850: kernel doesn&#39;t have latency_stats configured&#xA;--- SKIP: TestDockerCLIRunSuite/TestRunReadProcLatency (15.01s)&#xA;"></skipped>
+		</testcase>
+		<testcase classname="github.com/docker/docker/integration-cli" name="TestDockerCLIRunSuite/TestRunResolvconfUpdate" time="15.010000">
+			<skipped message="=== RUN   TestDockerCLIRunSuite/TestRunResolvconfUpdate&#xA;    docker_cli_run_test.go:1436: Unstable test, to be re-activated once #19937 is resolved&#xA;--- SKIP: TestDockerCLIRunSuite/TestRunResolvconfUpdate (15.01s)&#xA;"></skipped>
+		</testcase>
+		<testcase classname="github.com/docker/docker/integration-cli" name="TestDockerCLIRunSuite/TestRunSeccompProfileDenyUnshare" time="15.010000">
+			<skipped message="=== RUN   TestDockerCLIRunSuite/TestRunSeccompProfileDenyUnshare&#xA;    docker_cli_run_unix_test.go:894: unmatched requirement Apparmor&#xA;--- SKIP: TestDockerCLIRunSuite/TestRunSeccompProfileDenyUnshare (15.01s)&#xA;"></skipped>
+		</testcase>
+		<testcase classname="github.com/docker/docker/integration-cli" name="TestDockerCLIRunSuite/TestRunSeccompProfileDenyUnshareUserns" time="15.010000">
+			<skipped message="=== RUN   TestDockerCLIRunSuite/TestRunSeccompProfileDenyUnshareUserns&#xA;    docker_cli_run_unix_test.go:958: unmatched requirement Apparmor&#xA;--- SKIP: TestDockerCLIRunSuite/TestRunSeccompProfileDenyUnshareUserns (15.01s)&#xA;"></skipped>
+		</testcase>
+		<testcase classname="github.com/docker/docker/integration-cli" name="TestDockerCLIRunSuite/TestRunUnshareProc" time="15.010000">
+			<skipped message="=== RUN   TestDockerCLIRunSuite/TestRunUnshareProc&#xA;    docker_cli_run_test.go:2906: unmatched requirement Apparmor&#xA;--- SKIP: TestDockerCLIRunSuite/TestRunUnshareProc (15.01s)&#xA;"></skipped>
+		</testcase>
+		<testcase classname="github.com/docker/docker/integration-cli" name="TestDockerCLIRunSuite/TestRunWindowsWithCPUCount" time="15.010000">
+			<skipped message="=== RUN   TestDockerCLIRunSuite/TestRunWindowsWithCPUCount&#xA;    docker_cli_run_test.go:4085: unmatched requirement DaemonIsWindows&#xA;--- SKIP: TestDockerCLIRunSuite/TestRunWindowsWithCPUCount (15.01s)&#xA;"></skipped>
+		</testcase>
+		<testcase classname="github.com/docker/docker/integration-cli" name="TestDockerCLIRunSuite/TestRunWindowsWithCPUPercent" time="15.010000">
+			<skipped message="=== RUN   TestDockerCLIRunSuite/TestRunWindowsWithCPUPercent&#xA;    docker_cli_run_test.go:4105: unmatched requirement DaemonIsWindows&#xA;--- SKIP: TestDockerCLIRunSuite/TestRunWindowsWithCPUPercent (15.01s)&#xA;"></skipped>
+		</testcase>
+		<testcase classname="github.com/docker/docker/integration-cli" name="TestDockerCLIRunSuite/TestRunWindowsWithCPUShares" time="15.010000">
+			<skipped message="=== RUN   TestDockerCLIRunSuite/TestRunWindowsWithCPUShares&#xA;    docker_cli_run_test.go:4095: unmatched requirement DaemonIsWindows&#xA;--- SKIP: TestDockerCLIRunSuite/TestRunWindowsWithCPUShares (15.01s)&#xA;"></skipped>
+		</testcase>
+		<testcase classname="github.com/docker/docker/integration-cli" name="TestDockerCLIRunSuite/TestRunWithSwappiness" time="15.010000">
+			<skipped message="=== RUN   TestDockerCLIRunSuite/TestRunWithSwappiness&#xA;    docker_cli_run_unix_test.go:635: unmatched requirement memorySwappinessSupport&#xA;--- SKIP: TestDockerCLIRunSuite/TestRunWithSwappiness (15.01s)&#xA;"></skipped>
+		</testcase>
+		<testcase classname="github.com/docker/docker/integration-cli" name="TestDockerCLIRunSuite/TestRunWithSwappinessInvalid" time="15.010000">
+			<skipped message="=== RUN   TestDockerCLIRunSuite/TestRunWithSwappinessInvalid&#xA;    docker_cli_run_unix_test.go:645: unmatched requirement memorySwappinessSupport&#xA;--- SKIP: TestDockerCLIRunSuite/TestRunWithSwappinessInvalid (15.01s)&#xA;"></skipped>
+		</testcase>
+		<testcase classname="github.com/docker/docker/integration-cli" name="TestDockerCLIRunSuite/TestRunWriteFilteredProc" time="15.010000">
+			<skipped message="=== RUN   TestDockerCLIRunSuite/TestRunWriteFilteredProc&#xA;    docker_cli_run_test.go:3023: unmatched requirement Apparmor&#xA;--- SKIP: TestDockerCLIRunSuite/TestRunWriteFilteredProc (15.01s)&#xA;"></skipped>
+		</testcase>
+		<testcase classname="github.com/docker/docker/integration-cli" name="TestDockerCLIRunSuite/TestWindowsRunAsSystem" time="15.010000">
+			<skipped message="=== RUN   TestDockerCLIRunSuite/TestWindowsRunAsSystem&#xA;    docker_cli_run_test.go:4430: unmatched requirement DaemonIsWindows&#xA;--- SKIP: TestDockerCLIRunSuite/TestWindowsRunAsSystem (15.01s)&#xA;"></skipped>
+		</testcase>
+		<testcase classname="github.com/docker/docker/integration-cli" name="TestDockerAPISuite/TestAPIClientVersionOldNotSupported" time="15.010000"></testcase>
+		<testcase classname="github.com/docker/docker/integration-cli" name="TestDockerAPISuite/TestAPICreateDeletePredefinedNetworks" time="15.040000"></testcase>
+		<testcase classname="github.com/docker/docker/integration-cli" name="TestDockerAPISuite/TestAPIErrorJSON" time="15.020000"></testcase>
+		<testcase classname="github.com/docker/docker/integration-cli" name="TestDockerAPISuite/TestAPIErrorNotFoundJSON" time="15.010000"></testcase>
+		<testcase classname="github.com/docker/docker/integration-cli" name="TestDockerAPISuite/TestAPIErrorNotFoundPlainText" time="15.010000"></testcase>
+		<testcase classname="github.com/docker/docker/integration-cli" name="TestDockerAPISuite/TestAPIErrorPlainText" time="15.020000"></testcase>
+		<testcase classname="github.com/docker/docker/integration-cli" name="TestDockerAPISuite/TestAPIGetEnabledCORS" time="15.020000"></testcase>
+		<testcase classname="github.com/docker/docker/integration-cli" name="TestDockerAPISuite/TestAPIImagesFilter" time="15.080000"></testcase>
+		<testcase classname="github.com/docker/docker/integration-cli" name="TestDockerAPISuite/TestAPIImagesSizeCompatibility" time="15.020000"></testcase>
+		<testcase classname="github.com/docker/docker/integration-cli" name="TestDockerAPISuite/TestAPINetworkConnectDisconnect" time="15.960000"></testcase>
+		<testcase classname="github.com/docker/docker/integration-cli" name="TestDockerAPISuite/TestAPINetworkCreateCheckDuplicate" time="15.520000"></testcase>
+		<testcase classname="github.com/docker/docker/integration-cli" name="TestDockerAPISuite/TestAPINetworkFilter" time="15.010000"></testcase>
+		<testcase classname="github.com/docker/docker/integration-cli" name="TestDockerAPISuite/TestAPINetworkGetDefaults" time="15.020000"></testcase>
+		<testcase classname="github.com/docker/docker/integration-cli" name="TestDockerAPISuite/TestAPINetworkIPAMMultipleBridgeNetworks" time="16.410000"></testcase>
+		<testcase classname="github.com/docker/docker/integration-cli" name="TestDockerAPISuite/TestAPINetworkInspectBridge" time="15.510000"></testcase>
+		<testcase classname="github.com/docker/docker/integration-cli" name="TestDockerAPISuite/TestAPINetworkInspectUserDefinedNetwork" time="15.250000"></testcase>
+		<testcase classname="github.com/docker/docker/integration-cli" name="TestDockerAPISuite/TestAPIOptionsRoute" time="15.010000"></testcase>
+		<testcase classname="github.com/docker/docker/integration-cli" name="TestDockerAPISuite/TestAPIStatsContainerNotFound" time="15.020000"></testcase>
+		<testcase classname="github.com/docker/docker/integration-cli" name="TestDockerAPISuite/TestAPIStatsNetworkStatsVersioning" time="16.490000"></testcase>
+		<testcase classname="github.com/docker/docker/integration-cli" name="TestDockerAPISuite/TestAPIStatsNoStreamConnectedContainers" time="16.650000"></testcase>
+		<testcase classname="github.com/docker/docker/integration-cli" name="TestDockerAPISuite/TestAPIStatsStoppedContainerInGoroutines" time="15.490000"></testcase>
+		<testcase classname="github.com/docker/docker/integration-cli" name="TestDockerAPISuite/TestBuildAPIBuildGitWithF" time="15.560000"></testcase>
+		<testcase classname="github.com/docker/docker/integration-cli" name="TestDockerAPISuite/TestBuildAPIDockerFileRemote" time="15.900000"></testcase>
+		<testcase classname="github.com/docker/docker/integration-cli" name="TestDockerAPISuite/TestBuildAPIDoubleDockerfile" time="15.520000"></testcase>
+		<testcase classname="github.com/docker/docker/integration-cli" name="TestDockerAPISuite/TestBuildAPILowerDockerfile" time="15.520000"></testcase>
+		<testcase classname="github.com/docker/docker/integration-cli" name="TestDockerAPISuite/TestBuildAPIRemoteTarballContext" time="15.020000"></testcase>
+		<testcase classname="github.com/docker/docker/integration-cli" name="TestDockerAPISuite/TestBuildAPIRemoteTarballContextWithCustomDockerfile" time="15.430000"></testcase>
+		<testcase classname="github.com/docker/docker/integration-cli" name="TestDockerAPISuite/TestBuildAPIUnnormalizedTarPaths" time="15.050000"></testcase>
+		<testcase classname="github.com/docker/docker/integration-cli" name="TestDockerAPISuite/TestBuildAddCacheOnFileChange" time="15.050000"></testcase>
+		<testcase classname="github.com/docker/docker/integration-cli" name="TestDockerAPISuite/TestBuildAddRemoteNoDecompress" time="15.470000"></testcase>
+		<testcase classname="github.com/docker/docker/integration-cli" name="TestDockerAPISuite/TestBuildChownOnCopy" time="17.450000"></testcase>
+		<testcase classname="github.com/docker/docker/integration-cli" name="TestDockerAPISuite/TestBuildCopyCacheOnFileChange" time="15.050000"></testcase>
+		<testcase classname="github.com/docker/docker/integration-cli" name="TestDockerAPISuite/TestBuildOnBuildCache" time="15.070000"></testcase>
+		<testcase classname="github.com/docker/docker/integration-cli" name="TestDockerAPISuite/TestBuildOnBuildWithCopy" time="15.060000"></testcase>
+		<testcase classname="github.com/docker/docker/integration-cli" name="TestDockerAPISuite/TestBuildScratchCopy" time="15.050000"></testcase>
+		<testcase classname="github.com/docker/docker/integration-cli" name="TestDockerAPISuite/TestContainerAPIBadPort" time="15.010000"></testcase>
+		<testcase classname="github.com/docker/docker/integration-cli" name="TestDockerAPISuite/TestContainerAPIChunkedEncoding" time="15.020000"></testcase>
+		<testcase classname="github.com/docker/docker/integration-cli" name="TestDockerAPISuite/TestContainerAPICommit" time="15.940000"></testcase>
+		<testcase classname="github.com/docker/docker/integration-cli" name="TestDockerAPISuite/TestContainerAPICommitWithLabelInConfig" time="15.960000"></testcase>
+		<testcase classname="github.com/docker/docker/integration-cli" name="TestDockerAPISuite/TestContainerAPICopyContainerNotFoundPr124" time="15.010000"></testcase>
+		<testcase classname="github.com/docker/docker/integration-cli" name="TestDockerAPISuite/TestContainerAPICopyNotExistsAnyMore" time="15.440000"></testcase>
+		<testcase classname="github.com/docker/docker/integration-cli" name="TestDockerAPISuite/TestContainerAPICopyPre124" time="15.490000"></testcase>
+		<testcase classname="github.com/docker/docker/integration-cli" name="TestDockerAPISuite/TestContainerAPICopyResourcePathEmptyPre124" time="15.490000"></testcase>
+		<testcase classname="github.com/docker/docker/integration-cli" name="TestDockerAPISuite/TestContainerAPICopyResourcePathNotFoundPre124" time="15.420000"></testcase>
+		<testcase classname="github.com/docker/docker/integration-cli" name="TestDockerAPISuite/TestContainerAPICreate" time="15.460000"></testcase>
+		<testcase classname="github.com/docker/docker/integration-cli" name="TestDockerAPISuite/TestContainerAPICreateBridgeNetworkMode" time="15.020000"></testcase>
+		<testcase classname="github.com/docker/docker/integration-cli" name="TestDockerAPISuite/TestContainerAPICreateEmptyConfig" time="15.010000"></testcase>
+		<testcase classname="github.com/docker/docker/integration-cli" name="TestDockerAPISuite/TestContainerAPICreateMountsBindRead" time="15.490000"></testcase>
+		<testcase classname="github.com/docker/docker/integration-cli" name="TestDockerAPISuite/TestContainerAPICreateMultipleNetworksConfig" time="15.010000"></testcase>
+		<testcase classname="github.com/docker/docker/integration-cli" name="TestDockerAPISuite/TestContainerAPICreateNoHostConfig118" time="15.020000"></testcase>
+		<testcase classname="github.com/docker/docker/integration-cli" name="TestDockerAPISuite/TestContainerAPICreateOtherNetworkModes" time="15.030000"></testcase>
+		<testcase classname="github.com/docker/docker/integration-cli" name="TestDockerAPISuite/TestContainerAPICreateWithCpuSharesCpuset" time="15.060000"></testcase>
+		<testcase classname="github.com/docker/docker/integration-cli" name="TestDockerAPISuite/TestContainerAPIDelete" time="15.510000"></testcase>
+		<testcase classname="github.com/docker/docker/integration-cli" name="TestDockerAPISuite/TestContainerAPIDeleteConflict" time="15.520000"></testcase>
+		<testcase classname="github.com/docker/docker/integration-cli" name="TestDockerAPISuite/TestContainerAPIDeleteForce" time="15.440000"></testcase>
+		<testcase classname="github.com/docker/docker/integration-cli" name="TestDockerAPISuite/TestContainerAPIDeleteNotExist" time="15.010000"></testcase>
+		<testcase classname="github.com/docker/docker/integration-cli" name="TestDockerAPISuite/TestContainerAPIDeleteRemoveLinks" time="16.070000"></testcase>
+		<testcase classname="github.com/docker/docker/integration-cli" name="TestDockerAPISuite/TestContainerAPIDeleteRemoveVolume" time="30.520000"></testcase>
+		<testcase classname="github.com/docker/docker/integration-cli" name="TestDockerAPISuite/TestContainerAPIDeleteWithEmptyName" time="15.010000"></testcase>
+		<testcase classname="github.com/docker/docker/integration-cli" name="TestDockerAPISuite/TestContainerAPIGetAll" time="15.490000"></testcase>
+		<testcase classname="github.com/docker/docker/integration-cli" name="TestDockerAPISuite/TestContainerAPIGetChanges" time="15.490000"></testcase>
+		<testcase classname="github.com/docker/docker/integration-cli" name="TestDockerAPISuite/TestContainerAPIGetExport" time="15.450000"></testcase>
+		<testcase classname="github.com/docker/docker/integration-cli" name="TestDockerAPISuite/TestContainerAPIGetJSONNoFieldsOmitted" time="15.510000"></testcase>
+		<testcase classname="github.com/docker/docker/integration-cli" name="TestDockerAPISuite/TestContainerAPIInvalidPortSyntax" time="15.020000"></testcase>
+		<testcase classname="github.com/docker/docker/integration-cli" name="TestDockerAPISuite/TestContainerAPIKill" time="15.480000"></testcase>
+		<testcase classname="github.com/docker/docker/integration-cli" name="TestDockerAPISuite/TestContainerAPIPause" time="15.530000"></testcase>
+		<testcase classname="github.com/docker/docker/integration-cli" name="TestDockerAPISuite/TestContainerAPIPostContainerStop" time="15.520000"></testcase>
+		<testcase classname="github.com/docker/docker/integration-cli" name="TestDockerAPISuite/TestContainerAPIPostCreateNull" time="15.100000"></testcase>
+		<testcase classname="github.com/docker/docker/integration-cli" name="TestDockerAPISuite/TestContainerAPIRename" time="15.490000"></testcase>
+		<testcase classname="github.com/docker/docker/integration-cli" name="TestDockerAPISuite/TestContainerAPIRestart" time="15.910000"></testcase>
+		<testcase classname="github.com/docker/docker/integration-cli" name="TestDockerAPISuite/TestContainerAPIRestartNotimeoutParam" time="15.860000"></testcase>
+		<testcase classname="github.com/docker/docker/integration-cli" name="TestDockerAPISuite/TestContainerAPIRestartPolicyDefaultRetryCount" time="15.030000"></testcase>
+		<testcase classname="github.com/docker/docker/integration-cli" name="TestDockerAPISuite/TestContainerAPIRestartPolicyInvalidPolicyName" time="15.020000"></testcase>
+		<testcase classname="github.com/docker/docker/integration-cli" name="TestDockerAPISuite/TestContainerAPIRestartPolicyNegativeRetryCount" time="15.020000"></testcase>
+		<testcase classname="github.com/docker/docker/integration-cli" name="TestDockerAPISuite/TestContainerAPIRestartPolicyRetryMismatch" time="15.020000"></testcase>
+		<testcase classname="github.com/docker/docker/integration-cli" name="TestDockerAPISuite/TestContainerAPIStart" time="15.490000"></testcase>
+		<testcase classname="github.com/docker/docker/integration-cli" name="TestDockerAPISuite/TestContainerAPIStatsWithNetworkDisabled" time="19.190000"></testcase>
+		<testcase classname="github.com/docker/docker/integration-cli" name="TestDockerAPISuite/TestContainerAPIStop" time="15.510000"></testcase>
+		<testcase classname="github.com/docker/docker/integration-cli" name="TestDockerAPISuite/TestContainerAPITop" time="15.620000"></testcase>
+		<testcase classname="github.com/docker/docker/integration-cli" name="TestDockerAPISuite/TestContainerAPIVerifyHeader" time="15.040000"></testcase>
+		<testcase classname="github.com/docker/docker/integration-cli" name="TestDockerAPISuite/TestContainerAPIWait" time="17.480000"></testcase>
+		<testcase classname="github.com/docker/docker/integration-cli" name="TestDockerAPISuite/TestContainerKillCustomStopSignal" time="15.460000"></testcase>
+		<testcase classname="github.com/docker/docker/integration-cli" name="TestDockerAPISuite/TestContainersAPICreateMountsCreate/0_config:_{volume__/foo_false__&lt;nil&gt;_&lt;nil&gt;_&lt;nil&gt;_&lt;nil&gt;}" time="31.280000"></testcase>
+		<testcase classname="github.com/docker/docker/integration-cli" name="TestDockerAPISuite/TestContainersAPICreateMountsCreate/1_config:_{volume__/foo/_false__&lt;nil&gt;_&lt;nil&gt;_&lt;nil&gt;_&lt;nil&gt;}" time="31.270000"></testcase>
+		<testcase classname="github.com/docker/docker/integration-cli" name="TestDockerAPISuite/TestContainersAPICreateMountsCreate/2_config:_{volume_test1_/foo_false__&lt;nil&gt;_&lt;nil&gt;_&lt;nil&gt;_&lt;nil&gt;}" time="16.290000"></testcase>
+		<testcase classname="github.com/docker/docker/integration-cli" name="TestDockerAPISuite/TestContainersAPICreateMountsCreate/3_config:_{volume_test2_/foo_true__&lt;nil&gt;_&lt;nil&gt;_&lt;nil&gt;_&lt;nil&gt;}" time="16.250000"></testcase>
+		<testcase classname="github.com/docker/docker/integration-cli" name="TestDockerAPISuite/TestContainersAPICreateMountsCreate/4_config:_{volume_test3_/foo_false__&lt;nil&gt;_0xc001b79680_&lt;nil&gt;_&lt;nil&gt;}" time="1.280000"></testcase>
+		<testcase classname="github.com/docker/docker/integration-cli" name="TestDockerAPISuite/TestContainersAPICreateMountsCreate/5_config:_{bind_/tmp/test-mounts-api-12303444736_/foo_false__&lt;nil&gt;_&lt;nil&gt;_&lt;nil&gt;_&lt;nil&gt;}" time="1.270000"></testcase>
+		<testcase classname="github.com/docker/docker/integration-cli" name="TestDockerAPISuite/TestContainersAPICreateMountsCreate/6_config:_{bind_/tmp/test-mounts-api-12303444736_/foo_true__&lt;nil&gt;_&lt;nil&gt;_&lt;nil&gt;_&lt;nil&gt;}" time="1.260000"></testcase>
+		<testcase classname="github.com/docker/docker/integration-cli" name="TestDockerAPISuite/TestContainersAPICreateMountsCreate/7_config:_{bind_/tmp/test-mounts-api-3333336045_/foo_false__&lt;nil&gt;_&lt;nil&gt;_&lt;nil&gt;_&lt;nil&gt;}" time="1.260000"></testcase>
+		<testcase classname="github.com/docker/docker/integration-cli" name="TestDockerAPISuite/TestContainersAPICreateMountsCreate/8_config:_{bind_/tmp/test-mounts-api-3333336045_/foo_true__&lt;nil&gt;_&lt;nil&gt;_&lt;nil&gt;_&lt;nil&gt;}" time="1.250000"></testcase>
+		<testcase classname="github.com/docker/docker/integration-cli" name="TestDockerAPISuite/TestContainersAPICreateMountsCreate/9_config:_{bind_/tmp/test-mounts-api-3333336045_/foo_true__0xc001b796e0_&lt;nil&gt;_&lt;nil&gt;_&lt;nil&gt;}" time="1.250000"></testcase>
+		<testcase classname="github.com/docker/docker/integration-cli" name="TestDockerAPISuite/TestContainersAPICreateMountsCreate/10_config:_{volume__/foo_false__&lt;nil&gt;_0xc001b79710_&lt;nil&gt;_&lt;nil&gt;}" time="31.280000"></testcase>
+		<testcase classname="github.com/docker/docker/integration-cli" name="TestDockerAPISuite/TestContainersAPICreateMountsCreate/11_config:_{volume__/foo/_false__&lt;nil&gt;_0xc001b79728_&lt;nil&gt;_&lt;nil&gt;}" time="31.270000"></testcase>
+		<testcase classname="github.com/docker/docker/integration-cli" name="TestDockerAPISuite/TestContainersAPICreateMountsCreate/12_config:_{volume_test4_/foo_false__&lt;nil&gt;_0xc001b79788_&lt;nil&gt;_&lt;nil&gt;}" time="16.280000"></testcase>
+		<testcase classname="github.com/docker/docker/integration-cli" name="TestDockerAPISuite/TestContainersAPICreateMountsCreate/13_config:_{volume_test5_/foo_true__&lt;nil&gt;_0xc001b797e8_&lt;nil&gt;_&lt;nil&gt;}" time="16.280000"></testcase>
+		<testcase classname="github.com/docker/docker/integration-cli" name="TestDockerAPISuite/TestContainersAPICreateMountsCreate" time="213.280000"></testcase>
+		<testcase classname="github.com/docker/docker/integration-cli" name="TestDockerAPISuite/TestContainersAPICreateMountsTmpfs" time="15.900000"></testcase>
+		<testcase classname="github.com/docker/docker/integration-cli" name="TestDockerAPISuite/TestContainersAPICreateMountsValidation/case_0" time="0.000000"></testcase>
+		<testcase classname="github.com/docker/docker/integration-cli" name="TestDockerAPISuite/TestContainersAPICreateMountsValidation/case_1" time="0.000000"></testcase>
+		<testcase classname="github.com/docker/docker/integration-cli" name="TestDockerAPISuite/TestContainersAPICreateMountsValidation/case_2" time="0.000000"></testcase>
+		<testcase classname="github.com/docker/docker/integration-cli" name="TestDockerAPISuite/TestContainersAPICreateMountsValidation/case_3" time="0.000000"></testcase>
+		<testcase classname="github.com/docker/docker/integration-cli" name="TestDockerAPISuite/TestContainersAPICreateMountsValidation/case_4" time="0.000000"></testcase>
+		<testcase classname="github.com/docker/docker/integration-cli" name="TestDockerAPISuite/TestContainersAPICreateMountsValidation/case_5" time="15.020000"></testcase>
+		<testcase classname="github.com/docker/docker/integration-cli" name="TestDockerAPISuite/TestContainersAPICreateMountsValidation/case_6" time="0.010000"></testcase>
+		<testcase classname="github.com/docker/docker/integration-cli" name="TestDockerAPISuite/TestContainersAPICreateMountsValidation/case_7" time="0.010000"></testcase>
+		<testcase classname="github.com/docker/docker/integration-cli" name="TestDockerAPISuite/TestContainersAPICreateMountsValidation/case_8" time="0.000000"></testcase>
+		<testcase classname="github.com/docker/docker/integration-cli" name="TestDockerAPISuite/TestContainersAPICreateMountsValidation/case_9" time="0.010000"></testcase>
+		<testcase classname="github.com/docker/docker/integration-cli" name="TestDockerAPISuite/TestContainersAPICreateMountsValidation/case_10" time="0.010000"></testcase>
+		<testcase classname="github.com/docker/docker/integration-cli" name="TestDockerAPISuite/TestContainersAPICreateMountsValidation/case_11" time="0.010000"></testcase>
+		<testcase classname="github.com/docker/docker/integration-cli" name="TestDockerAPISuite/TestContainersAPICreateMountsValidation/case_12" time="0.010000"></testcase>
+		<testcase classname="github.com/docker/docker/integration-cli" name="TestDockerAPISuite/TestContainersAPICreateMountsValidation/case_13" time="0.010000"></testcase>
+		<testcase classname="github.com/docker/docker/integration-cli" name="TestDockerAPISuite/TestContainersAPICreateMountsValidation/case_14" time="0.010000"></testcase>
+		<testcase classname="github.com/docker/docker/integration-cli" name="TestDockerAPISuite/TestContainersAPICreateMountsValidation/case_15" time="0.000000"></testcase>
+		<testcase classname="github.com/docker/docker/integration-cli" name="TestDockerAPISuite/TestContainersAPICreateMountsValidation" time="30.110000"></testcase>
+		<testcase classname="github.com/docker/docker/integration-cli" name="TestDockerAPISuite/TestCreateWithTooLowMemoryLimit" time="15.010000"></testcase>
+		<testcase classname="github.com/docker/docker/integration-cli" name="TestDockerAPISuite/TestDeprecatedContainerAPIStartDupVolumeBinds" time="30.040000"></testcase>
+		<testcase classname="github.com/docker/docker/integration-cli" name="TestDockerAPISuite/TestDeprecatedContainerAPIStartHostConfig" time="15.050000"></testcase>
+		<testcase classname="github.com/docker/docker/integration-cli" name="TestDockerAPISuite/TestDeprecatedContainerAPIStartVolumeBinds" time="30.460000"></testcase>
+		<testcase classname="github.com/docker/docker/integration-cli" name="TestDockerAPISuite/TestDeprecatedContainerAPIStartVolumesFrom" time="45.970000"></testcase>
+		<testcase classname="github.com/docker/docker/integration-cli" name="TestDockerAPISuite/TestDeprecatedPostContainerBindNormalVolume" time="45.560000"></testcase>
+		<testcase classname="github.com/docker/docker/integration-cli" name="TestDockerAPISuite/TestDeprecatedPostContainersStartWithLinksInHostConfig" time="15.940000"></testcase>
+		<testcase classname="github.com/docker/docker/integration-cli" name="TestDockerAPISuite/TestDeprecatedPostContainersStartWithLinksInHostConfigIdLinked" time="15.980000"></testcase>
+		<testcase classname="github.com/docker/docker/integration-cli" name="TestDockerAPISuite/TestDeprecatedPostContainersStartWithoutLinksInHostConfig" time="15.480000"></testcase>
+		<testcase classname="github.com/docker/docker/integration-cli" name="TestDockerAPISuite/TestDeprecatedStartWithNilDNS" time="15.490000"></testcase>
+		<testcase classname="github.com/docker/docker/integration-cli" name="TestDockerAPISuite/TestDeprecatedStartWithTooLowMemoryLimit" time="15.050000"></testcase>
+		<testcase classname="github.com/docker/docker/integration-cli" name="TestDockerAPISuite/TestExecAPICreateContainerPaused" time="15.510000"></testcase>
+		<testcase classname="github.com/docker/docker/integration-cli" name="TestDockerAPISuite/TestExecAPICreateNoCmd" time="15.490000"></testcase>
+		<testcase classname="github.com/docker/docker/integration-cli" name="TestDockerAPISuite/TestExecAPICreateNoValidContentType" time="15.470000"></testcase>
+		<testcase classname="github.com/docker/docker/integration-cli" name="TestDockerAPISuite/TestExecAPIStart" time="16.030000"></testcase>
+		<testcase classname="github.com/docker/docker/integration-cli" name="TestDockerAPISuite/TestExecAPIStartBackwardsCompatible" time="15.510000"></testcase>
+		<testcase classname="github.com/docker/docker/integration-cli" name="TestDockerAPISuite/TestExecAPIStartEnsureHeaders" time="15.530000"></testcase>
+		<testcase classname="github.com/docker/docker/integration-cli" name="TestDockerAPISuite/TestExecAPIStartInvalidCommand" time="15.510000"></testcase>
+		<testcase classname="github.com/docker/docker/integration-cli" name="TestDockerAPISuite/TestExecAPIStartMultipleTimesError" time="15.500000"></testcase>
+		<testcase classname="github.com/docker/docker/integration-cli" name="TestDockerAPISuite/TestExecAPIStartValidCommand" time="15.520000"></testcase>
+		<testcase classname="github.com/docker/docker/integration-cli" name="TestDockerAPISuite/TestExecAPIStartWithDetach" time="15.540000"></testcase>
+		<testcase classname="github.com/docker/docker/integration-cli" name="TestDockerAPISuite/TestExecResizeAPIHeightWidthNoInt" time="15.500000"></testcase>
+		<testcase classname="github.com/docker/docker/integration-cli" name="TestDockerAPISuite/TestExecResizeImmediatelyAfterExecStart" time="15.870000"></testcase>
+		<testcase classname="github.com/docker/docker/integration-cli" name="TestDockerAPISuite/TestExecStateCleanup" time="25.710000"></testcase>
+		<testcase classname="github.com/docker/docker/integration-cli" name="TestDockerAPISuite/TestGetContainerStats" time="19.500000"></testcase>
+		<testcase classname="github.com/docker/docker/integration-cli" name="TestDockerAPISuite/TestGetContainerStatsNoStream" time="19.530000"></testcase>
+		<testcase classname="github.com/docker/docker/integration-cli" name="TestDockerAPISuite/TestGetContainerStatsRmRunning" time="16.480000"></testcase>
+		<testcase classname="github.com/docker/docker/integration-cli" name="TestDockerAPISuite/TestGetContainerStatsStream" time="19.480000"></testcase>
+		<testcase classname="github.com/docker/docker/integration-cli" name="TestDockerAPISuite/TestGetContainersAttachWebsocket" time="15.490000"></testcase>
+		<testcase classname="github.com/docker/docker/integration-cli" name="TestDockerAPISuite/TestGetContainersWsAttachContainerNotFound" time="15.010000"></testcase>
+		<testcase classname="github.com/docker/docker/integration-cli" name="TestDockerAPISuite/TestGetStoppedContainerStats" time="15.040000"></testcase>
+		<testcase classname="github.com/docker/docker/integration-cli" name="TestDockerAPISuite/TestInspectAPIBridgeNetworkSettings120" time="15.470000"></testcase>
+		<testcase classname="github.com/docker/docker/integration-cli" name="TestDockerAPISuite/TestInspectAPIBridgeNetworkSettings121" time="15.510000"></testcase>
+		<testcase classname="github.com/docker/docker/integration-cli" name="TestDockerAPISuite/TestInspectAPIContainerResponse" time="15.490000"></testcase>
+		<testcase classname="github.com/docker/docker/integration-cli" name="TestDockerAPISuite/TestInspectAPIContainerVolumeDriver" time="15.430000"></testcase>
+		<testcase classname="github.com/docker/docker/integration-cli" name="TestDockerAPISuite/TestInspectAPIContainerVolumeDriverLegacy" time="15.450000"></testcase>
+		<testcase classname="github.com/docker/docker/integration-cli" name="TestDockerAPISuite/TestInspectAPIEmptyFieldsInConfigPre121" time="15.440000"></testcase>
+		<testcase classname="github.com/docker/docker/integration-cli" name="TestDockerAPISuite/TestInspectAPIImageResponse" time="15.030000"></testcase>
+		<testcase classname="github.com/docker/docker/integration-cli" name="TestDockerAPISuite/TestLogsAPIContainerNotFound" time="15.010000"></testcase>
+		<testcase classname="github.com/docker/docker/integration-cli" name="TestDockerAPISuite/TestLogsAPIFollowEmptyOutput" time="15.440000"></testcase>
+		<testcase classname="github.com/docker/docker/integration-cli" name="TestDockerAPISuite/TestLogsAPINoStdoutNorStderr" time="15.500000"></testcase>
+		<testcase classname="github.com/docker/docker/integration-cli" name="TestDockerAPISuite/TestLogsAPIUntil" time="18.450000"></testcase>
+		<testcase classname="github.com/docker/docker/integration-cli" name="TestDockerAPISuite/TestLogsAPIUntilDefaultValue" time="15.450000"></testcase>
+		<testcase classname="github.com/docker/docker/integration-cli" name="TestDockerAPISuite/TestLogsAPIUntilFutureFollow" time="19.470000"></testcase>
+		<testcase classname="github.com/docker/docker/integration-cli" name="TestDockerAPISuite/TestLogsAPIWithStdout" time="15.500000"></testcase>
+		<testcase classname="github.com/docker/docker/integration-cli" name="TestDockerAPISuite/TestPostContainerAPICreateWithStringOrSliceEntrypoint" time="15.820000"></testcase>
+		<testcase classname="github.com/docker/docker/integration-cli" name="TestDockerAPISuite/TestPostContainersAttach" time="20.770000"></testcase>
+		<testcase classname="github.com/docker/docker/integration-cli" name="TestDockerAPISuite/TestPostContainersAttachContainerNotFound" time="15.010000"></testcase>
+		<testcase classname="github.com/docker/docker/integration-cli" name="TestDockerAPISuite/TestPostContainersCreateMemorySwappinessHostConfigOmitted" time="15.030000"></testcase>
+		<testcase classname="github.com/docker/docker/integration-cli" name="TestDockerAPISuite/TestPostContainersCreateShmSizeHostConfigOmitted" time="15.450000"></testcase>
+		<testcase classname="github.com/docker/docker/integration-cli" name="TestDockerAPISuite/TestPostContainersCreateShmSizeNegative" time="15.010000"></testcase>
+		<testcase classname="github.com/docker/docker/integration-cli" name="TestDockerAPISuite/TestPostContainersCreateShmSizeOmitted" time="15.430000"></testcase>
+		<testcase classname="github.com/docker/docker/integration-cli" name="TestDockerAPISuite/TestPostContainersCreateWithOomScoreAdjInvalidRange" time="15.010000"></testcase>
+		<testcase classname="github.com/docker/docker/integration-cli" name="TestDockerAPISuite/TestPostContainersCreateWithShmSize" time="15.450000"></testcase>
+		<testcase classname="github.com/docker/docker/integration-cli" name="TestDockerAPISuite/TestPostContainersCreateWithStringOrSliceCapAddDrop" time="15.030000"></testcase>
+		<testcase classname="github.com/docker/docker/integration-cli" name="TestDockerAPISuite/TestPostContainersCreateWithStringOrSliceCmd" time="15.850000"></testcase>
+		<testcase classname="github.com/docker/docker/integration-cli" name="TestDockerAPISuite/TestPostContainersCreateWithWrongCpusetValues" time="15.010000"></testcase>
+		<testcase classname="github.com/docker/docker/integration-cli" name="TestDockerAPISuite/TestPutContainerArchiveErrSymlinkInVolumeToReadOnlyRootfs" time="30.480000"></testcase>
+		<testcase classname="github.com/docker/docker/integration-cli" name="TestDockerCLIAttachSuite/TestAttachClosedOnContainerStop" time="16.460000"></testcase>
+		<testcase classname="github.com/docker/docker/integration-cli" name="TestDockerCLIAttachSuite/TestAttachDetach" time="15.690000"></testcase>
+		<testcase classname="github.com/docker/docker/integration-cli" name="TestDockerCLIAttachSuite/TestAttachDisconnect" time="15.500000"></testcase>
+		<testcase classname="github.com/docker/docker/integration-cli" name="TestDockerCLIAttachSuite/TestAttachMultipleAndRestart" time="16.480000"></testcase>
+		<testcase classname="github.com/docker/docker/integration-cli" name="TestDockerCLIAttachSuite/TestAttachPausedContainer" time="15.570000"></testcase>
+		<testcase classname="github.com/docker/docker/integration-cli" name="TestDockerCLIAttachSuite/TestAttachTTYWithoutStdin" time="15.470000"></testcase>
+		<testcase classname="github.com/docker/docker/integration-cli" name="TestDockerCLICpSuite/TestCopyAndRestart" time="15.870000"></testcase>
+		<testcase classname="github.com/docker/docker/integration-cli" name="TestDockerCLICpSuite/TestCopyCreatedContainer" time="30.070000"></testcase>
+		<testcase classname="github.com/docker/docker/integration-cli" name="TestDockerCLICpSuite/TestCpAbsolutePath" time="15.510000"></testcase>
+		<testcase classname="github.com/docker/docker/integration-cli" name="TestDockerCLICpSuite/TestCpAbsoluteSymlink" time="15.480000"></testcase>
+		<testcase classname="github.com/docker/docker/integration-cli" name="TestDockerCLICpSuite/TestCpCheckDestOwnership" time="15.500000"></testcase>
+		<testcase classname="github.com/docker/docker/integration-cli" name="TestDockerCLICpSuite/TestCpFromCaseA" time="15.460000"></testcase>
+		<testcase classname="github.com/docker/docker/integration-cli" name="TestDockerCLICpSuite/TestCpFromCaseB" time="15.490000"></testcase>
+		<testcase classname="github.com/docker/docker/integration-cli" name="TestDockerCLICpSuite/TestCpFromCaseC" time="15.460000"></testcase>
+		<testcase classname="github.com/docker/docker/integration-cli" name="TestDockerCLICpSuite/TestCpFromCaseD" time="15.520000"></testcase>
+		<testcase classname="github.com/docker/docker/integration-cli" name="TestDockerCLICpSuite/TestCpFromCaseE" time="15.500000"></testcase>
+		<testcase classname="github.com/docker/docker/integration-cli" name="TestDockerCLICpSuite/TestCpFromCaseF" time="15.490000"></testcase>
+		<testcase classname="github.com/docker/docker/integration-cli" name="TestDockerCLICpSuite/TestCpFromCaseG" time="15.530000"></testcase>
+		<testcase classname="github.com/docker/docker/integration-cli" name="TestDockerCLICpSuite/TestCpFromCaseH" time="15.510000"></testcase>
+		<testcase classname="github.com/docker/docker/integration-cli" name="TestDockerCLICpSuite/TestCpFromCaseI" time="15.480000"></testcase>
+		<testcase classname="github.com/docker/docker/integration-cli" name="TestDockerCLICpSuite/TestCpFromCaseJ" time="15.510000"></testcase>
+		<testcase classname="github.com/docker/docker/integration-cli" name="TestDockerCLICpSuite/TestCpFromSymlinkDestination" time="15.590000"></testcase>
+		<testcase classname="github.com/docker/docker/integration-cli" name="TestDockerCLICpSuite/TestCpFromSymlinkToDirectory" time="15.510000"></testcase>
+		<testcase classname="github.com/docker/docker/integration-cli" name="TestDockerCLICpSuite/TestCpGarbagePath" time="15.470000"></testcase>
+		<testcase classname="github.com/docker/docker/integration-cli" name="TestDockerCLICpSuite/TestCpLocalOnly" time="15.030000"></testcase>
+		<testcase classname="github.com/docker/docker/integration-cli" name="TestDockerCLICpSuite/TestCpNameHasColon" time="15.530000"></testcase>
+		<testcase classname="github.com/docker/docker/integration-cli" name="TestDockerCLICpSuite/TestCpRelativePath" time="15.490000"></testcase>
+		<testcase classname="github.com/docker/docker/integration-cli" name="TestDockerCLICpSuite/TestCpSpecialFiles" time="15.530000"></testcase>
+		<testcase classname="github.com/docker/docker/integration-cli" name="TestDockerCLICpSuite/TestCpSymlinkComponent" time="15.470000"></testcase>
+		<testcase classname="github.com/docker/docker/integration-cli" name="TestDockerCLICpSuite/TestCpSymlinkFromConToHostFollowSymlink" time="15.530000"></testcase>
+		<testcase classname="github.com/docker/docker/integration-cli" name="TestDockerCLICpSuite/TestCpToCaseA" time="15.830000"></testcase>
+		<testcase classname="github.com/docker/docker/integration-cli" name="TestDockerCLICpSuite/TestCpToCaseB" time="15.460000"></testcase>
+		<testcase classname="github.com/docker/docker/integration-cli" name="TestDockerCLICpSuite/TestCpToCaseC" time="16.340000"></testcase>
+		<testcase classname="github.com/docker/docker/integration-cli" name="TestDockerCLICpSuite/TestCpToCaseD" time="17.650000"></testcase>
+		<testcase classname="github.com/docker/docker/integration-cli" name="TestDockerCLICpSuite/TestCpToCaseE" time="16.670000"></testcase>
+		<testcase classname="github.com/docker/docker/integration-cli" name="TestDockerCLICpSuite/TestCpToCaseF" time="15.530000"></testcase>
+		<testcase classname="github.com/docker/docker/integration-cli" name="TestDockerCLICpSuite/TestCpToCaseG" time="17.680000"></testcase>
+		<testcase classname="github.com/docker/docker/integration-cli" name="TestDockerCLICpSuite/TestCpToCaseH" time="16.670000"></testcase>
+		<testcase classname="github.com/docker/docker/integration-cli" name="TestDockerCLICpSuite/TestCpToCaseI" time="15.510000"></testcase>
+		<testcase classname="github.com/docker/docker/integration-cli" name="TestDockerCLICpSuite/TestCpToCaseJ" time="17.680000"></testcase>
+		<testcase classname="github.com/docker/docker/integration-cli" name="TestDockerCLICpSuite/TestCpToContainerWithPermissions" time="15.550000"></testcase>
+		<testcase classname="github.com/docker/docker/integration-cli" name="TestDockerCLICpSuite/TestCpToDot" time="15.500000"></testcase>
+		<testcase classname="github.com/docker/docker/integration-cli" name="TestDockerCLICpSuite/TestCpToErrReadOnlyRootfs" time="15.910000"></testcase>
+		<testcase classname="github.com/docker/docker/integration-cli" name="TestDockerCLICpSuite/TestCpToErrReadOnlyVolume" time="30.930000"></testcase>
+		<testcase classname="github.com/docker/docker/integration-cli" name="TestDockerCLICpSuite/TestCpToStdout" time="15.500000"></testcase>
+		<testcase classname="github.com/docker/docker/integration-cli" name="TestDockerCLICpSuite/TestCpToSymlinkDestination" time="30.660000"></testcase>
+		<testcase classname="github.com/docker/docker/integration-cli" name="TestDockerCLICpSuite/TestCpToSymlinkToDirectory" time="15.110000"></testcase>
+		<testcase classname="github.com/docker/docker/integration-cli" name="TestDockerCLICpSuite/TestCpVolumePath" time="30.630000"></testcase>
+		<testcase classname="github.com/docker/docker/integration-cli" name="TestDockerCLICreateSuite/TestCreate64ByteHexID" time="15.060000"></testcase>
+		<testcase classname="github.com/docker/docker/integration-cli" name="TestDockerCLICreateSuite/TestCreateArgs" time="15.060000"></testcase>
+		<testcase classname="github.com/docker/docker/integration-cli" name="TestDockerCLICreateSuite/TestCreateByImageID" time="15.180000"></testcase>
+		<testcase classname="github.com/docker/docker/integration-cli" name="TestDockerCLICreateSuite/TestCreateEchoStdout" time="15.470000"></testcase>
+		<testcase classname="github.com/docker/docker/integration-cli" name="TestDockerCLICreateSuite/TestCreateHostConfig" time="15.060000"></testcase>
+		<testcase classname="github.com/docker/docker/integration-cli" name="TestDockerCLICreateSuite/TestCreateHostnameWithNumber" time="15.480000"></testcase>
+		<testcase classname="github.com/docker/docker/integration-cli" name="TestDockerCLICreateSuite/TestCreateLabelFromImage" time="15.110000"></testcase>
+		<testcase classname="github.com/docker/docker/integration-cli" name="TestDockerCLICreateSuite/TestCreateLabels" time="15.060000"></testcase>
+		<testcase classname="github.com/docker/docker/integration-cli" name="TestDockerCLICreateSuite/TestCreateModeIpcContainer" time="15.080000"></testcase>
+		<testcase classname="github.com/docker/docker/integration-cli" name="TestDockerCLICreateSuite/TestCreateRM" time="15.100000"></testcase>
+		<testcase classname="github.com/docker/docker/integration-cli" name="TestDockerCLICreateSuite/TestCreateStopSignal" time="15.060000"></testcase>
+		<testcase classname="github.com/docker/docker/integration-cli" name="TestDockerCLICreateSuite/TestCreateStopTimeout" time="15.110000"></testcase>
+		<testcase classname="github.com/docker/docker/integration-cli" name="TestDockerCLICreateSuite/TestCreateUnsetEntrypoint" time="15.910000"></testcase>
+		<testcase classname="github.com/docker/docker/integration-cli" name="TestDockerCLICreateSuite/TestCreateVolumesCreated" time="30.080000"></testcase>
+		<testcase classname="github.com/docker/docker/integration-cli" name="TestDockerCLICreateSuite/TestCreateWithInvalidLogOpts" time="15.060000"></testcase>
+		<testcase classname="github.com/docker/docker/integration-cli" name="TestDockerCLICreateSuite/TestCreateWithLargePortRange" time="17.300000"></testcase>
+		<testcase classname="github.com/docker/docker/integration-cli" name="TestDockerCLICreateSuite/TestCreateWithPortRange" time="15.070000"></testcase>
+		<testcase classname="github.com/docker/docker/integration-cli" name="TestDockerCLICreateSuite/TestCreateWithWorkdir" time="15.060000"></testcase>
+		<testcase classname="github.com/docker/docker/integration-cli" name="TestDockerCLICreateSuite" time="320.350000"></testcase>
+		<testcase classname="github.com/docker/docker/integration-cli" name="TestDockerCLIExecSuite/TestExec" time="15.580000"></testcase>
+		<testcase classname="github.com/docker/docker/integration-cli" name="TestDockerCLIExecSuite/TestExecAfterContainerRestart" time="16.000000"></testcase>
+		<testcase classname="github.com/docker/docker/integration-cli" name="TestDockerCLIExecSuite/TestExecCgroup" time="15.770000"></testcase>
+		<testcase classname="github.com/docker/docker/integration-cli" name="TestDockerCLIExecSuite/TestExecEnv" time="15.580000"></testcase>
+		<testcase classname="github.com/docker/docker/integration-cli" name="TestDockerCLIExecSuite/TestExecEnvLinksHost" time="16.020000"></testcase>
+		<testcase classname="github.com/docker/docker/integration-cli" name="TestDockerCLIExecSuite/TestExecExitStatus" time="15.510000"></testcase>
+		<testcase classname="github.com/docker/docker/integration-cli" name="TestDockerCLIExecSuite/TestExecInspectID" time="17.600000"></testcase>
+		<testcase classname="github.com/docker/docker/integration-cli" name="TestDockerCLIExecSuite/TestExecInteractive" time="15.550000"></testcase>
+		<testcase classname="github.com/docker/docker/integration-cli" name="TestDockerCLIExecSuite/TestExecInteractiveStdinClose" time="15.540000"></testcase>
+		<testcase classname="github.com/docker/docker/integration-cli" name="TestDockerCLIExecSuite/TestExecOnReadonlyContainer" time="15.520000"></testcase>
+		<testcase classname="github.com/docker/docker/integration-cli" name="TestDockerCLIExecSuite/TestExecParseError" time="15.460000"></testcase>
+		<testcase classname="github.com/docker/docker/integration-cli" name="TestDockerCLIExecSuite/TestExecPausedContainer" time="15.510000"></testcase>
+		<testcase classname="github.com/docker/docker/integration-cli" name="TestDockerCLIExecSuite/TestExecSetEnv" time="15.530000"></testcase>
+		<testcase classname="github.com/docker/docker/integration-cli" name="TestDockerCLIExecSuite/TestExecStartFails" time="15.570000"></testcase>
+		<testcase classname="github.com/docker/docker/integration-cli" name="TestDockerCLIExecSuite/TestExecStopNotHanging" time="15.480000"></testcase>
+		<testcase classname="github.com/docker/docker/integration-cli" name="TestDockerCLIExecSuite/TestExecTTY" time="15.580000"></testcase>
+		<testcase classname="github.com/docker/docker/integration-cli" name="TestDockerCLIExecSuite/TestExecTTYCloseStdin" time="15.560000"></testcase>
+		<testcase classname="github.com/docker/docker/integration-cli" name="TestDockerCLIExecSuite/TestExecTTYWithoutStdin" time="15.520000"></testcase>
+		<testcase classname="github.com/docker/docker/integration-cli" name="TestDockerCLIExecSuite/TestExecUlimits" time="15.550000"></testcase>
+		<testcase classname="github.com/docker/docker/integration-cli" name="TestDockerCLIExecSuite/TestExecWithImageUser" time="15.960000"></testcase>
+		<testcase classname="github.com/docker/docker/integration-cli" name="TestDockerCLIExecSuite/TestExecWithNoTERM" time="15.500000"></testcase>
+		<testcase classname="github.com/docker/docker/integration-cli" name="TestDockerCLIExecSuite/TestExecWithPrivileged" time="15.770000"></testcase>
+		<testcase classname="github.com/docker/docker/integration-cli" name="TestDockerCLIExecSuite/TestExecWithTERM" time="15.500000"></testcase>
+		<testcase classname="github.com/docker/docker/integration-cli" name="TestDockerCLIExecSuite/TestExecWithUser" time="15.590000"></testcase>
+		<testcase classname="github.com/docker/docker/integration-cli" name="TestDockerCLIExecSuite/TestLinksPingLinkedContainersOnRename" time="16.059000"></testcase>
+		<testcase classname="github.com/docker/docker/integration-cli" name="TestDockerCLIExecSuite/TestRunMutableNetworkFiles" time="16.870000"></testcase>
+		<testcase classname="github.com/docker/docker/integration-cli" name="TestDockerCLIExecSuite" time="424.700000"></testcase>
+		<testcase classname="github.com/docker/docker/integration-cli" name="TestDockerCLIImagesSuite/TestCommitWithFilterLabel" time="15.500000"></testcase>
+		<testcase classname="github.com/docker/docker/integration-cli" name="TestDockerCLIImagesSuite/TestImagesEnsureDanglingImageOnlyListedOnce" time="15.580000"></testcase>
+		<testcase classname="github.com/docker/docker/integration-cli" name="TestDockerCLIImagesSuite/TestImagesEnsureImageIsListed" time="15.040000"></testcase>
+		<testcase classname="github.com/docker/docker/integration-cli" name="TestDockerCLIImagesSuite/TestImagesEnsureImageWithBadTagIsNotListed" time="15.040000"></testcase>
+		<testcase classname="github.com/docker/docker/integration-cli" name="TestDockerCLIImagesSuite/TestImagesEnsureImageWithTagIsListed" time="15.130000"></testcase>
+		<testcase classname="github.com/docker/docker/integration-cli" name="TestDockerCLIImagesSuite/TestImagesEnsureImagesFromBusyboxShown" time="15.100000"></testcase>
+		<testcase classname="github.com/docker/docker/integration-cli" name="TestDockerCLIImagesSuite/TestImagesEnsureImagesFromScratchShown" time="15.110000"></testcase>
+		<testcase classname="github.com/docker/docker/integration-cli" name="TestDockerCLIImagesSuite/TestImagesEnsureOnlyHeadsImagesShown" time="15.120000"></testcase>
+		<testcase classname="github.com/docker/docker/integration-cli" name="TestDockerCLIImagesSuite/TestImagesErrorWithInvalidFilterNameTest" time="15.030000"></testcase>
+		<testcase classname="github.com/docker/docker/integration-cli" name="TestDockerCLIImagesSuite/TestImagesFilterLabelMatch" time="15.230000"></testcase>
+		<testcase classname="github.com/docker/docker/integration-cli" name="TestDockerCLIImagesSuite/TestImagesFilterNameWithPort" time="15.100000"></testcase>
+		<testcase classname="github.com/docker/docker/integration-cli" name="TestDockerCLIImagesSuite/TestImagesFilterSinceAndBefore" time="15.410000"></testcase>
+		<testcase classname="github.com/docker/docker/integration-cli" name="TestDockerCLIImagesSuite/TestImagesFilterSpaceTrimCase" time="15.560000"></testcase>
+		<testcase classname="github.com/docker/docker/integration-cli" name="TestDockerCLIImagesSuite/TestImagesFormat" time="15.080000"></testcase>
+		<testcase classname="github.com/docker/docker/integration-cli" name="TestDockerCLIImagesSuite/TestImagesFormatDefaultFormat" time="15.500000"></testcase>
+		<testcase classname="github.com/docker/docker/integration-cli" name="TestDockerCLIImagesSuite/TestImagesOrderedByCreationDate" time="17.260000"></testcase>
+		<testcase classname="github.com/docker/docker/integration-cli" name="TestDockerCLIImagesSuite/TestImagesWithIncorrectFilter" time="15.030000"></testcase>
+		<testcase classname="github.com/docker/docker/integration-cli" name="TestDockerCLIImagesSuite" time="260.800000"></testcase>
+		<testcase classname="github.com/docker/docker/integration-cli" name="TestDockerCLIInspectSuite/TestInspectAmpersand" time="15.450000"></testcase>
+		<testcase classname="github.com/docker/docker/integration-cli" name="TestDockerCLIInspectSuite/TestInspectBindMountPoint" time="15.460000"></testcase>
+		<testcase classname="github.com/docker/docker/integration-cli" name="TestDockerCLIInspectSuite/TestInspectByPrefix" time="15.080000"></testcase>
+		<testcase classname="github.com/docker/docker/integration-cli" name="TestDockerCLIInspectSuite/TestInspectContainerFilterInt" time="15.470000"></testcase>
+		<testcase classname="github.com/docker/docker/integration-cli" name="TestDockerCLIInspectSuite/TestInspectContainerNetworkCustom" time="15.900000"></testcase>
+		<testcase classname="github.com/docker/docker/integration-cli" name="TestDockerCLIInspectSuite/TestInspectContainerNetworkDefault" time="15.540000"></testcase>
+		<testcase classname="github.com/docker/docker/integration-cli" name="TestDockerCLIInspectSuite/TestInspectDefault" time="15.460000"></testcase>
+		<testcase classname="github.com/docker/docker/integration-cli" name="TestDockerCLIInspectSuite/TestInspectHistory" time="15.510000"></testcase>
+		<testcase classname="github.com/docker/docker/integration-cli" name="TestDockerCLIInspectSuite/TestInspectInt64" time="15.520000"></testcase>
+		<testcase classname="github.com/docker/docker/integration-cli" name="TestDockerCLIInspectSuite/TestInspectJSONFields" time="15.440000"></testcase>
+		<testcase classname="github.com/docker/docker/integration-cli" name="TestDockerCLIInspectSuite/TestInspectLogConfigNoType" time="15.060000"></testcase>
+		<testcase classname="github.com/docker/docker/integration-cli" name="TestDockerCLIInspectSuite/TestInspectNamedMountPoint" time="30.500000"></testcase>
+		<testcase classname="github.com/docker/docker/integration-cli" name="TestDockerCLIInspectSuite/TestInspectNoSizeFlagContainer" time="15.510000"></testcase>
+		<testcase classname="github.com/docker/docker/integration-cli" name="TestDockerCLIInspectSuite/TestInspectRootFS" time="15.030000"></testcase>
+		<testcase classname="github.com/docker/docker/integration-cli" name="TestDockerCLIInspectSuite/TestInspectSizeFlagContainer" time="15.490000"></testcase>
+		<testcase classname="github.com/docker/docker/integration-cli" name="TestDockerCLIInspectSuite/TestInspectStatus" time="15.610000"></testcase>
+		<testcase classname="github.com/docker/docker/integration-cli" name="TestDockerCLIInspectSuite/TestInspectTimesAsRFC3339Nano" time="15.520000"></testcase>
+		<testcase classname="github.com/docker/docker/integration-cli" name="TestDockerCLIInspectSuite/TestInspectTypeFlagContainer" time="15.480000"></testcase>
+		<testcase classname="github.com/docker/docker/integration-cli" name="TestDockerCLIInspectSuite/TestInspectTypeFlagWithImage" time="15.470000"></testcase>
+		<testcase classname="github.com/docker/docker/integration-cli" name="TestDockerCLIInspectSuite/TestInspectTypeFlagWithInvalidValue" time="15.500000"></testcase>
+		<testcase classname="github.com/docker/docker/integration-cli" name="TestDockerCLIInspectSuite/TestInspectTypeFlagWithNoContainer" time="15.450000"></testcase>
+		<testcase classname="github.com/docker/docker/integration-cli" name="TestDockerCLIInspectSuite/TestInspectUnknownObject" time="30.050000"></testcase>
+		<testcase classname="github.com/docker/docker/integration-cli" name="TestDockerCLILogsSuite/TestLogsCLIContainerNotFound" time="15.020000"></testcase>
+		<testcase classname="github.com/docker/docker/integration-cli" name="TestDockerCLILogsSuite/TestLogsContainerBiggerThanPage" time="15.720000"></testcase>
+		<testcase classname="github.com/docker/docker/integration-cli" name="TestDockerCLILogsSuite/TestLogsContainerMuchBiggerThanPage" time="15.700000"></testcase>
+		<testcase classname="github.com/docker/docker/integration-cli" name="TestDockerCLILogsSuite/TestLogsContainerSmallerThanPage" time="15.720000"></testcase>
+		<testcase classname="github.com/docker/docker/integration-cli" name="TestDockerCLILogsSuite/TestLogsFollowGoroutinesNoOutput" time="15.720000"></testcase>
+		<testcase classname="github.com/docker/docker/integration-cli" name="TestDockerCLILogsSuite/TestLogsFollowGoroutinesWithStdout" time="15.530000"></testcase>
+		<testcase classname="github.com/docker/docker/integration-cli" name="TestDockerCLILogsSuite/TestLogsFollowSlowStdoutConsumer" time="16.329000"></testcase>
+		<testcase classname="github.com/docker/docker/integration-cli" name="TestDockerCLILogsSuite/TestLogsFollowStopped" time="15.500000"></testcase>
+		<testcase classname="github.com/docker/docker/integration-cli" name="TestDockerCLILogsSuite/TestLogsSeparateStderr" time="15.480000"></testcase>
+		<testcase classname="github.com/docker/docker/integration-cli" name="TestDockerCLILogsSuite/TestLogsSince" time="21.600000"></testcase>
+		<testcase classname="github.com/docker/docker/integration-cli" name="TestDockerCLILogsSuite/TestLogsSinceFutureFollow" time="20.470000"></testcase>
+		<testcase classname="github.com/docker/docker/integration-cli" name="TestDockerCLILogsSuite/TestLogsStderrInStdout" time="15.490000"></testcase>
+		<testcase classname="github.com/docker/docker/integration-cli" name="TestDockerCLILogsSuite/TestLogsTail" time="15.590000"></testcase>
+		<testcase classname="github.com/docker/docker/integration-cli" name="TestDockerCLILogsSuite/TestLogsTimestamps" time="15.470000"></testcase>
+		<testcase classname="github.com/docker/docker/integration-cli" name="TestDockerCLILogsSuite/TestLogsWithDetails" time="15.450000"></testcase>
+		<testcase classname="github.com/docker/docker/integration-cli" name="TestDockerCLILogsSuite" time="244.820000"></testcase>
+		<testcase classname="github.com/docker/docker/integration-cli" name="TestDockerCLINetworkSuite/TestDockerInspectMultipleNetwork" time="15.030000"></testcase>
+		<testcase classname="github.com/docker/docker/integration-cli" name="TestDockerCLINetworkSuite/TestDockerInspectNetworkWithContainerName" time="15.970000"></testcase>
+		<testcase classname="github.com/docker/docker/integration-cli" name="TestDockerCLINetworkSuite/TestDockerNetworkConnectFailsNoInspectChange" time="15.560000"></testcase>
+		<testcase classname="github.com/docker/docker/integration-cli" name="TestDockerCLINetworkSuite/TestDockerNetworkDeleteMultiple" time="16.430000"></testcase>
+		<testcase classname="github.com/docker/docker/integration-cli" name="TestDockerCLINetworkSuite/TestDockerNetworkDeleteNotExists" time="15.030000"></testcase>
+		<testcase classname="github.com/docker/docker/integration-cli" name="TestDockerCLINetworkSuite/TestDockerNetworkInspect" time="15.060000"></testcase>
+		<testcase classname="github.com/docker/docker/integration-cli" name="TestDockerCLINetworkSuite/TestDockerNetworkInspectWithID" time="15.320000"></testcase>
+		<testcase classname="github.com/docker/docker/integration-cli" name="TestDockerCLINetworkSuite/TestEmbeddedDNSInvalidInput" time="15.720000"></testcase>
+		<testcase classname="github.com/docker/docker/integration-cli" name="TestDockerCLINetworkSuite/TestInspectAPIMultipleNetworks" time="16.610000"></testcase>
+		<testcase classname="github.com/docker/docker/integration-cli" name="TestDockerCLINetworkSuite/TestUserDefinedNetworkConnectDisconnectLink" time="17.450000"></testcase>
+		<testcase classname="github.com/docker/docker/integration-cli" name="TestDockerCLIPsSuite/TestPsByOrder" time="16.770000"></testcase>
+		<testcase classname="github.com/docker/docker/integration-cli" name="TestDockerCLIPsSuite/TestPsImageIDAfterUpdate" time="15.630000"></testcase>
+		<testcase classname="github.com/docker/docker/integration-cli" name="TestDockerCLIPsSuite/TestPsListContainersBase" time="17.160000"></testcase>
+		<testcase classname="github.com/docker/docker/integration-cli" name="TestDockerCLIPsSuite/TestPsListContainersFilterAncestorImage" time="17.710000"></testcase>
+		<testcase classname="github.com/docker/docker/integration-cli" name="TestDockerCLIPsSuite/TestPsListContainersFilterCreated" time="15.110000"></testcase>
+		<testcase classname="github.com/docker/docker/integration-cli" name="TestDockerCLIPsSuite/TestPsListContainersFilterExited" time="17.120000"></testcase>
+		<testcase classname="github.com/docker/docker/integration-cli" name="TestDockerCLIPsSuite/TestPsListContainersFilterHealth" time="21.210000"></testcase>
+		<testcase classname="github.com/docker/docker/integration-cli" name="TestDockerCLIPsSuite/TestPsListContainersFilterID" time="15.840000"></testcase>
+		<testcase classname="github.com/docker/docker/integration-cli" name="TestDockerCLIPsSuite/TestPsListContainersFilterLabel" time="16.430000"></testcase>
+		<testcase classname="github.com/docker/docker/integration-cli" name="TestDockerCLIPsSuite/TestPsListContainersFilterName" time="15.870000"></testcase>
+		<testcase classname="github.com/docker/docker/integration-cli" name="TestDockerCLIPsSuite/TestPsListContainersFilterNetwork" time="15.740000"></testcase>
+		<testcase classname="github.com/docker/docker/integration-cli" name="TestDockerCLIPsSuite/TestPsListContainersFilterPorts" time="16.570000"></testcase>
+		<testcase classname="github.com/docker/docker/integration-cli" name="TestDockerCLIPsSuite/TestPsListContainersFilterStatus" time="16.400000"></testcase>
+		<testcase classname="github.com/docker/docker/integration-cli" name="TestDockerCLIPsSuite/TestPsListContainersSize" time="15.860000"></testcase>
+		<testcase classname="github.com/docker/docker/integration-cli" name="TestDockerCLIPsSuite/TestPsNotShowLinknamesOfDeletedContainer" time="15.160000"></testcase>
+		<testcase classname="github.com/docker/docker/integration-cli" name="TestDockerCLIPsSuite/TestPsNotShowPortsOfStoppedContainer" time="15.630000"></testcase>
+		<testcase classname="github.com/docker/docker/integration-cli" name="TestDockerCLIPsSuite/TestPsRightTagName" time="16.440000"></testcase>
+		<testcase classname="github.com/docker/docker/integration-cli" name="TestDockerCLIPsSuite/TestPsShowMounts" time="31.600000"></testcase>
+		<testcase classname="github.com/docker/docker/integration-cli" name="TestDockerCLIPsSuite" time="312.270000"></testcase>
+		<testcase classname="github.com/docker/docker/integration-cli" name="TestDockerCLIRestartSuite/TestRestartAutoRemoveContainer" time="15.940000"></testcase>
+		<testcase classname="github.com/docker/docker/integration-cli" name="TestDockerCLIRestartSuite/TestRestartContainerSuccess" time="15.920000"></testcase>
+		<testcase classname="github.com/docker/docker/integration-cli" name="TestDockerCLIRestartSuite/TestRestartContainerwithGoodContainer" time="15.500000"></testcase>
+		<testcase classname="github.com/docker/docker/integration-cli" name="TestDockerCLIRestartSuite/TestRestartContainerwithRestartPolicy" time="20.410000"></testcase>
+		<testcase classname="github.com/docker/docker/integration-cli" name="TestDockerCLIRestartSuite/TestRestartDisconnectedContainer" time="15.660000"></testcase>
+		<testcase classname="github.com/docker/docker/integration-cli" name="TestDockerCLIRestartSuite/TestRestartPolicyAfterRestart" time="16.340000"></testcase>
+		<testcase classname="github.com/docker/docker/integration-cli" name="TestDockerCLIRestartSuite/TestRestartPolicyAlways" time="15.090000"></testcase>
+		<testcase classname="github.com/docker/docker/integration-cli" name="TestDockerCLIRestartSuite/TestRestartPolicyNO" time="15.060000"></testcase>
+		<testcase classname="github.com/docker/docker/integration-cli" name="TestDockerCLIRestartSuite/TestRestartPolicyOnFailure" time="15.260000"></testcase>
+		<testcase classname="github.com/docker/docker/integration-cli" name="TestDockerCLIRestartSuite/TestRestartRunningContainer" time="16.990000"></testcase>
+		<testcase classname="github.com/docker/docker/integration-cli" name="TestDockerCLIRestartSuite/TestRestartStoppedContainer" time="15.880000"></testcase>
+		<testcase classname="github.com/docker/docker/integration-cli" name="TestDockerCLIRestartSuite/TestRestartWithPolicyUserDefinedNetwork" time="16.930000"></testcase>
+		<testcase classname="github.com/docker/docker/integration-cli" name="TestDockerCLIRestartSuite/TestRestartWithVolumes" time="30.960000"></testcase>
+		<testcase classname="github.com/docker/docker/integration-cli" name="TestDockerCLIRestartSuite" time="225.950000"></testcase>
+		<testcase classname="github.com/docker/docker/integration-cli" name="TestDockerCLIRmiSuite/TestRmiBlank" time="15.030000"></testcase>
+		<testcase classname="github.com/docker/docker/integration-cli" name="TestDockerCLIRmiSuite/TestRmiByIDHardConflict" time="15.110000"></testcase>
+		<testcase classname="github.com/docker/docker/integration-cli" name="TestDockerCLIRmiSuite/TestRmiContainerImageNotFound" time="16.900000"></testcase>
+		<testcase classname="github.com/docker/docker/integration-cli" name="TestDockerCLIRmiSuite/TestRmiForceWithExistingContainers" time="15.550000"></testcase>
+		<testcase classname="github.com/docker/docker/integration-cli" name="TestDockerCLIRmiSuite/TestRmiForceWithMultipleRepositories" time="15.110000"></testcase>
+		<testcase classname="github.com/docker/docker/integration-cli" name="TestDockerCLIRmiSuite/TestRmiImageIDForceWithRunningContainersAndMultipleTags" time="15.940000"></testcase>
+		<testcase classname="github.com/docker/docker/integration-cli" name="TestDockerCLIRmiSuite/TestRmiImgIDForce" time="15.690000"></testcase>
+		<testcase classname="github.com/docker/docker/integration-cli" name="TestDockerCLIRmiSuite/TestRmiImgIDMultipleTag" time="16.110000"></testcase>
+		<testcase classname="github.com/docker/docker/integration-cli" name="TestDockerCLIRmiSuite/TestRmiParentImageFail" time="15.510000"></testcase>
+		<testcase classname="github.com/docker/docker/integration-cli" name="TestDockerCLIRmiSuite/TestRmiTag" time="15.250000"></testcase>
+		<testcase classname="github.com/docker/docker/integration-cli" name="TestDockerCLIRmiSuite/TestRmiTagWithExistingContainers" time="15.480000"></testcase>
+		<testcase classname="github.com/docker/docker/integration-cli" name="TestDockerCLIRmiSuite/TestRmiUntagHistoryLayer" time="17.020000"></testcase>
+		<testcase classname="github.com/docker/docker/integration-cli" name="TestDockerCLIRmiSuite/TestRmiWithContainerFails" time="15.440000"></testcase>
+		<testcase classname="github.com/docker/docker/integration-cli" name="TestDockerCLIRmiSuite/TestRmiWithMultipleRepositories" time="15.500000"></testcase>
+		<testcase classname="github.com/docker/docker/integration-cli" name="TestDockerCLIRmiSuite/TestRmiWithParentInUse" time="15.140000"></testcase>
+		<testcase classname="github.com/docker/docker/integration-cli" name="TestDockerCLIRmiSuite" time="234.790000"></testcase>
+		<testcase classname="github.com/docker/docker/integration-cli" name="TestDockerCLIRunSuite/TestCmdCannotBeInvoked" time="15.420000"></testcase>
+		<testcase classname="github.com/docker/docker/integration-cli" name="TestDockerCLIRunSuite/TestContainerNetworkMode" time="15.670000"></testcase>
+		<testcase classname="github.com/docker/docker/integration-cli" name="TestDockerCLIRunSuite/TestContainerRestartInMultipleNetworks" time="18.190000"></testcase>
+		<testcase classname="github.com/docker/docker/integration-cli" name="TestDockerCLIRunSuite/TestContainerWithConflictingHostNetworks" time="15.470000"></testcase>
+		<testcase classname="github.com/docker/docker/integration-cli" name="TestDockerCLIRunSuite/TestContainerWithConflictingNoneNetwork" time="16.030000"></testcase>
+		<testcase classname="github.com/docker/docker/integration-cli" name="TestDockerCLIRunSuite/TestContainerWithConflictingSharedNetwork" time="15.960000"></testcase>
+		<testcase classname="github.com/docker/docker/integration-cli" name="TestDockerCLIRunSuite/TestContainersInMultipleNetworks" time="17.200000"></testcase>
+		<testcase classname="github.com/docker/docker/integration-cli" name="TestDockerCLIRunSuite/TestContainersInUserDefinedNetwork" time="16.190000"></testcase>
+		<testcase classname="github.com/docker/docker/integration-cli" name="TestDockerCLIRunSuite/TestContainersNetworkIsolation" time="17.030000"></testcase>
+		<testcase classname="github.com/docker/docker/integration-cli" name="TestDockerCLIRunSuite/TestDevicePermissions" time="15.460000"></testcase>
+		<testcase classname="github.com/docker/docker/integration-cli" name="TestDockerCLIRunSuite/TestDockerFails" time="15.060000"></testcase>
+		<testcase classname="github.com/docker/docker/integration-cli" name="TestDockerCLIRunSuite/TestMountIntoProc" time="30.260000"></testcase>
+		<testcase classname="github.com/docker/docker/integration-cli" name="TestDockerCLIRunSuite/TestMountIntoSys" time="30.470000"></testcase>
+		<testcase classname="github.com/docker/docker/integration-cli" name="TestDockerCLIRunSuite/TestNetworkRmWithActiveContainers" time="16.270000"></testcase>
+		<testcase classname="github.com/docker/docker/integration-cli" name="TestDockerCLIRunSuite/TestPermissionsPtsReadonlyRootfs" time="15.430000"></testcase>
+		<testcase classname="github.com/docker/docker/integration-cli" name="TestDockerCLIRunSuite/TestPtraceContainerProcsFromHost" time="15.470000"></testcase>
+		<testcase classname="github.com/docker/docker/integration-cli" name="TestDockerCLIRunSuite/TestRunAddHost" time="15.480000"></testcase>
+		<testcase classname="github.com/docker/docker/integration-cli" name="TestDockerCLIRunSuite/TestRunAddHostInHostMode" time="15.170000"></testcase>
+		<testcase classname="github.com/docker/docker/integration-cli" name="TestDockerCLIRunSuite/TestRunAddingOptionalDevices" time="15.470000"></testcase>
+		<testcase classname="github.com/docker/docker/integration-cli" name="TestDockerCLIRunSuite/TestRunAddingOptionalDevicesInvalidMode" time="15.030000"></testcase>
+		<testcase classname="github.com/docker/docker/integration-cli" name="TestDockerCLIRunSuite/TestRunAddingOptionalDevicesNoSrc" time="15.450000"></testcase>
+		<testcase classname="github.com/docker/docker/integration-cli" name="TestDockerCLIRunSuite/TestRunAllocatePortInReservedRange" time="16.040000"></testcase>
+		<testcase classname="github.com/docker/docker/integration-cli" name="TestDockerCLIRunSuite/TestRunAllowBindMountingRoot" time="15.410000"></testcase>
+		<testcase classname="github.com/docker/docker/integration-cli" name="TestDockerCLIRunSuite/TestRunAllowPortRangeThroughExpose" time="15.720000"></testcase>
+		<testcase classname="github.com/docker/docker/integration-cli" name="TestDockerCLIRunSuite/TestRunAllowPortRangeThroughPublish" time="15.690000"></testcase>
+		<testcase classname="github.com/docker/docker/integration-cli" name="TestDockerCLIRunSuite/TestRunApplyVolumesFromBeforeVolumes" time="30.880000"></testcase>
+		<testcase classname="github.com/docker/docker/integration-cli" name="TestDockerCLIRunSuite/TestRunAttachDetach" time="15.640000"></testcase>
+		<testcase classname="github.com/docker/docker/integration-cli" name="TestDockerCLIRunSuite/TestRunAttachDetachFromConfig" time="15.590000"></testcase>
+		<testcase classname="github.com/docker/docker/integration-cli" name="TestDockerCLIRunSuite/TestRunAttachDetachFromFlag" time="15.610000"></testcase>
+		<testcase classname="github.com/docker/docker/integration-cli" name="TestDockerCLIRunSuite/TestRunAttachDetachFromInvalidFlag" time="15.500000"></testcase>
+		<testcase classname="github.com/docker/docker/integration-cli" name="TestDockerCLIRunSuite/TestRunAttachDetachKeysOverrideConfig" time="15.670000"></testcase>
+		<testcase classname="github.com/docker/docker/integration-cli" name="TestDockerCLIRunSuite/TestRunAttachFailedNoLeak" time="15.780000"></testcase>
+		<testcase classname="github.com/docker/docker/integration-cli" name="TestDockerCLIRunSuite/TestRunAttachInvalidDetachKeySequencePreserved" time="15.810000"></testcase>
+		<testcase classname="github.com/docker/docker/integration-cli" name="TestDockerCLIRunSuite/TestRunAttachStdErrOnlyTTYMode" time="15.450000"></testcase>
+		<testcase classname="github.com/docker/docker/integration-cli" name="TestDockerCLIRunSuite/TestRunAttachStdOutAndErrTTYMode" time="15.440000"></testcase>
+		<testcase classname="github.com/docker/docker/integration-cli" name="TestDockerCLIRunSuite/TestRunAttachStdOutOnlyTTYMode" time="15.460000"></testcase>
+		<testcase classname="github.com/docker/docker/integration-cli" name="TestDockerCLIRunSuite/TestRunAttachWithDetach" time="15.030000"></testcase>
+		<testcase classname="github.com/docker/docker/integration-cli" name="TestDockerCLIRunSuite/TestRunBindMounts" time="16.329000"></testcase>
+		<testcase classname="github.com/docker/docker/integration-cli" name="TestDockerCLIRunSuite/TestRunCapAddALLCanDownInterface" time="15.440000"></testcase>
+		<testcase classname="github.com/docker/docker/integration-cli" name="TestDockerCLIRunSuite/TestRunCapAddALLDropNetAdminCanDownInterface" time="15.450000"></testcase>
+		<testcase classname="github.com/docker/docker/integration-cli" name="TestDockerCLIRunSuite/TestRunCapAddCHOWN" time="15.470000"></testcase>
+		<testcase classname="github.com/docker/docker/integration-cli" name="TestDockerCLIRunSuite/TestRunCapAddCanDownInterface" time="15.470000"></testcase>
+		<testcase classname="github.com/docker/docker/integration-cli" name="TestDockerCLIRunSuite/TestRunCapAddInvalid" time="15.030000"></testcase>
+		<testcase classname="github.com/docker/docker/integration-cli" name="TestDockerCLIRunSuite/TestRunCapAddSYSTIME" time="15.480000"></testcase>
+		<testcase classname="github.com/docker/docker/integration-cli" name="TestDockerCLIRunSuite/TestRunCapDropALLAddMknodCanMknod" time="15.460000"></testcase>
+		<testcase classname="github.com/docker/docker/integration-cli" name="TestDockerCLIRunSuite/TestRunCapDropALLCannotMknod" time="15.470000"></testcase>
+		<testcase classname="github.com/docker/docker/integration-cli" name="TestDockerCLIRunSuite/TestRunCapDropCannotMknod" time="15.470000"></testcase>
+		<testcase classname="github.com/docker/docker/integration-cli" name="TestDockerCLIRunSuite/TestRunCapDropCannotMknodLowerCase" time="15.480000"></testcase>
+		<testcase classname="github.com/docker/docker/integration-cli" name="TestDockerCLIRunSuite/TestRunCapDropInvalid" time="15.030000"></testcase>
+		<testcase classname="github.com/docker/docker/integration-cli" name="TestDockerCLIRunSuite/TestRunCidFileCheckIDLength" time="15.420000"></testcase>
+		<testcase classname="github.com/docker/docker/integration-cli" name="TestDockerCLIRunSuite/TestRunCleanupCmdOnEntrypoint" time="15.480000"></testcase>
+		<testcase classname="github.com/docker/docker/integration-cli" name="TestDockerCLIRunSuite/TestRunContainerNetModeWithDNSMacHosts" time="15.530000"></testcase>
+		<testcase classname="github.com/docker/docker/integration-cli" name="TestDockerCLIRunSuite/TestRunContainerNetModeWithExposePort" time="15.520000"></testcase>
+		<testcase classname="github.com/docker/docker/integration-cli" name="TestDockerCLIRunSuite/TestRunContainerNetwork" time="15.460000"></testcase>
+		<testcase classname="github.com/docker/docker/integration-cli" name="TestDockerCLIRunSuite/TestRunContainerNetworkModeToSelf" time="15.050000"></testcase>
+		<testcase classname="github.com/docker/docker/integration-cli" name="TestDockerCLIRunSuite/TestRunContainerWithReadonlyEtcHostsAndLinkedContainer" time="15.890000"></testcase>
+		<testcase classname="github.com/docker/docker/integration-cli" name="TestDockerCLIRunSuite/TestRunContainerWithReadonlyRootfs" time="15.850000"></testcase>
+		<testcase classname="github.com/docker/docker/integration-cli" name="TestDockerCLIRunSuite/TestRunContainerWithReadonlyRootfsWithAddHostFlag" time="15.440000"></testcase>
+		<testcase classname="github.com/docker/docker/integration-cli" name="TestDockerCLIRunSuite/TestRunContainerWithReadonlyRootfsWithDNSFlag" time="15.490000"></testcase>
+		<testcase classname="github.com/docker/docker/integration-cli" name="TestDockerCLIRunSuite/TestRunContainerWithRmFlagCannotStartContainer" time="15.440000"></testcase>
+		<testcase classname="github.com/docker/docker/integration-cli" name="TestDockerCLIRunSuite/TestRunContainerWithRmFlagExitCodeNotEqualToZero" time="15.460000"></testcase>
+		<testcase classname="github.com/docker/docker/integration-cli" name="TestDockerCLIRunSuite/TestRunContainerWithWritableRootfs" time="15.420000"></testcase>
+		<testcase classname="github.com/docker/docker/integration-cli" name="TestDockerCLIRunSuite/TestRunCopyVolumeContent" time="30.940000"></testcase>
+		<testcase classname="github.com/docker/docker/integration-cli" name="TestDockerCLIRunSuite/TestRunCreateContainerFailedCleanUp" time="30.080000"></testcase>
+		<testcase classname="github.com/docker/docker/integration-cli" name="TestDockerCLIRunSuite/TestRunCreateVolume" time="30.470000"></testcase>
+		<testcase classname="github.com/docker/docker/integration-cli" name="TestDockerCLIRunSuite/TestRunCreateVolumeEtc" time="61.320000"></testcase>
+		<testcase classname="github.com/docker/docker/integration-cli" name="TestDockerCLIRunSuite/TestRunCreateVolumeWithSymlink" time="30.980000"></testcase>
+		<testcase classname="github.com/docker/docker/integration-cli" name="TestDockerCLIRunSuite/TestRunCreateVolumesInSymlinkDir" time="31.320000"></testcase>
+		<testcase classname="github.com/docker/docker/integration-cli" name="TestDockerCLIRunSuite/TestRunCreateVolumesInSymlinkDir2" time="31.320000"></testcase>
+		<testcase classname="github.com/docker/docker/integration-cli" name="TestDockerCLIRunSuite/TestRunDNSDefaultOptions" time="15.430000"></testcase>
+		<testcase classname="github.com/docker/docker/integration-cli" name="TestDockerCLIRunSuite/TestRunDNSInHostMode" time="15.760000"></testcase>
+		<testcase classname="github.com/docker/docker/integration-cli" name="TestDockerCLIRunSuite/TestRunDNSOptions" time="15.830000"></testcase>
+		<testcase classname="github.com/docker/docker/integration-cli" name="TestDockerCLIRunSuite/TestRunDNSOptionsBasedOnHostResolvConf" time="16.250000"></testcase>
+		<testcase classname="github.com/docker/docker/integration-cli" name="TestDockerCLIRunSuite/TestRunDNSRepeatOptions" time="15.450000"></testcase>
+		<testcase classname="github.com/docker/docker/integration-cli" name="TestDockerCLIRunSuite/TestRunDeallocatePortOnMissingIptablesRule" time="16.000000"></testcase>
+		<testcase classname="github.com/docker/docker/integration-cli" name="TestDockerCLIRunSuite/TestRunDetachedContainerIDPrinting" time="15.470000"></testcase>
+		<testcase classname="github.com/docker/docker/integration-cli" name="TestDockerCLIRunSuite/TestRunDeviceDirectory" time="15.880000"></testcase>
+		<testcase classname="github.com/docker/docker/integration-cli" name="TestDockerCLIRunSuite/TestRunDeviceNumbers" time="15.450000"></testcase>
+		<testcase classname="github.com/docker/docker/integration-cli" name="TestDockerCLIRunSuite/TestRunDeviceSymlink" time="16.050000"></testcase>
+		<testcase classname="github.com/docker/docker/integration-cli" name="TestDockerCLIRunSuite/TestRunDisallowBindMountingRootToRoot" time="15.040000"></testcase>
+		<testcase classname="github.com/docker/docker/integration-cli" name="TestDockerCLIRunSuite/TestRunDuplicateMount" time="15.480000"></testcase>
+		<testcase classname="github.com/docker/docker/integration-cli" name="TestDockerCLIRunSuite/TestRunEchoNamedContainer" time="15.460000"></testcase>
+		<testcase classname="github.com/docker/docker/integration-cli" name="TestDockerCLIRunSuite/TestRunEchoStdout" time="15.450000"></testcase>
+		<testcase classname="github.com/docker/docker/integration-cli" name="TestDockerCLIRunSuite/TestRunEchoStdoutWithCPUSharesAndMemoryLimit" time="15.440000"></testcase>
+		<testcase classname="github.com/docker/docker/integration-cli" name="TestDockerCLIRunSuite/TestRunEmptyEnv" time="15.160000"></testcase>
+		<testcase classname="github.com/docker/docker/integration-cli" name="TestDockerCLIRunSuite/TestRunEntrypoint" time="15.470000"></testcase>
+		<testcase classname="github.com/docker/docker/integration-cli" name="TestDockerCLIRunSuite/TestRunEnvironment" time="15.470000"></testcase>
+		<testcase classname="github.com/docker/docker/integration-cli" name="TestDockerCLIRunSuite/TestRunEnvironmentErase" time="15.470000"></testcase>
+		<testcase classname="github.com/docker/docker/integration-cli" name="TestDockerCLIRunSuite/TestRunEnvironmentOverride" time="15.450000"></testcase>
+		<testcase classname="github.com/docker/docker/integration-cli" name="TestDockerCLIRunSuite/TestRunExitCode" time="15.450000"></testcase>
+		<testcase classname="github.com/docker/docker/integration-cli" name="TestDockerCLIRunSuite/TestRunExitCodeOne" time="15.470000"></testcase>
+		<testcase classname="github.com/docker/docker/integration-cli" name="TestDockerCLIRunSuite/TestRunExitCodeZero" time="15.460000"></testcase>
+		<testcase classname="github.com/docker/docker/integration-cli" name="TestDockerCLIRunSuite/TestRunExitOnStdinClose" time="15.440000"></testcase>
+		<testcase classname="github.com/docker/docker/integration-cli" name="TestDockerCLIRunSuite/TestRunExposePort" time="15.030000"></testcase>
+		<testcase classname="github.com/docker/docker/integration-cli" name="TestDockerCLIRunSuite/TestRunFullHostnameSet" time="15.420000"></testcase>
+		<testcase classname="github.com/docker/docker/integration-cli" name="TestDockerCLIRunSuite/TestRunGroupAdd" time="15.470000"></testcase>
+		<testcase classname="github.com/docker/docker/integration-cli" name="TestDockerCLIRunSuite/TestRunHostnameFQDN" time="15.850000"></testcase>
+		<testcase classname="github.com/docker/docker/integration-cli" name="TestDockerCLIRunSuite/TestRunHostnameInHostMode" time="15.160000"></testcase>
+		<testcase classname="github.com/docker/docker/integration-cli" name="TestDockerCLIRunSuite/TestRunInitLayerPathOwnership" time="16.620000"></testcase>
+		<testcase classname="github.com/docker/docker/integration-cli" name="TestDockerCLIRunSuite/TestRunInspectMacAddress" time="15.480000"></testcase>
+		<testcase classname="github.com/docker/docker/integration-cli" name="TestDockerCLIRunSuite/TestRunInteractiveWithRestartPolicy" time="25.850000"></testcase>
+		<testcase classname="github.com/docker/docker/integration-cli" name="TestDockerCLIRunSuite/TestRunInvalidCpusetCpusFlagValue" time="15.030000"></testcase>
+		<testcase classname="github.com/docker/docker/integration-cli" name="TestDockerCLIRunSuite/TestRunInvalidCpusetMemsFlagValue" time="15.030000"></testcase>
+		<testcase classname="github.com/docker/docker/integration-cli" name="TestDockerCLIRunSuite/TestRunInvalidReference" time="15.030000"></testcase>
+		<testcase classname="github.com/docker/docker/integration-cli" name="TestDockerCLIRunSuite/TestRunLeakyFileDescriptors" time="15.440000"></testcase>
+		<testcase classname="github.com/docker/docker/integration-cli" name="TestDockerCLIRunSuite/TestRunLinkToContainerNetMode" time="16.560000"></testcase>
+		<testcase classname="github.com/docker/docker/integration-cli" name="TestDockerCLIRunSuite/TestRunLinksContainerWithContainerID" time="15.890000"></testcase>
+		<testcase classname="github.com/docker/docker/integration-cli" name="TestDockerCLIRunSuite/TestRunLinksContainerWithContainerName" time="15.890000"></testcase>
+		<testcase classname="github.com/docker/docker/integration-cli" name="TestDockerCLIRunSuite/TestRunLoopbackOnlyExistsWhenNetworkingDisabled" time="15.200000"></testcase>
+		<testcase classname="github.com/docker/docker/integration-cli" name="TestDockerCLIRunSuite/TestRunLoopbackWhenNetworkDisabled" time="15.190000"></testcase>
+		<testcase classname="github.com/docker/docker/integration-cli" name="TestDockerCLIRunSuite/TestRunModeHostname" time="15.580000"></testcase>
+		<testcase classname="github.com/docker/docker/integration-cli" name="TestDockerCLIRunSuite/TestRunModeIpcContainerNotExists" time="15.030000"></testcase>
+		<testcase classname="github.com/docker/docker/integration-cli" name="TestDockerCLIRunSuite/TestRunModeIpcContainerNotRunning" time="15.200000"></testcase>
+		<testcase classname="github.com/docker/docker/integration-cli" name="TestDockerCLIRunSuite/TestRunModeIpcHost" time="15.810000"></testcase>
+		<testcase classname="github.com/docker/docker/integration-cli" name="TestDockerCLIRunSuite/TestRunModeNetContainerHostname" time="15.670000"></testcase>
+		<testcase classname="github.com/docker/docker/integration-cli" name="TestDockerCLIRunSuite/TestRunModePIDContainer" time="15.920000"></testcase>
+		<testcase classname="github.com/docker/docker/integration-cli" name="TestDockerCLIRunSuite/TestRunModePIDContainerNotExists" time="15.030000"></testcase>
+		<testcase classname="github.com/docker/docker/integration-cli" name="TestDockerCLIRunSuite/TestRunModePIDContainerNotRunning" time="15.220000"></testcase>
+		<testcase classname="github.com/docker/docker/integration-cli" name="TestDockerCLIRunSuite/TestRunModeUTSHost" time="15.890000"></testcase>
+		<testcase classname="github.com/docker/docker/integration-cli" name="TestDockerCLIRunSuite/TestRunMount" time="138.850000"></testcase>
+		<testcase classname="github.com/docker/docker/integration-cli" name="TestDockerCLIRunSuite/TestRunMountOrdering" time="15.460000"></testcase>
+		<testcase classname="github.com/docker/docker/integration-cli" name="TestDockerCLIRunSuite/TestRunMountReadOnlyDevShm" time="15.490000"></testcase>
+		<testcase classname="github.com/docker/docker/integration-cli" name="TestDockerCLIRunSuite/TestRunMountShmMqueueFromHost" time="15.890000"></testcase>
+		<testcase classname="github.com/docker/docker/integration-cli" name="TestDockerCLIRunSuite/TestRunMultipleVolumesFrom" time="46.380000"></testcase>
+		<testcase classname="github.com/docker/docker/integration-cli" name="TestDockerCLIRunSuite/TestRunNamedVolume" time="31.270000"></testcase>
+		<testcase classname="github.com/docker/docker/integration-cli" name="TestDockerCLIRunSuite/TestRunNamedVolumeCopyImageData" time="31.280000"></testcase>
+		<testcase classname="github.com/docker/docker/integration-cli" name="TestDockerCLIRunSuite/TestRunNamedVolumeNotRemoved" time="76.100000"></testcase>
+		<testcase classname="github.com/docker/docker/integration-cli" name="TestDockerCLIRunSuite/TestRunNamedVolumesFromNotRemoved" time="45.960000"></testcase>
+		<testcase classname="github.com/docker/docker/integration-cli" name="TestDockerCLIRunSuite/TestRunNamedVolumesMountedAsShared" time="15.040000"></testcase>
+		<testcase classname="github.com/docker/docker/integration-cli" name="TestDockerCLIRunSuite/TestRunNetContainerWhichHost" time="15.300000"></testcase>
+		<testcase classname="github.com/docker/docker/integration-cli" name="TestDockerCLIRunSuite/TestRunNetHost" time="15.610000"></testcase>
+		<testcase classname="github.com/docker/docker/integration-cli" name="TestDockerCLIRunSuite/TestRunNetHostNotAllowedWithLinks" time="15.460000"></testcase>
+		<testcase classname="github.com/docker/docker/integration-cli" name="TestDockerCLIRunSuite/TestRunNetHostTwiceSameName" time="15.310000"></testcase>
+		<testcase classname="github.com/docker/docker/integration-cli" name="TestDockerCLIRunSuite/TestRunNetworkFilesBindMount" time="16.230000"></testcase>
+		<testcase classname="github.com/docker/docker/integration-cli" name="TestDockerCLIRunSuite/TestRunNetworkFilesBindMountRO" time="16.340000"></testcase>
+		<testcase classname="github.com/docker/docker/integration-cli" name="TestDockerCLIRunSuite/TestRunNetworkFilesBindMountROFilesystem" time="17.460000"></testcase>
+		<testcase classname="github.com/docker/docker/integration-cli" name="TestDockerCLIRunSuite/TestRunNetworkNotInitializedNoneMode" time="15.220000"></testcase>
+		<testcase classname="github.com/docker/docker/integration-cli" name="TestDockerCLIRunSuite/TestRunNoDupVolumes" time="45.120000"></testcase>
+		<testcase classname="github.com/docker/docker/integration-cli" name="TestDockerCLIRunSuite/TestRunNoOutputFromPullInStdout" time="15.050000"></testcase>
+		<testcase classname="github.com/docker/docker/integration-cli" name="TestDockerCLIRunSuite/TestRunNonExecutableCmd" time="15.440000"></testcase>
+		<testcase classname="github.com/docker/docker/integration-cli" name="TestDockerCLIRunSuite/TestRunNonExistingCmd" time="15.480000"></testcase>
+		<testcase classname="github.com/docker/docker/integration-cli" name="TestDockerCLIRunSuite/TestRunNonExistingImage" time="15.040000"></testcase>
+		<testcase classname="github.com/docker/docker/integration-cli" name="TestDockerCLIRunSuite/TestRunNonLocalMacAddress" time="15.450000"></testcase>
+		<testcase classname="github.com/docker/docker/integration-cli" name="TestDockerCLIRunSuite/TestRunOOMExitCode" time="15.650000"></testcase>
+		<testcase classname="github.com/docker/docker/integration-cli" name="TestDockerCLIRunSuite/TestRunPIDHostWithChildIsKillable" time="15.530000"></testcase>
+		<testcase classname="github.com/docker/docker/integration-cli" name="TestDockerCLIRunSuite/TestRunPortFromDockerRangeInUse" time="16.079000"></testcase>
+		<testcase classname="github.com/docker/docker/integration-cli" name="TestDockerCLIRunSuite/TestRunPortInUse" time="15.660000"></testcase>
+		<testcase classname="github.com/docker/docker/integration-cli" name="TestDockerCLIRunSuite/TestRunPrivilegedCanMknod" time="15.490000"></testcase>
+		<testcase classname="github.com/docker/docker/integration-cli" name="TestDockerCLIRunSuite/TestRunPrivilegedCanMount" time="15.500000"></testcase>
+		<testcase classname="github.com/docker/docker/integration-cli" name="TestDockerCLIRunSuite/TestRunProcNotWritableInNonPrivilegedContainers" time="15.470000"></testcase>
+		<testcase classname="github.com/docker/docker/integration-cli" name="TestDockerCLIRunSuite/TestRunProcWritableInPrivilegedContainers" time="15.480000"></testcase>
+		<testcase classname="github.com/docker/docker/integration-cli" name="TestDockerCLIRunSuite/TestRunPublishPort" time="15.470000"></testcase>
+		<testcase classname="github.com/docker/docker/integration-cli" name="TestDockerCLIRunSuite/TestRunReadProcTimer" time="15.500000"></testcase>
+		<testcase classname="github.com/docker/docker/integration-cli" name="TestDockerCLIRunSuite/TestRunRedirectStdout" time="15.850000"></testcase>
+		<testcase classname="github.com/docker/docker/integration-cli" name="TestDockerCLIRunSuite/TestRunRestartMaxRetries" time="16.970000"></testcase>
+		<testcase classname="github.com/docker/docker/integration-cli" name="TestDockerCLIRunSuite/TestRunReuseBindVolumeThatIsSymlink" time="15.920000"></testcase>
+		<testcase classname="github.com/docker/docker/integration-cli" name="TestDockerCLIRunSuite/TestRunRm" time="30.480000"></testcase>
+		<testcase classname="github.com/docker/docker/integration-cli" name="TestDockerCLIRunSuite/TestRunRmAndWait" time="18.470000"></testcase>
+		<testcase classname="github.com/docker/docker/integration-cli" name="TestDockerCLIRunSuite/TestRunRmPre125Api" time="30.520000"></testcase>
+		<testcase classname="github.com/docker/docker/integration-cli" name="TestDockerCLIRunSuite/TestRunRootWorkdir" time="15.470000"></testcase>
+		<testcase classname="github.com/docker/docker/integration-cli" name="TestDockerCLIRunSuite/TestRunSeccompAllowSetrlimit" time="15.460000"></testcase>
+		<testcase classname="github.com/docker/docker/integration-cli" name="TestDockerCLIRunSuite/TestRunSeccompProfileDenyChmod" time="15.430000"></testcase>
+		<testcase classname="github.com/docker/docker/integration-cli" name="TestDockerCLIRunSuite/TestRunSeccompWithDefaultProfile" time="15.440000"></testcase>
+		<testcase classname="github.com/docker/docker/integration-cli" name="TestDockerCLIRunSuite/TestRunSetDefaultRestartPolicy" time="15.510000"></testcase>
+		<testcase classname="github.com/docker/docker/integration-cli" name="TestDockerCLIRunSuite/TestRunSetMacAddress" time="15.450000"></testcase>
+		<testcase classname="github.com/docker/docker/integration-cli" name="TestDockerCLIRunSuite/TestRunSlowStdoutConsumer" time="17.420000"></testcase>
+		<testcase classname="github.com/docker/docker/integration-cli" name="TestDockerCLIRunSuite/TestRunState" time="16.010000"></testcase>
+		<testcase classname="github.com/docker/docker/integration-cli" name="TestDockerCLIRunSuite/TestRunStdinBlockedAfterContainerExit" time="15.420000"></testcase>
+		<testcase classname="github.com/docker/docker/integration-cli" name="TestDockerCLIRunSuite/TestRunStdinPipe" time="15.520000"></testcase>
+		<testcase classname="github.com/docker/docker/integration-cli" name="TestDockerCLIRunSuite/TestRunStoppedLoggingDriverNoLeak" time="15.210000"></testcase>
+		<testcase classname="github.com/docker/docker/integration-cli" name="TestDockerCLIRunSuite/TestRunSwapLessThanMemoryLimit" time="15.030000"></testcase>
+		<testcase classname="github.com/docker/docker/integration-cli" name="TestDockerCLIRunSuite/TestRunSysNotWritableInNonPrivilegedContainers" time="15.450000"></testcase>
+		<testcase classname="github.com/docker/docker/integration-cli" name="TestDockerCLIRunSuite/TestRunSysWritableInPrivilegedContainers" time="15.470000"></testcase>
+		<testcase classname="github.com/docker/docker/integration-cli" name="TestDockerCLIRunSuite/TestRunSysctls" time="15.990000"></testcase>
+		<testcase classname="github.com/docker/docker/integration-cli" name="TestDockerCLIRunSuite/TestRunTTYWithPipe" time="15.030000"></testcase>
+		<testcase classname="github.com/docker/docker/integration-cli" name="TestDockerCLIRunSuite/TestRunThatCharacterDevicesActLikeCharacterDevices" time="15.450000"></testcase>
+		<testcase classname="github.com/docker/docker/integration-cli" name="TestDockerCLIRunSuite/TestRunTmpfsMounts" time="16.460000"></testcase>
+		<testcase classname="github.com/docker/docker/integration-cli" name="TestDockerCLIRunSuite/TestRunTmpfsMountsEnsureOrdered" time="15.460000"></testcase>
+		<testcase classname="github.com/docker/docker/integration-cli" name="TestDockerCLIRunSuite/TestRunTmpfsMountsOverrideImageVolumes" time="45.900000"></testcase>
+		<testcase classname="github.com/docker/docker/integration-cli" name="TestDockerCLIRunSuite/TestRunTmpfsMountsWithOptions" time="17.030000"></testcase>
+		<testcase classname="github.com/docker/docker/integration-cli" name="TestDockerCLIRunSuite/TestRunTwoConcurrentContainers" time="17.720000"></testcase>
+		<testcase classname="github.com/docker/docker/integration-cli" name="TestDockerCLIRunSuite/TestRunUnprivilegedCanMknod" time="15.480000"></testcase>
+		<testcase classname="github.com/docker/docker/integration-cli" name="TestDockerCLIRunSuite/TestRunUnprivilegedCannotMount" time="15.450000"></testcase>
+		<testcase classname="github.com/docker/docker/integration-cli" name="TestDockerCLIRunSuite/TestRunUnprivilegedWithChroot" time="15.470000"></testcase>
+		<testcase classname="github.com/docker/docker/integration-cli" name="TestDockerCLIRunSuite/TestRunUnsetEntrypoint" time="15.980000"></testcase>
+		<testcase classname="github.com/docker/docker/integration-cli" name="TestDockerCLIRunSuite/TestRunUserByID" time="15.460000"></testcase>
+		<testcase classname="github.com/docker/docker/integration-cli" name="TestDockerCLIRunSuite/TestRunUserByIDBig" time="15.180000"></testcase>
+		<testcase classname="github.com/docker/docker/integration-cli" name="TestDockerCLIRunSuite/TestRunUserByIDNegative" time="15.190000"></testcase>
+		<testcase classname="github.com/docker/docker/integration-cli" name="TestDockerCLIRunSuite/TestRunUserByIDZero" time="15.490000"></testcase>
+		<testcase classname="github.com/docker/docker/integration-cli" name="TestDockerCLIRunSuite/TestRunUserByName" time="15.460000"></testcase>
+		<testcase classname="github.com/docker/docker/integration-cli" name="TestDockerCLIRunSuite/TestRunUserDefaults" time="15.480000"></testcase>
+		<testcase classname="github.com/docker/docker/integration-cli" name="TestDockerCLIRunSuite/TestRunUserNotFound" time="15.180000"></testcase>
+		<testcase classname="github.com/docker/docker/integration-cli" name="TestDockerCLIRunSuite/TestRunVerifyContainerID" time="15.450000"></testcase>
+		<testcase classname="github.com/docker/docker/integration-cli" name="TestDockerCLIRunSuite/TestRunVolumeCopyFlag" time="32.350000"></testcase>
+		<testcase classname="github.com/docker/docker/integration-cli" name="TestDockerCLIRunSuite/TestRunVolumeWithOneCharacter" time="15.460000"></testcase>
+		<testcase classname="github.com/docker/docker/integration-cli" name="TestDockerCLIRunSuite/TestRunVolumesCleanPaths" time="60.620000"></testcase>
+		<testcase classname="github.com/docker/docker/integration-cli" name="TestDockerCLIRunSuite/TestRunVolumesFromInReadWriteMode" time="31.380000"></testcase>
+		<testcase classname="github.com/docker/docker/integration-cli" name="TestDockerCLIRunSuite/TestRunVolumesFromInReadonlyModeFails" time="30.840000"></testcase>
+		<testcase classname="github.com/docker/docker/integration-cli" name="TestDockerCLIRunSuite/TestRunVolumesFromRestartAfterRemoved" time="31.370000"></testcase>
+		<testcase classname="github.com/docker/docker/integration-cli" name="TestDockerCLIRunSuite/TestRunVolumesFromSymlinkPath" time="46.320000"></testcase>
+		<testcase classname="github.com/docker/docker/integration-cli" name="TestDockerCLIRunSuite/TestRunVolumesMountedAsReadonly" time="15.420000"></testcase>
+		<testcase classname="github.com/docker/docker/integration-cli" name="TestDockerCLIRunSuite/TestRunWithBadDevice" time="15.180000"></testcase>
+		<testcase classname="github.com/docker/docker/integration-cli" name="TestDockerCLIRunSuite/TestRunWithDaemonFlags" time="15.070000"></testcase>
+		<testcase classname="github.com/docker/docker/integration-cli" name="TestDockerCLIRunSuite/TestRunWithDefaultShmSize" time="15.480000"></testcase>
+		<testcase classname="github.com/docker/docker/integration-cli" name="TestDockerCLIRunSuite/TestRunWithInvalidBlkioWeight" time="15.030000"></testcase>
+		<testcase classname="github.com/docker/docker/integration-cli" name="TestDockerCLIRunSuite/TestRunWithInvalidCpuPeriod" time="15.070000"></testcase>
+		<testcase classname="github.com/docker/docker/integration-cli" name="TestDockerCLIRunSuite/TestRunWithInvalidMacAddress" time="15.040000"></testcase>
+		<testcase classname="github.com/docker/docker/integration-cli" name="TestDockerCLIRunSuite/TestRunWithInvalidPathforBlkioDeviceReadBps" time="15.170000"></testcase>
+		<testcase classname="github.com/docker/docker/integration-cli" name="TestDockerCLIRunSuite/TestRunWithInvalidPathforBlkioDeviceReadIOps" time="15.180000"></testcase>
+		<testcase classname="github.com/docker/docker/integration-cli" name="TestDockerCLIRunSuite/TestRunWithInvalidPathforBlkioDeviceWriteBps" time="15.170000"></testcase>
+		<testcase classname="github.com/docker/docker/integration-cli" name="TestDockerCLIRunSuite/TestRunWithInvalidPathforBlkioDeviceWriteIOps" time="15.170000"></testcase>
+		<testcase classname="github.com/docker/docker/integration-cli" name="TestDockerCLIRunSuite/TestRunWithInvalidPathforBlkioWeightDevice" time="15.170000"></testcase>
+		<testcase classname="github.com/docker/docker/integration-cli" name="TestDockerCLIRunSuite/TestRunWithMemoryReservationInvalid" time="15.050000"></testcase>
+		<testcase classname="github.com/docker/docker/integration-cli" name="TestDockerCLIRunSuite/TestRunWithOomScoreAdj" time="15.430000"></testcase>
+		<testcase classname="github.com/docker/docker/integration-cli" name="TestDockerCLIRunSuite/TestRunWithOomScoreAdjInvalidRange" time="15.050000"></testcase>
+		<testcase classname="github.com/docker/docker/integration-cli" name="TestDockerCLIRunSuite/TestRunWithShmSize" time="15.500000"></testcase>
+		<testcase classname="github.com/docker/docker/integration-cli" name="TestDockerCLIRunSuite/TestRunWithTooSmallMemoryLimit" time="15.030000"></testcase>
+		<testcase classname="github.com/docker/docker/integration-cli" name="TestDockerCLIRunSuite/TestRunWithUlimits" time="15.440000"></testcase>
+		<testcase classname="github.com/docker/docker/integration-cli" name="TestDockerCLIRunSuite/TestRunWithVolumesFromExited" time="30.840000"></testcase>
+		<testcase classname="github.com/docker/docker/integration-cli" name="TestDockerCLIRunSuite/TestRunWithVolumesIsRecursive" time="15.460000"></testcase>
+		<testcase classname="github.com/docker/docker/integration-cli" name="TestDockerCLIRunSuite/TestRunWithoutMemoryswapLimit" time="15.470000"></testcase>
+		<testcase classname="github.com/docker/docker/integration-cli" name="TestDockerCLIRunSuite/TestRunWithoutNetworking" time="15.210000"></testcase>
+		<testcase classname="github.com/docker/docker/integration-cli" name="TestDockerCLIRunSuite/TestRunWorkdirExistsAndIsFile" time="15.040000"></testcase>
+		<testcase classname="github.com/docker/docker/integration-cli" name="TestDockerCLIRunSuite/TestRunWorkingDirectory" time="15.830000"></testcase>
+		<testcase classname="github.com/docker/docker/integration-cli" name="TestDockerCLIRunSuite/TestRunWriteSpecialFilesAndNotCommit" time="16.430000"></testcase>
+		<testcase classname="github.com/docker/docker/integration-cli" name="TestDockerCLIRunSuite/TestRunWriteToProcAsound" time="15.450000"></testcase>
+		<testcase classname="github.com/docker/docker/integration-cli" name="TestDockerCLIRunSuite/TestRunWrongCpusetCpusFlagValue" time="15.040000"></testcase>
+		<testcase classname="github.com/docker/docker/integration-cli" name="TestDockerCLIRunSuite/TestRunWrongCpusetMemsFlagValue" time="15.030000"></testcase>
+		<testcase classname="github.com/docker/docker/integration-cli" name="TestDockerCLIRunSuite/TestSlowStdinClosing/0" time="0.680000"></testcase>
+		<testcase classname="github.com/docker/docker/integration-cli" name="TestDockerCLIRunSuite/TestSlowStdinClosing/1" time="0.650000"></testcase>
+		<testcase classname="github.com/docker/docker/integration-cli" name="TestDockerCLIRunSuite/TestSlowStdinClosing/2" time="0.680000"></testcase>
+		<testcase classname="github.com/docker/docker/integration-cli" name="TestDockerCLIRunSuite/TestSlowStdinClosing" time="17.020000"></testcase>
+		<testcase classname="github.com/docker/docker/integration-cli" name="TestDockerCLIRunSuite/TestStopContainerSignal" time="16.430000"></testcase>
+		<testcase classname="github.com/docker/docker/integration-cli" name="TestDockerCLIRunSuite/TestTwoContainersInNetHost" time="15.340000"></testcase>
+		<testcase classname="github.com/docker/docker/integration-cli" name="TestDockerCLIRunSuite/TestUserDefinedNetworkAlias" time="17.280000"></testcase>
+		<testcase classname="github.com/docker/docker/integration-cli" name="TestDockerCLIRunSuite/TestUserDefinedNetworkLinks" time="17.410000"></testcase>
+		<testcase classname="github.com/docker/docker/integration-cli" name="TestDockerCLIRunSuite/TestUserDefinedNetworkLinksWithRestart" time="17.460000"></testcase>
+		<testcase classname="github.com/docker/docker/integration-cli" name="TestDockerCLIRunSuite/TestVolumeFromMixedRWOptions" time="31.390000"></testcase>
+		<testcase classname="github.com/docker/docker/integration-cli" name="TestDockerCLIRunSuite/TestVolumesFromGetsProperMode" time="16.790000"></testcase>
+		<testcase classname="github.com/docker/docker/integration-cli" name="TestDockerCLIRunSuite/TestVolumesNoCopyData" time="32.170000"></testcase>
+		<testcase classname="github.com/docker/docker/integration-cli" name="TestDockerCLIStartSuite/TestStartAttachCorrectExitCode" time="19.840000"></testcase>
+		<testcase classname="github.com/docker/docker/integration-cli" name="TestDockerCLIStartSuite/TestStartAttachMultipleContainers" time="16.540000"></testcase>
+		<testcase classname="github.com/docker/docker/integration-cli" name="TestDockerCLIStartSuite/TestStartAttachReturnsOnError" time="15.780000"></testcase>
+		<testcase classname="github.com/docker/docker/integration-cli" name="TestDockerCLIStartSuite/TestStartAttachSilent" time="15.840000"></testcase>
+		<testcase classname="github.com/docker/docker/integration-cli" name="TestDockerCLIStartSuite/TestStartAttachWithRename" time="17.520000"></testcase>
+		<testcase classname="github.com/docker/docker/integration-cli" name="TestDockerCLIStartSuite/TestStartMultipleContainers" time="16.590000"></testcase>
+		<testcase classname="github.com/docker/docker/integration-cli" name="TestDockerCLIStartSuite/TestStartPausedContainer" time="15.510000"></testcase>
+		<testcase classname="github.com/docker/docker/integration-cli" name="TestDockerCLIStartSuite/TestStartRecordError" time="16.270000"></testcase>
+		<testcase classname="github.com/docker/docker/integration-cli" name="TestDockerCLIStartSuite/TestStartReturnCorrectExitCode" time="16.480000"></testcase>
+		<testcase classname="github.com/docker/docker/integration-cli" name="TestDockerCLIStartSuite" time="150.370000"></testcase>
+		<testcase classname="github.com/docker/docker/integration-cli" name="TestDockerCLIVolumeSuite/TestDuplicateMountpointsForVolumesFrom" time="91.670000"></testcase>
+		<testcase classname="github.com/docker/docker/integration-cli" name="TestDockerCLIVolumeSuite/TestDuplicateMountpointsForVolumesFromAndBind" time="91.600000"></testcase>
+		<testcase classname="github.com/docker/docker/integration-cli" name="TestDockerCLIVolumeSuite/TestDuplicateMountpointsForVolumesFromAndMounts" time="91.140000"></testcase>
+		<testcase classname="github.com/docker/docker/integration-cli" name="TestDockerCLIVolumeSuite/TestVolumeCLICreate" time="30.090000"></testcase>
+		<testcase classname="github.com/docker/docker/integration-cli" name="TestDockerCLIVolumeSuite/TestVolumeCLICreateLabel" time="15.050000"></testcase>
+		<testcase classname="github.com/docker/docker/integration-cli" name="TestDockerCLIVolumeSuite/TestVolumeCLICreateLabelMultiple" time="15.070000"></testcase>
+		<testcase classname="github.com/docker/docker/integration-cli" name="TestDockerCLIVolumeSuite/TestVolumeCLICreateWithOpts" time="15.480000"></testcase>
+		<testcase classname="github.com/docker/docker/integration-cli" name="TestDockerCLIVolumeSuite/TestVolumeCLIInspect" time="30.130000"></testcase>
+		<testcase classname="github.com/docker/docker/integration-cli" name="TestDockerCLIVolumeSuite/TestVolumeCLILs" time="30.530000"></testcase>
+		<testcase classname="github.com/docker/docker/integration-cli" name="TestDockerCLIVolumeSuite/TestVolumeCLILsErrorWithInvalidFilterName" time="15.040000"></testcase>
+		<testcase classname="github.com/docker/docker/integration-cli" name="TestDockerCLIVolumeSuite/TestVolumeCLILsFilterDangling" time="105.730000"></testcase>
+		<testcase classname="github.com/docker/docker/integration-cli" name="TestDockerCLIVolumeSuite/TestVolumeCLILsFilterDrivers" time="15.120000"></testcase>
+		<testcase classname="github.com/docker/docker/integration-cli" name="TestDockerCLIVolumeSuite/TestVolumeCLILsFilterLabels" time="75.150000"></testcase>
+		<testcase classname="github.com/docker/docker/integration-cli" name="TestDockerCLIVolumeSuite/TestVolumeCLILsWithIncorrectFilterValue" time="15.030000"></testcase>
+		<testcase classname="github.com/docker/docker/integration-cli" name="TestDockerCLIVolumeSuite/TestVolumeCLIRm" time="31.570000"></testcase>
+		<testcase classname="github.com/docker/docker/integration-cli" name="TestDockerCLIVolumeSuite/TestVolumeCLIRmForce" time="45.170000"></testcase>
+		<testcase classname="github.com/docker/docker/integration-cli" name="TestDockerCLIVolumeSuite/TestVolumeCLIRmForceInUse" time="60.220000"></testcase>
+		<testcase classname="github.com/docker/docker/integration-cli" name="TestDockerCLIVolumeSuite/TestVolumeCLIRmForceUsage" time="30.070000"></testcase>
+		<testcase classname="github.com/docker/docker/integration-cli" name="TestDockerCLIVolumeSuite/TestVolumeCliInspectWithVolumeOpts" time="15.080000"></testcase>
+		<testcase classname="github.com/docker/docker/integration-cli" name="TestDockerCLIVolumeSuite/TestVolumeLsFormat" time="30.090000"></testcase>
+		<testcase classname="github.com/docker/docker/integration-cli" name="TestDockerCLIVolumeSuite/TestVolumeLsFormatDefaultFormat" time="30.120000"></testcase>
+	</testsuite>
+	<testsuite tests="0" failures="0" time="0.000000" name="github.com/docker/docker/integration-cli/checker" timestamp="2026-08-30T15:19:55+08:00">
+		<properties>
+			<property name="go.version" value="go1.20.14 linux/amd64"></property>
+		</properties>
+	</testsuite>
+	<testsuite tests="0" failures="0" time="0.000000" name="github.com/docker/docker/integration-cli/cli" timestamp="2026-08-30T15:19:55+08:00">
+		<properties>
+			<property name="go.version" value="go1.20.14 linux/amd64"></property>
+		</properties>
+	</testsuite>
+	<testsuite tests="0" failures="0" time="0.000000" name="github.com/docker/docker/integration-cli/cli/build" timestamp="2026-08-30T15:19:55+08:00">
+		<properties>
+			<property name="go.version" value="go1.20.14 linux/amd64"></property>
+		</properties>
+	</testsuite>
+	<testsuite tests="0" failures="0" time="0.000000" name="github.com/docker/docker/integration-cli/daemon" timestamp="2026-08-30T15:19:55+08:00">
+		<properties>
+			<property name="go.version" value="go1.20.14 linux/amd64"></property>
+		</properties>
+	</testsuite>
+	<testsuite tests="0" failures="0" time="0.000000" name="github.com/docker/docker/integration-cli/environment" timestamp="2026-08-30T15:19:55+08:00">
+		<properties>
+			<property name="go.version" value="go1.20.14 linux/amd64"></property>
+		</properties>
+	</testsuite>
+	<testsuite tests="0" failures="0" time="0.000000" name="github.com/docker/docker/integration-cli/requirement" timestamp="2026-08-30T15:19:55+08:00">
+		<properties>
+			<property name="go.version" value="go1.20.14 linux/amd64"></property>
+		</properties>
+	</testsuite>
+</testsuites>
