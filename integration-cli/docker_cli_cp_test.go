@@ -387,7 +387,7 @@ func (s *DockerCLICpSuite) TestCpUnprivilegedUser(c *testing.T) {
 	err = os.Chmod(tmpdir, 0777)
 	assert.NilError(c, err)
 
-	result := icmd.RunCommand("su", "unprivilegeduser", "-c",
+	result = icmd.RunCommand("su", "unprivilegeduser", "-c",
 		fmt.Sprintf("%s cp %s:%s %s", dockerBinary, containerID, cpTestName, tmpdir))
 	result.Assert(c, icmd.Expected{})
 }
