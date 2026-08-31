@@ -3225,6 +3225,7 @@ func (s *DockerCLIRunSuite) TestRunContainerWithCgroupParent(c *testing.T) {
 }
 
 func testRunContainerWithCgroupParent(c *testing.T, cgroupParent, name string) {
+	skip.If(c, IsCgroupV2(), "FIXME: cgroups v2 not supported yet")
 	out, _, err := dockerCmdWithError("run", "--cgroup-parent", cgroupParent, "--name", name, "busybox", "cat", "/proc/self/cgroup")
 	if err != nil {
 		c.Fatalf("unexpected failure when running container with --cgroup-parent option - %s\n%v", out, err)
@@ -3291,6 +3292,7 @@ func (s *DockerCLIRunSuite) TestRunContainerWithCgroupMountRO(c *testing.T) {
 	// Not applicable on Windows as uses Unix specific functionality
 	// --read-only + userns has remount issues
 	testRequires(c, DaemonIsLinux, NotUserNamespace)
+	skip.If(c, IsCgroupV2(), "FIXME: cgroups v2 not supported yet")
 
 	filename := "/sys/fs/cgroup/devices/test123"
 	out, _, err := dockerCmdWithError("run", "busybox", "touch", filename)
@@ -4413,6 +4415,7 @@ func (s *DockerCLIRunSuite) TestRunHostnameInHostMode(c *testing.T) {
 
 func (s *DockerCLIRunSuite) TestRunAddDeviceCgroupRule(c *testing.T) {
 	testRequires(c, DaemonIsLinux)
+	skip.If(c, IsCgroupV2(), "FIXME: cgroups v2 not supported yet")
 
 	deviceRule := "c 7:128 rwm"
 
