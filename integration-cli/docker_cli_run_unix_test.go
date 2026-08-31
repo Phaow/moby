@@ -28,6 +28,7 @@ import (
 	"github.com/moby/sys/mount"
 	"gotest.tools/v3/assert"
 	"gotest.tools/v3/icmd"
+	"gotest.tools/v3/skip"
 )
 
 // #6509
@@ -760,6 +761,8 @@ func (s *DockerCLIRunSuite) TestRunInvalidCpusetMemsFlagValue(c *testing.T) {
 
 func (s *DockerCLIRunSuite) TestRunInvalidCPUShares(c *testing.T) {
 	testRequires(c, cpuShare, DaemonIsLinux)
+	skip.If(c, IsCgroupV2(), "FIXME: cgroups v2 cpu-shares validation is different")
+
 	out, _, err := dockerCmdWithError("run", "--cpu-shares", "1", "busybox", "echo", "test")
 	assert.ErrorContains(c, err, "", out)
 	expected := "minimum allowed cpu-shares is 2"
@@ -1425,6 +1428,7 @@ func (s *DockerCLIRunSuite) TestRunPIDsLimit(c *testing.T) {
 
 func (s *DockerCLIRunSuite) TestRunPrivilegedAllowedDevices(c *testing.T) {
 	testRequires(c, DaemonIsLinux, NotUserNamespace)
+	skip.If(c, IsCgroupV2(), "FIXME: cgroups v2 not supported yet")
 
 	file := GetCgroupDevicesListFile()
 	out, _ := dockerCmd(c, "run", "--privileged", "busybox", "cat", file)

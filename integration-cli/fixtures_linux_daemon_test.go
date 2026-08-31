@@ -28,12 +28,31 @@ func ensureSyscallTest(c *testing.T) {
 		return
 	}
 
+	// Check if gcc is available
+	gcc, err := exec.LookPath("gcc")
+	if err != nil {
+		c.Skip("gcc not found, skipping syscall-test")
+		return
+	}
+
+	// Check if static linking works
+	tmpCheck, err := os.MkdirTemp("", "docker-syscall-check")
+	if err == nil {
+		defer os.RemoveAll(tmpCheck)
+		staticCheckFile := filepath.Join(tmpCheck, "static_check.c")
+		err = os.WriteFile(staticCheckFile, []byte("int main(){return 0;}"), 0600)
+		if err == nil {
+			out, err := exec.Command(gcc, "-static", staticCheckFile, "-o", filepath.Join(tmpCheck, "static_check")).CombinedOutput()
+			if err != nil {
+				c.Skip("static linking not available, skipping syscall-test: " + string(out))
+				return
+			}
+		}
+	}
+
 	tmp, err := os.MkdirTemp("", "syscall-test-build")
 	assert.NilError(c, err, "couldn't create temp dir")
 	defer os.RemoveAll(tmp)
-
-	gcc, err := exec.LookPath("gcc")
-	assert.NilError(c, err, "could not find gcc")
 
 	tests := []string{"userns", "ns", "acct", "setuid", "setgid", "socket", "raw"}
 	for _, test := range tests {
@@ -94,15 +113,23 @@ func ensureNNPTest(c *testing.T) {
 	// Check if gcc is available
 	gcc, err := exec.LookPath("gcc")
 	if err != nil {
-		c.Skip("gcc not found, skipping nnp-test: %v", err)
+		c.Skip("gcc not found, skipping nnp-test")
 		return
 	}
 
-	// Check if ld (linker) is available
-	ld, err := exec.LookPath("ld")
-	if err != nil {
-		c.Skip("ld not found, skipping nnp-test: %v", err)
-		return
+	// Check if static linking works - try to compile a simple static program
+	tmpCheck, err := os.MkdirTemp("", "docker-nnp-check")
+	if err == nil {
+		defer os.RemoveAll(tmpCheck)
+		staticCheckFile := filepath.Join(tmpCheck, "static_check.c")
+		err = os.WriteFile(staticCheckFile, []byte("int main(){return 0;}"), 0600)
+		if err == nil {
+			out, err := exec.Command(gcc, "-static", staticCheckFile, "-o", filepath.Join(tmpCheck, "static_check")).CombinedOutput()
+			if err != nil {
+				c.Skip("static linking not available, skipping nnp-test: " + string(out))
+				return
+			}
+		}
 	}
 
 	tmp, err := os.MkdirTemp("", "docker-nnp-test")
@@ -124,7 +151,6 @@ func ensureNNPTest(c *testing.T) {
 	if arg := os.Getenv("DOCKER_BUILD_ARGS"); strings.TrimSpace(arg) != "" {
 		buildArgs = strings.Split(arg, " ")
 	}
-	_ = ld // suppress unused variable warning
 	buildArgs = append(buildArgs, []string{"-q", "-t", "nnp-test", tmp}...)
 	buildArgs = append([]string{"build"}, buildArgs...)
 	dockerCmd(c, buildArgs...)

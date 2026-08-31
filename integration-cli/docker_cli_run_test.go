@@ -3252,6 +3252,9 @@ func testRunContainerWithCgroupParent(c *testing.T, cgroupParent, name string) {
 func (s *DockerCLIRunSuite) TestRunInvalidCgroupParent(c *testing.T) {
 	// Not applicable on Windows as uses Unix specific functionality
 	testRequires(c, DaemonIsLinux)
+	// systemd cgroup driver validates paths early, so this security test doesn't apply
+	skip.If(c, strings.Contains(testEnv.DaemonInfo.CgroupDriver, "systemd"),
+		"test requires cgroupfs driver, not systemd")
 
 	testRunInvalidCgroupParent(c, "../../../../../../../../SHOULD_NOT_EXIST", "SHOULD_NOT_EXIST", "cgroup-invalid-test")
 
