@@ -4416,12 +4416,13 @@ func (s *DockerCLIRunSuite) TestRunAddDeviceCgroupRule(c *testing.T) {
 
 	deviceRule := "c 7:128 rwm"
 
-	out, _ := dockerCmd(c, "run", "--rm", "busybox", "cat", "/sys/fs/cgroup/devices/devices.list")
+	file := GetCgroupDevicesListFile()
+	out, _ := dockerCmd(c, "run", "--rm", "busybox", "cat", file)
 	if strings.Contains(out, deviceRule) {
 		c.Fatalf("%s shouldn't been in the device.list", deviceRule)
 	}
 
-	out, _ = dockerCmd(c, "run", "--rm", fmt.Sprintf("--device-cgroup-rule=%s", deviceRule), "busybox", "grep", deviceRule, "/sys/fs/cgroup/devices/devices.list")
+	out, _ = dockerCmd(c, "run", "--rm", fmt.Sprintf("--device-cgroup-rule=%s", deviceRule), "busybox", "grep", deviceRule, file)
 	assert.Equal(c, strings.TrimSpace(out), deviceRule)
 }
 

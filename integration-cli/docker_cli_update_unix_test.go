@@ -37,9 +37,14 @@ func (s *DockerCLIUpdateSuite) TestUpdateRunningContainer(c *testing.T) {
 
 	assert.Equal(c, inspectField(c, name, "HostConfig.Memory"), "524288000")
 
-	file := "/sys/fs/cgroup/memory/memory.limit_in_bytes"
+	file := GetCgroupMemoryLimitFile()
 	out, _ := dockerCmd(c, "exec", name, "cat", file)
-	assert.Equal(c, strings.TrimSpace(out), "524288000")
+	if IsCgroupV2() {
+		// cgroup v2 memory.max format: "limit" or "max" if no limit
+		assert.Equal(c, strings.TrimSpace(out), "524288000")
+	} else {
+		assert.Equal(c, strings.TrimSpace(out), "524288000")
+	}
 }
 
 func (s *DockerCLIUpdateSuite) TestUpdateRunningContainerWithRestart(c *testing.T) {
@@ -53,7 +58,7 @@ func (s *DockerCLIUpdateSuite) TestUpdateRunningContainerWithRestart(c *testing.
 
 	assert.Equal(c, inspectField(c, name, "HostConfig.Memory"), "524288000")
 
-	file := "/sys/fs/cgroup/memory/memory.limit_in_bytes"
+	file := GetCgroupMemoryLimitFile()
 	out, _ := dockerCmd(c, "exec", name, "cat", file)
 	assert.Equal(c, strings.TrimSpace(out), "524288000")
 }
@@ -63,7 +68,7 @@ func (s *DockerCLIUpdateSuite) TestUpdateStoppedContainer(c *testing.T) {
 	testRequires(c, memoryLimitSupport)
 
 	name := "test-update-container"
-	file := "/sys/fs/cgroup/memory/memory.limit_in_bytes"
+	file := GetCgroupMemoryLimitFile()
 	dockerCmd(c, "run", "--name", name, "-m", "300M", "busybox", "cat", file)
 	dockerCmd(c, "update", "-m", "500M", name)
 
@@ -85,7 +90,7 @@ func (s *DockerCLIUpdateSuite) TestUpdatePausedContainer(c *testing.T) {
 	assert.Equal(c, inspectField(c, name, "HostConfig.CPUShares"), "500")
 
 	dockerCmd(c, "unpause", name)
-	file := "/sys/fs/cgroup/cpu/cpu.shares"
+	file := GetCgroupCPUSharesFile()
 	out, _ := dockerCmd(c, "exec", name, "cat", file)
 	assert.Equal(c, strings.TrimSpace(out), "500")
 }
@@ -103,7 +108,7 @@ func (s *DockerCLIUpdateSuite) TestUpdateWithUntouchedFields(c *testing.T) {
 	out := inspectField(c, name, "HostConfig.CPUShares")
 	assert.Equal(c, out, "800")
 
-	file := "/sys/fs/cgroup/cpu/cpu.shares"
+	file := GetCgroupCPUSharesFile()
 	out, _ = dockerCmd(c, "exec", name, "cat", file)
 	assert.Equal(c, strings.TrimSpace(out), "800")
 }
@@ -141,9 +146,18 @@ func (s *DockerCLIUpdateSuite) TestUpdateSwapMemoryOnly(c *testing.T) {
 
 	assert.Equal(c, inspectField(c, name, "HostConfig.MemorySwap"), "629145600")
 
-	file := "/sys/fs/cgroup/memory/memory.memsw.limit_in_bytes"
-	out, _ := dockerCmd(c, "exec", name, "cat", file)
-	assert.Equal(c, strings.TrimSpace(out), "629145600")
+	if IsCgroupV2() {
+		// cgroup v2: memory.swap.max 输出的是 swap 部分，不是总和
+		// 600M - 300M = 300M = 314572800
+		file := GetCgroupSwapLimitFile()
+		out, _ := dockerCmd(c, "exec", name, "cat", file)
+		assert.Equal(c, strings.TrimSpace(out), "314572800")
+	} else {
+		// cgroup v1: memory.memsw.limit_in_bytes 输出是总和
+		file := GetCgroupSwapLimitFile()
+		out, _ := dockerCmd(c, "exec", name, "cat", file)
+		assert.Equal(c, strings.TrimSpace(out), "629145600")
+	}
 }
 
 func (s *DockerCLIUpdateSuite) TestUpdateInvalidSwapMemory(c *testing.T) {
@@ -166,9 +180,18 @@ func (s *DockerCLIUpdateSuite) TestUpdateInvalidSwapMemory(c *testing.T) {
 
 	assert.Equal(c, inspectField(c, name, "HostConfig.MemorySwap"), "629145600")
 
-	file := "/sys/fs/cgroup/memory/memory.memsw.limit_in_bytes"
-	out, _ := dockerCmd(c, "exec", name, "cat", file)
-	assert.Equal(c, strings.TrimSpace(out), "629145600")
+	if IsCgroupV2() {
+		// cgroup v2: memory.swap.max 输出的是 swap 部分，不是总和
+		// 600M - 300M = 300M = 314572800
+		file := GetCgroupSwapLimitFile()
+		out, _ := dockerCmd(c, "exec", name, "cat", file)
+		assert.Equal(c, strings.TrimSpace(out), "314572800")
+	} else {
+		// cgroup v1: memory.memsw.limit_in_bytes 输出是总和
+		file := GetCgroupSwapLimitFile()
+		out, _ := dockerCmd(c, "exec", name, "cat", file)
+		assert.Equal(c, strings.TrimSpace(out), "629145600")
+	}
 }
 
 func (s *DockerCLIUpdateSuite) TestUpdateStats(c *testing.T) {
@@ -245,14 +268,22 @@ func (s *DockerCLIUpdateSuite) TestUpdateNotAffectMonitorRestartPolicy(c *testin
 func (s *DockerCLIUpdateSuite) TestUpdateWithNanoCPUs(c *testing.T) {
 	testRequires(c, cpuCfsQuota, cpuCfsPeriod)
 
-	file1 := "/sys/fs/cgroup/cpu/cpu.cfs_quota_us"
-	file2 := "/sys/fs/cgroup/cpu/cpu.cfs_period_us"
-
 	out, _ := dockerCmd(c, "run", "-d", "--cpus", "0.5", "--name", "top", "busybox", "top")
 	assert.Assert(c, strings.TrimSpace(out) != "")
 
-	out, _ = dockerCmd(c, "exec", "top", "sh", "-c", fmt.Sprintf("cat %s && cat %s", file1, file2))
-	assert.Equal(c, strings.TrimSpace(out), "50000\n100000")
+	if IsCgroupV2() {
+		// cgroup v2: use cpu.max which contains both quota and period
+		out, _ = dockerCmd(c, "exec", "top", "cat", "/sys/fs/cgroup/cpu.max")
+		// Format is "quota period", e.g. "50000 100000"
+		fields := strings.Fields(strings.TrimSpace(out))
+		assert.Equal(c, fields[0], "50000")
+		assert.Equal(c, fields[1], "100000")
+	} else {
+		file1 := "/sys/fs/cgroup/cpu/cpu.cfs_quota_us"
+		file2 := "/sys/fs/cgroup/cpu/cpu.cfs_period_us"
+		out, _ = dockerCmd(c, "exec", "top", "sh", "-c", fmt.Sprintf("cat %s && cat %s", file1, file2))
+		assert.Equal(c, strings.TrimSpace(out), "50000\n100000")
+	}
 
 	clt, err := client.NewClientWithOpts(client.FromEnv)
 	assert.NilError(c, err)
@@ -279,6 +310,16 @@ func (s *DockerCLIUpdateSuite) TestUpdateWithNanoCPUs(c *testing.T) {
 	out = inspectField(c, "top", "HostConfig.CpuPeriod")
 	assert.Equal(c, out, "0", "CPU CFS period should be 0")
 
-	out, _ = dockerCmd(c, "exec", "top", "sh", "-c", fmt.Sprintf("cat %s && cat %s", file1, file2))
-	assert.Equal(c, strings.TrimSpace(out), "80000\n100000")
+	if IsCgroupV2() {
+		// cgroup v2: verify updated cpu.max
+		out, _ = dockerCmd(c, "exec", "top", "cat", "/sys/fs/cgroup/cpu.max")
+		fields := strings.Fields(strings.TrimSpace(out))
+		assert.Equal(c, fields[0], "80000")
+		assert.Equal(c, fields[1], "100000")
+	} else {
+		file1 := "/sys/fs/cgroup/cpu/cpu.cfs_quota_us"
+		file2 := "/sys/fs/cgroup/cpu/cpu.cfs_period_us"
+		out, _ = dockerCmd(c, "exec", "top", "sh", "-c", fmt.Sprintf("cat %s && cat %s", file1, file2))
+		assert.Equal(c, strings.TrimSpace(out), "80000\n100000")
+	}
 }

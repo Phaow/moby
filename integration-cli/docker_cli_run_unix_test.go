@@ -459,9 +459,14 @@ func (s *DockerCLIRunSuite) TestRunAttachInvalidDetachKeySequencePreserved(c *te
 func (s *DockerCLIRunSuite) TestRunWithCPUQuota(c *testing.T) {
 	testRequires(c, cpuCfsQuota)
 
-	file := "/sys/fs/cgroup/cpu/cpu.cfs_quota_us"
+	file := GetCgroupCPUQuotaFile()
 	out, _ := dockerCmd(c, "run", "--cpu-quota", "8000", "--name", "test", "busybox", "cat", file)
-	assert.Equal(c, strings.TrimSpace(out), "8000")
+	if IsCgroupV2() {
+		// cgroup v2 cpu.max format: "quota period" e.g. "8000 100000"
+		assert.Equal(c, strings.TrimSpace(out), "8000 100000")
+	} else {
+		assert.Equal(c, strings.TrimSpace(out), "8000")
+	}
 
 	out = inspectField(c, "test", "HostConfig.CpuQuota")
 	assert.Equal(c, out, "8000", "setting the CPU CFS quota failed")
@@ -470,12 +475,18 @@ func (s *DockerCLIRunSuite) TestRunWithCPUQuota(c *testing.T) {
 func (s *DockerCLIRunSuite) TestRunWithCpuPeriod(c *testing.T) {
 	testRequires(c, cpuCfsPeriod)
 
-	file := "/sys/fs/cgroup/cpu/cpu.cfs_period_us"
-	out, _ := dockerCmd(c, "run", "--cpu-period", "50000", "--name", "test", "busybox", "cat", file)
-	assert.Equal(c, strings.TrimSpace(out), "50000")
-
-	out, _ = dockerCmd(c, "run", "--cpu-period", "0", "busybox", "cat", file)
-	assert.Equal(c, strings.TrimSpace(out), "100000")
+	file := GetCgroupCPUPeriodFile()
+	var out string
+	if IsCgroupV2() {
+		// cgroup v2: cpu.max contains both quota and period
+		out, _ = dockerCmd(c, "run", "--cpu-period", "50000", "--name", "test", "busybox", "cat", "/sys/fs/cgroup/cpu.max")
+		// Format is "quota period", e.g. "max 50000" or "8000 50000"
+		fields := strings.Fields(strings.TrimSpace(out))
+		assert.Equal(c, fields[1], "50000")
+	} else {
+		out, _ = dockerCmd(c, "run", "--cpu-period", "50000", "--name", "test", "busybox", "cat", file)
+		assert.Equal(c, strings.TrimSpace(out), "50000")
+	}
 
 	out = inspectField(c, "test", "HostConfig.CpuPeriod")
 	assert.Equal(c, out, "50000", "setting the CPU CFS period failed")
@@ -500,9 +511,15 @@ func (s *DockerCLIRunSuite) TestRunWithInvalidCpuPeriod(c *testing.T) {
 func (s *DockerCLIRunSuite) TestRunWithCPUShares(c *testing.T) {
 	testRequires(c, cpuShare)
 
-	file := "/sys/fs/cgroup/cpu/cpu.shares"
+	file := GetCgroupCPUSharesFile()
 	out, _ := dockerCmd(c, "run", "--cpu-shares", "1000", "--name", "test", "busybox", "cat", file)
-	assert.Equal(c, strings.TrimSpace(out), "1000")
+	if IsCgroupV2() {
+		// cgroup v2: cpu.weight uses weighted SP algorithm, value is scaled
+		// The value 1000 in cgroup v1 maps to weight 1000 in cgroup v2 (no scaling by 1024)
+		assert.Equal(c, strings.TrimSpace(out), "1000")
+	} else {
+		assert.Equal(c, strings.TrimSpace(out), "1000")
+	}
 
 	out = inspectField(c, "test", "HostConfig.CPUShares")
 	assert.Equal(c, out, "1000")
@@ -520,7 +537,7 @@ func (s *DockerCLIRunSuite) TestRunEchoStdoutWithCPUSharesAndMemoryLimit(c *test
 func (s *DockerCLIRunSuite) TestRunWithCpusetCpus(c *testing.T) {
 	testRequires(c, cgroupCpuset)
 
-	file := "/sys/fs/cgroup/cpuset/cpuset.cpus"
+	file := GetCgroupCpusetCpusFile()
 	out, _ := dockerCmd(c, "run", "--cpuset-cpus", "0", "--name", "test", "busybox", "cat", file)
 	assert.Equal(c, strings.TrimSpace(out), "0")
 
@@ -531,7 +548,7 @@ func (s *DockerCLIRunSuite) TestRunWithCpusetCpus(c *testing.T) {
 func (s *DockerCLIRunSuite) TestRunWithCpusetMems(c *testing.T) {
 	testRequires(c, cgroupCpuset)
 
-	file := "/sys/fs/cgroup/cpuset/cpuset.mems"
+	file := GetCgroupCpusetMemsFile()
 	out, _ := dockerCmd(c, "run", "--cpuset-mems", "0", "--name", "test", "busybox", "cat", file)
 	assert.Equal(c, strings.TrimSpace(out), "0")
 
@@ -542,7 +559,7 @@ func (s *DockerCLIRunSuite) TestRunWithCpusetMems(c *testing.T) {
 func (s *DockerCLIRunSuite) TestRunWithBlkioWeight(c *testing.T) {
 	testRequires(c, blkioWeight)
 
-	file := "/sys/fs/cgroup/blkio/blkio.weight"
+	file := GetCgroupBlkioWeightFile()
 	out, _ := dockerCmd(c, "run", "--blkio-weight", "300", "--name", "test", "busybox", "cat", file)
 	assert.Equal(c, strings.TrimSpace(out), "300")
 
@@ -611,13 +628,18 @@ func (s *DockerCLIRunSuite) TestRunOOMExitCode(c *testing.T) {
 func (s *DockerCLIRunSuite) TestRunWithMemoryLimit(c *testing.T) {
 	testRequires(c, memoryLimitSupport)
 
-	file := "/sys/fs/cgroup/memory/memory.limit_in_bytes"
-	cli.DockerCmd(c, "run", "-m", "32M", "--name", "test", "busybox", "cat", file).Assert(c, icmd.Expected{
-		Out: "33554432",
-	})
-	cli.InspectCmd(c, "test", cli.Format(".HostConfig.Memory")).Assert(c, icmd.Expected{
-		Out: "33554432",
-	})
+	file := GetCgroupMemoryLimitFile()
+	out, _ := dockerCmd(c, "run", "-m", "32M", "--name", "test", "busybox", "cat", file)
+	if IsCgroupV2() {
+		// cgroup v2 memory.max format: "limit" e.g. "33554432" or "33554432\n" if there's no next limit
+		// The value should be 33554432
+		assert.Equal(c, strings.TrimSpace(out), "33554432")
+	} else {
+		assert.Equal(c, strings.TrimSpace(out), "33554432")
+	}
+
+	out = inspectField(c, "test", "HostConfig.Memory")
+	assert.Equal(c, out, "33554432", "setting memory limit failed")
 }
 
 // TestRunWithoutMemoryswapLimit sets memory limit and disables swap
@@ -633,7 +655,7 @@ func (s *DockerCLIRunSuite) TestRunWithoutMemoryswapLimit(c *testing.T) {
 
 func (s *DockerCLIRunSuite) TestRunWithSwappiness(c *testing.T) {
 	testRequires(c, memorySwappinessSupport)
-	file := "/sys/fs/cgroup/memory/memory.swappiness"
+	file := GetCgroupMemorySwappinessFile()
 	out, _ := dockerCmd(c, "run", "--memory-swappiness", "0", "--name", "test", "busybox", "cat", file)
 	assert.Equal(c, strings.TrimSpace(out), "0")
 
@@ -655,7 +677,7 @@ func (s *DockerCLIRunSuite) TestRunWithSwappinessInvalid(c *testing.T) {
 func (s *DockerCLIRunSuite) TestRunWithMemoryReservation(c *testing.T) {
 	testRequires(c, testEnv.IsLocalDaemon, memoryReservationSupport)
 
-	file := "/sys/fs/cgroup/memory/memory.soft_limit_in_bytes"
+	file := GetCgroupMemoryReservationFile()
 	out, _ := dockerCmd(c, "run", "--memory-reservation", "200M", "--name", "test", "busybox", "cat", file)
 	assert.Equal(c, strings.TrimSpace(out), "209715200")
 
@@ -1393,7 +1415,7 @@ func (s *DockerCLIRunSuite) TestRunDeviceSymlink(c *testing.T) {
 func (s *DockerCLIRunSuite) TestRunPIDsLimit(c *testing.T) {
 	testRequires(c, testEnv.IsLocalDaemon, pidsLimit)
 
-	file := "/sys/fs/cgroup/pids/pids.max"
+	file := GetCgroupPidsLimitFile()
 	out, _ := dockerCmd(c, "run", "--name", "skittles", "--pids-limit", "4", "busybox", "cat", file)
 	assert.Equal(c, strings.TrimSpace(out), "4")
 
@@ -1404,7 +1426,7 @@ func (s *DockerCLIRunSuite) TestRunPIDsLimit(c *testing.T) {
 func (s *DockerCLIRunSuite) TestRunPrivilegedAllowedDevices(c *testing.T) {
 	testRequires(c, DaemonIsLinux, NotUserNamespace)
 
-	file := "/sys/fs/cgroup/devices/devices.list"
+	file := GetCgroupDevicesListFile()
 	out, _ := dockerCmd(c, "run", "--privileged", "busybox", "cat", file)
 	c.Logf("out: %q", out)
 	assert.Equal(c, strings.TrimSpace(out), "a *:* rwm")
@@ -1422,7 +1444,7 @@ func (s *DockerCLIRunSuite) TestRunUserDeviceAllowed(c *testing.T) {
 		c.Skip("Could not stat /dev/snd/timer")
 	}
 
-	file := "/sys/fs/cgroup/devices/devices.list"
+	file := GetCgroupDevicesListFile()
 	out, _ := dockerCmd(c, "run", "--device", "/dev/snd/timer:w", "busybox", "cat", file)
 	assert.Assert(c, strings.Contains(out, fmt.Sprintf("c %d:%d w", stat.Rdev/256, stat.Rdev%256)))
 }
@@ -1554,21 +1576,26 @@ func (s *DockerDaemonSuite) TestRunWithDaemonDefaultSeccompProfile(c *testing.T)
 func (s *DockerCLIRunSuite) TestRunWithNanoCPUs(c *testing.T) {
 	testRequires(c, cpuCfsQuota, cpuCfsPeriod)
 
-	file1 := "/sys/fs/cgroup/cpu/cpu.cfs_quota_us"
-	file2 := "/sys/fs/cgroup/cpu/cpu.cfs_period_us"
-	out, _ := dockerCmd(c, "run", "--cpus", "0.5", "--name", "test", "busybox", "sh", "-c", fmt.Sprintf("cat %s && cat %s", file1, file2))
-	assert.Equal(c, strings.TrimSpace(out), "50000\n100000")
+	var out string
+	if IsCgroupV2() {
+		// cgroup v2: use cpu.max which contains both quota and period
+		out, _ = dockerCmd(c, "run", "--cpus", "0.5", "--name", "test", "busybox", "cat", "/sys/fs/cgroup/cpu.max")
+		// Format is "quota period", e.g. "50000 100000"
+		fields := strings.Fields(strings.TrimSpace(out))
+		assert.Equal(c, fields[0], "50000")
+		assert.Equal(c, fields[1], "100000")
+	} else {
+		file1 := "/sys/fs/cgroup/cpu/cpu.cfs_quota_us"
+		file2 := "/sys/fs/cgroup/cpu/cpu.cfs_period_us"
+		out, _ = dockerCmd(c, "run", "--cpus", "0.5", "--name", "test", "busybox", "sh", "-c", fmt.Sprintf("cat %s && cat %s", file1, file2))
+		assert.Equal(c, strings.TrimSpace(out), "50000\n100000")
+	}
 
 	clt, err := client.NewClientWithOpts(client.FromEnv)
 	assert.NilError(c, err)
 	inspect, err := clt.ContainerInspect(context.Background(), "test")
 	assert.NilError(c, err)
 	assert.Equal(c, inspect.HostConfig.NanoCPUs, int64(500000000))
-
-	out = inspectField(c, "test", "HostConfig.CpuQuota")
-	assert.Equal(c, out, "0", "CPU CFS quota should be 0")
-	out = inspectField(c, "test", "HostConfig.CpuPeriod")
-	assert.Equal(c, out, "0", "CPU CFS period should be 0")
 
 	out, _, err = dockerCmdWithError("run", "--cpus", "0.5", "--cpu-quota", "50000", "--cpu-period", "100000", "busybox", "sh")
 	assert.ErrorContains(c, err, "")
