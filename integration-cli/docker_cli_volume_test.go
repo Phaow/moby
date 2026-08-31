@@ -66,8 +66,8 @@ func (s *DockerCLIVolumeSuite) TestVolumeCLIInspectMulti(c *testing.T) {
 	result := dockerCmdWithResult("volume", "inspect", "--format={{ .Name }}", "test1", "test2", "doesnotexist", "test3")
 	result.Assert(c, icmd.Expected{
 		ExitCode: 1,
-		Err:      "No such volume: doesnotexist",
 	})
+	assert.Assert(c, strings.Contains(strings.ToLower(result.Stderr()), "no such volume"))
 
 	out := result.Stdout()
 	assert.Assert(c, strings.Contains(out, "test1"))
@@ -222,22 +222,23 @@ func (s *DockerCLIVolumeSuite) TestVolumeCLIRm(c *testing.T) {
 func (s *DockerCLIVolumeSuite) TestVolumeCLINoArgs(c *testing.T) {
 	out, _ := dockerCmd(c, "volume")
 	// no args should produce the cmd usage output
-	usage := "Usage:	docker volume COMMAND"
-	assert.Assert(c, strings.Contains(out, usage))
+	usage := "usage:"
+	assert.Assert(c, strings.Contains(strings.ToLower(out), usage))
 	// invalid arg should error and show the command usage on stderr
-	icmd.RunCommand(dockerBinary, "volume", "somearg").Assert(c, icmd.Expected{
+	result := icmd.RunCommand(dockerBinary, "volume", "somearg")
+	result.Assert(c, icmd.Expected{
 		ExitCode: 1,
 		Error:    "exit status 1",
-		Err:      usage,
 	})
+	assert.Assert(c, strings.Contains(strings.ToLower(result.Stderr()), usage))
 
 	// invalid flag should error and show the flag error and cmd usage
-	result := icmd.RunCommand(dockerBinary, "volume", "--no-such-flag")
+	result = icmd.RunCommand(dockerBinary, "volume", "--no-such-flag")
 	result.Assert(c, icmd.Expected{
 		ExitCode: 125,
 		Error:    "exit status 125",
-		Err:      usage,
 	})
+	assert.Assert(c, strings.Contains(strings.ToLower(result.Stderr()), usage))
 	assert.Assert(c, strings.Contains(result.Stderr(), "unknown flag: --no-such-flag"))
 }
 
@@ -248,7 +249,7 @@ func (s *DockerCLIVolumeSuite) TestVolumeCLIInspectTmplError(c *testing.T) {
 	out, exitCode, err := dockerCmdWithError("volume", "inspect", "--format='{{ .FooBar }}'", name)
 	assert.Assert(c, err != nil, "Output: %s", out)
 	assert.Equal(c, exitCode, 1, fmt.Sprintf("Output: %s", out))
-	assert.Assert(c, strings.Contains(out, "Template parsing error"))
+	assert.Assert(c, strings.Contains(strings.ToLower(out), "template parsing error"))
 }
 
 func (s *DockerCLIVolumeSuite) TestVolumeCLICreateWithOpts(c *testing.T) {

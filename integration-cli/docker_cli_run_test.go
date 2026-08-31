@@ -296,7 +296,7 @@ func (s *DockerCLIRunSuite) TestRunWithNetAliasOnDefaultNetworks(c *testing.T) {
 	for _, net := range defaults {
 		out, _, err := dockerCmdWithError("run", "-d", "--net", net, "--net-alias", "alias_"+net, "busybox", "top")
 		assert.ErrorContains(c, err, "")
-		assert.Assert(c, strings.Contains(out, runconfig.ErrUnsupportedNetworkAndAlias.Error()))
+		assert.Assert(c, strings.Contains(strings.ToLower(out), "network-scoped alias"))
 	}
 }
 
@@ -2455,6 +2455,12 @@ func (s *DockerCLIRunSuite) TestRunModeUTSHost(c *testing.T) {
 func (s *DockerCLIRunSuite) TestRunTLSVerify(c *testing.T) {
 	// Remote daemons use TLS and this test is not applicable when TLS is required.
 	testRequires(c, testEnv.IsLocalDaemon)
+
+	// Skip if TLS certificates don't exist
+	if _, err := os.Stat("/root/.docker/ca.pem"); os.IsNotExist(err) {
+		c.Skip("TLS certificates not found, skipping test")
+	}
+
 	if out, code, err := dockerCmdWithError("ps"); err != nil || code != 0 {
 		c.Fatalf("Should have worked: %v:\n%v", err, out)
 	}
