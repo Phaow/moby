@@ -4428,7 +4428,7 @@ func (s *DockerCLIRunSuite) TestRunAddDeviceCgroupRule(c *testing.T) {
 
 	deviceRule := "c 7:128 rwm"
 
-	file := GetCgroupDevicesListFile()
+	const file = "/sys/fs/cgroup/devices/devices.list"
 	out, _ := dockerCmd(c, "run", "--rm", "busybox", "cat", file)
 	if strings.Contains(out, deviceRule) {
 		c.Fatalf("%s shouldn't been in the device.list", deviceRule)

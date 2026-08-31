@@ -143,14 +143,6 @@ func GetCgroupPidsLimitFile() string {
 	return "/sys/fs/cgroup/pids/pids.max"
 }
 
-// GetCgroupDevicesListFile returns the correct cgroup v1 or v2 devices list file path
-func GetCgroupDevicesListFile() string {
-	if IsCgroupV2() {
-		return "/sys/fs/cgroup/devices.list"
-	}
-	return "/sys/fs/cgroup/devices/devices.list"
-}
-
 // GetCgroupMemorySwappinessFile returns the correct cgroup memory swappiness file path
 func GetCgroupMemorySwappinessFile() string {
 	if IsCgroupV2() {

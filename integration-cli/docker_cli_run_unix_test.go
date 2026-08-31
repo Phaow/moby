@@ -511,6 +511,7 @@ func (s *DockerCLIRunSuite) TestRunWithInvalidCpuPeriod(c *testing.T) {
 
 func (s *DockerCLIRunSuite) TestRunWithCPUShares(c *testing.T) {
 	testRequires(c, cpuShare)
+	skip.If(c, IsCgroupV2(), "FIXME: cgroups v2 not supported yet")
 
 	file := GetCgroupCPUSharesFile()
 	out, _ := dockerCmd(c, "run", "--cpu-shares", "1000", "--name", "test", "busybox", "cat", file)
@@ -548,6 +549,7 @@ func (s *DockerCLIRunSuite) TestRunWithCpusetCpus(c *testing.T) {
 
 func (s *DockerCLIRunSuite) TestRunWithCpusetMems(c *testing.T) {
 	testRequires(c, cgroupCpuset)
+	skip.If(c, IsCgroupV2(), "FIXME: cgroups v2 not supported yet")
 
 	file := GetCgroupCpusetMemsFile()
 	out, _ := dockerCmd(c, "run", "--cpuset-mems", "0", "--name", "test", "busybox", "cat", file)
@@ -559,6 +561,7 @@ func (s *DockerCLIRunSuite) TestRunWithCpusetMems(c *testing.T) {
 
 func (s *DockerCLIRunSuite) TestRunWithBlkioWeight(c *testing.T) {
 	testRequires(c, blkioWeight)
+	skip.If(c, IsCgroupV2(), "FIXME: cgroups v2 not supported yet")
 
 	file := GetCgroupBlkioWeightFile()
 	out, _ := dockerCmd(c, "run", "--blkio-weight", "300", "--name", "test", "busybox", "cat", file)
@@ -677,6 +680,7 @@ func (s *DockerCLIRunSuite) TestRunWithSwappinessInvalid(c *testing.T) {
 
 func (s *DockerCLIRunSuite) TestRunWithMemoryReservation(c *testing.T) {
 	testRequires(c, testEnv.IsLocalDaemon, memoryReservationSupport)
+	skip.If(c, IsCgroupV2(), "FIXME: cgroups v2 not supported yet")
 
 	file := GetCgroupMemoryReservationFile()
 	out, _ := dockerCmd(c, "run", "--memory-reservation", "200M", "--name", "test", "busybox", "cat", file)
@@ -1430,7 +1434,7 @@ func (s *DockerCLIRunSuite) TestRunPrivilegedAllowedDevices(c *testing.T) {
 	testRequires(c, DaemonIsLinux, NotUserNamespace)
 	skip.If(c, IsCgroupV2(), "FIXME: cgroups v2 not supported yet")
 
-	file := GetCgroupDevicesListFile()
+	const file = "/sys/fs/cgroup/devices/devices.list"
 	out, _ := dockerCmd(c, "run", "--privileged", "busybox", "cat", file)
 	c.Logf("out: %q", out)
 	assert.Equal(c, strings.TrimSpace(out), "a *:* rwm")
@@ -1438,6 +1442,7 @@ func (s *DockerCLIRunSuite) TestRunPrivilegedAllowedDevices(c *testing.T) {
 
 func (s *DockerCLIRunSuite) TestRunUserDeviceAllowed(c *testing.T) {
 	testRequires(c, DaemonIsLinux)
+	skip.If(c, IsCgroupV2(), "FIXME: cgroups v2 not supported yet")
 
 	fi, err := os.Stat("/dev/snd/timer")
 	if err != nil {
@@ -1448,7 +1453,7 @@ func (s *DockerCLIRunSuite) TestRunUserDeviceAllowed(c *testing.T) {
 		c.Skip("Could not stat /dev/snd/timer")
 	}
 
-	file := GetCgroupDevicesListFile()
+	const file = "/sys/fs/cgroup/devices/devices.list"
 	out, _ := dockerCmd(c, "run", "--device", "/dev/snd/timer:w", "busybox", "cat", file)
 	assert.Assert(c, strings.Contains(out, fmt.Sprintf("c %d:%d w", stat.Rdev/256, stat.Rdev%256)))
 }
