@@ -166,8 +166,8 @@ def stat_counts(cases):
     return total, passed, failed, skipped, unknown
 
 
-def pass_rate_str(p, f, s):
-    t = p + f + s
+def pass_rate_str(p, f):
+    t = p + f
     return "0%" if t == 0 else f"{100.0 * p / t:.1f}%"
 
 
@@ -556,7 +556,7 @@ events = parse_report(json_path)
 cases, suites, suite_cases = classify_events(events)
 total, passed, failed, skipped, unknown = stat_counts(cases)
 ver, api, commit, go_ver, sub_versions, start_time, end_time = extract_meta(events)
-rate = pass_rate_str(passed, failed, skipped)
+rate = pass_rate_str(passed, failed)
 
 def pri(a):
     return {"fail": 0, "skip": 1, "pass": 2, None: 3}.get(a, 4)
@@ -575,7 +575,7 @@ for suite_name in sorted(suite_cases.keys()):
         "fail": s_fail,
         "skip": s_skip,
         "elapsed": fmt_elapsed(s_elapsed),
-        "rate": pass_rate_str(s_pass, s_fail, s_skip),
+        "rate": pass_rate_str(s_pass, s_fail),
         "cases": [
             {
                 "name": c["name"],
