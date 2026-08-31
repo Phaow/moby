@@ -91,11 +91,22 @@ func ensureNNPTest(c *testing.T) {
 		return
 	}
 
+	// Check if gcc is available
+	gcc, err := exec.LookPath("gcc")
+	if err != nil {
+		c.Skip("gcc not found, skipping nnp-test: %v", err)
+		return
+	}
+
+	// Check if ld (linker) is available
+	ld, err := exec.LookPath("ld")
+	if err != nil {
+		c.Skip("ld not found, skipping nnp-test: %v", err)
+		return
+	}
+
 	tmp, err := os.MkdirTemp("", "docker-nnp-test")
 	assert.NilError(c, err)
-
-	gcc, err := exec.LookPath("gcc")
-	assert.NilError(c, err, "could not find gcc")
 
 	out, err := exec.Command(gcc, "-g", "-Wall", "-static", "../contrib/nnp-test/nnp-test.c", "-o", filepath.Join(tmp, "nnp-test")).CombinedOutput()
 	assert.NilError(c, err, string(out))
@@ -113,6 +124,7 @@ func ensureNNPTest(c *testing.T) {
 	if arg := os.Getenv("DOCKER_BUILD_ARGS"); strings.TrimSpace(arg) != "" {
 		buildArgs = strings.Split(arg, " ")
 	}
+	_ = ld // suppress unused variable warning
 	buildArgs = append(buildArgs, []string{"-q", "-t", "nnp-test", tmp}...)
 	buildArgs = append([]string{"build"}, buildArgs...)
 	dockerCmd(c, buildArgs...)
