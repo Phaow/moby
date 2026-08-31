@@ -1491,10 +1491,10 @@ func (s *DockerCLINetworkSuite) TestUserDefinedNetworkConnectDisconnectAlias(c *
 	dockerCmd(c, "network", "create", "-d", "bridge", "net1")
 	dockerCmd(c, "network", "create", "-d", "bridge", "net2")
 
-	cid, _ := dockerCmd(c, "run", "-d", "--net=net1", "--name=first", "--net-alias=foo", "busybox:glibc", "top")
+	cid, _ := dockerCmd(c, "run", "-d", "--net=net1", "--name=first", "--net-alias=foo", "busybox:latest", "top")
 	assert.Assert(c, waitRun("first") == nil)
 
-	dockerCmd(c, "run", "-d", "--net=net1", "--name=second", "busybox:glibc", "top")
+	dockerCmd(c, "run", "-d", "--net=net1", "--name=second", "busybox:latest", "top")
 	assert.Assert(c, waitRun("second") == nil)
 
 	// ping first container and its alias
@@ -1531,7 +1531,7 @@ func (s *DockerCLINetworkSuite) TestUserDefinedNetworkConnectDisconnectAlias(c *
 	assert.NilError(c, err)
 
 	// verify the alias option is rejected when running on predefined network
-	out, _, err := dockerCmdWithError("run", "--rm", "--name=any", "--net-alias=any", "busybox:glibc", "true")
+	out, _, err := dockerCmdWithError("run", "--rm", "--name=any", "--net-alias=any", "busybox:latest", "true")
 	assert.Assert(c, err != nil, "out: %s", out)
 	assert.Assert(c, strings.Contains(out, runconfig.ErrUnsupportedNetworkAndAlias.Error()))
 	// verify the alias option is rejected when connecting to predefined network
@@ -1544,10 +1544,10 @@ func (s *DockerCLINetworkSuite) TestUserDefinedNetworkConnectivity(c *testing.T)
 	testRequires(c, DaemonIsLinux, NotUserNamespace)
 	dockerCmd(c, "network", "create", "-d", "bridge", "br.net1")
 
-	dockerCmd(c, "run", "-d", "--net=br.net1", "--name=c1.net1", "busybox:glibc", "top")
+	dockerCmd(c, "run", "-d", "--net=br.net1", "--name=c1.net1", "busybox:latest", "top")
 	assert.Assert(c, waitRun("c1.net1") == nil)
 
-	dockerCmd(c, "run", "-d", "--net=br.net1", "--name=c2.net1", "busybox:glibc", "top")
+	dockerCmd(c, "run", "-d", "--net=br.net1", "--name=c2.net1", "busybox:latest", "top")
 	assert.Assert(c, waitRun("c2.net1") == nil)
 
 	// ping first container by its unqualified name
@@ -1592,9 +1592,9 @@ func (s *DockerCLINetworkSuite) TestDockerNetworkInternalMode(c *testing.T) {
 	nr := getNetworkResource(c, "internal")
 	assert.Assert(c, nr.Internal)
 
-	dockerCmd(c, "run", "-d", "--net=internal", "--name=first", "busybox:glibc", "top")
+	dockerCmd(c, "run", "-d", "--net=internal", "--name=first", "busybox:latest", "top")
 	assert.Assert(c, waitRun("first") == nil)
-	dockerCmd(c, "run", "-d", "--net=internal", "--name=second", "busybox:glibc", "top")
+	dockerCmd(c, "run", "-d", "--net=internal", "--name=second", "busybox:latest", "top")
 	assert.Assert(c, waitRun("second") == nil)
 	out, _, err := dockerCmdWithError("exec", "first", "ping", "-W", "4", "-c", "1", "8.8.8.8")
 	assert.ErrorContains(c, err, "")
