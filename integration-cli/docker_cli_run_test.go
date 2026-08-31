@@ -1667,7 +1667,7 @@ func (s *DockerCLIRunSuite) TestRunCopyVolumeUIDGID(c *testing.T) {
 	// Not applicable on Windows as it does not support uid or gid in this way
 	testRequires(c, DaemonIsLinux)
 	name := "testrunvolumesuidgid"
-	buildImageSuccessfully(c, name, build.WithDockerfile(`FROM busybox
+	buildImageSuccessfully(c, name, build.WithDockerfile(`FROM debian:bullseye-slim
 		RUN echo 'dockerio:x:1001:1001::/bin:/bin/false' >> /etc/passwd
 		RUN echo 'dockerio:x:1001:' >> /etc/group
 		RUN mkdir -p /hello && touch /hello/test && chown dockerio.dockerio /hello`))
