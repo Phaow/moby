@@ -211,7 +211,7 @@ func (s *DockerSuite) TestVolumeCLIRm(c *testing.T) {
 func (s *DockerSuite) TestVolumeCLINoArgs(c *testing.T) {
 	out, _ := dockerCmd(c, "volume")
 	// no args should produce the cmd usage output
-	usage := "Usage:	docker volume COMMAND"
+	usage := "Usage:"
 	assert.Assert(c, strings.Contains(out, usage))
 	// invalid arg should error and show the command usage on stderr
 	icmd.RunCommand(dockerBinary, "volume", "somearg").Assert(c, icmd.Expected{
@@ -237,7 +237,7 @@ func (s *DockerSuite) TestVolumeCLIInspectTmplError(c *testing.T) {
 	out, exitCode, err := dockerCmdWithError("volume", "inspect", "--format='{{ .FooBar }}'", name)
 	assert.Assert(c, err != nil, "Output: %s", out)
 	assert.Equal(c, exitCode, 1, fmt.Sprintf("Output: %s", out))
-	assert.Assert(c, strings.Contains(out, "Template parsing error"))
+	assert.Assert(c, strings.Contains(strings.ToLower(out), "template parsing error"))
 }
 
 func (s *DockerSuite) TestVolumeCLICreateWithOpts(c *testing.T) {

@@ -65,6 +65,11 @@ func seccompEnabled() bool {
 	return supportsSeccomp && SysInfo.Seccomp
 }
 
+func onlyCgroupsv2() bool {
+	// Only check for unified, cgroup v1 tests can run under other modes
+	return testEnv.DaemonInfo.CgroupVersion == "2"
+}
+
 func bridgeNfIptables() bool {
 	return !SysInfo.BridgeNFCallIPTablesDisabled
 }

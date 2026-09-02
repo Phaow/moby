@@ -30,6 +30,7 @@ import (
 	"gotest.tools/v3/assert"
 	"gotest.tools/v3/assert/cmp"
 	"gotest.tools/v3/icmd"
+	"gotest.tools/v3/skip"
 )
 
 func (s *DockerSuite) TestBuildJSONEmptyRun(c *testing.T) {
@@ -3968,6 +3969,7 @@ func (s *DockerSuite) TestBuildEmptyStringVolume(c *testing.T) {
 
 func (s *DockerSuite) TestBuildContainerWithCgroupParent(c *testing.T) {
 	testRequires(c, testEnv.IsLocalDaemon, DaemonIsLinux)
+	skip.If(c, onlyCgroupsv2(), "FIXME: cgroupsV2 not supported yet")
 
 	cgroupParent := "test"
 	data, err := ioutil.ReadFile("/proc/self/cgroup")

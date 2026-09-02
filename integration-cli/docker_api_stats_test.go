@@ -18,11 +18,13 @@ import (
 	"github.com/docker/docker/client"
 	"github.com/docker/docker/testutil/request"
 	"gotest.tools/v3/assert"
+	"gotest.tools/v3/skip"
 )
 
 var expectedNetworkInterfaceStats = strings.Split("rx_bytes rx_dropped rx_errors rx_packets tx_bytes tx_dropped tx_errors tx_packets", " ")
 
 func (s *DockerSuite) TestAPIStatsNoStreamGetCpu(c *testing.T) {
+	skip.If(c, onlyCgroupsv2(), "FIXME: cgroupsV2 not supported yet")
 	out, _ := dockerCmd(c, "run", "-d", "busybox", "/bin/sh", "-c", "while true;usleep 100; do echo 'Hello'; done")
 
 	id := strings.TrimSpace(out)

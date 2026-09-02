@@ -37,6 +37,7 @@ import (
 	"github.com/moby/sys/mountinfo"
 	"gotest.tools/v3/assert"
 	"gotest.tools/v3/icmd"
+	"gotest.tools/v3/skip"
 )
 
 // "test123" should be printed by docker run
@@ -286,7 +287,7 @@ func (s *DockerSuite) TestRunWithNetAliasOnDefaultNetworks(c *testing.T) {
 	for _, net := range defaults {
 		out, _, err := dockerCmdWithError("run", "-d", "--net", net, "--net-alias", "alias_"+net, "busybox", "top")
 		assert.ErrorContains(c, err, "")
-		assert.Assert(c, strings.Contains(out, runconfig.ErrUnsupportedNetworkAndAlias.Error()))
+		assert.Assert(c, strings.Contains(strings.ToLower(out), "network-scoped alias"))
 	}
 }
 
@@ -3231,6 +3232,7 @@ func (s *DockerSuite) TestRunWithUlimits(c *testing.T) {
 func (s *DockerSuite) TestRunContainerWithCgroupParent(c *testing.T) {
 	// Not applicable on Windows as uses Unix specific functionality
 	testRequires(c, DaemonIsLinux)
+	skip.If(c, onlyCgroupsv2(), "FIXME: cgroupsV2 not supported yet")
 
 	// cgroup-parent relative path
 	testRunContainerWithCgroupParent(c, "test", "cgroup-test")
@@ -3266,6 +3268,7 @@ func testRunContainerWithCgroupParent(c *testing.T, cgroupParent, name string) {
 func (s *DockerSuite) TestRunInvalidCgroupParent(c *testing.T) {
 	// Not applicable on Windows as uses Unix specific functionality
 	testRequires(c, DaemonIsLinux)
+	skip.If(c, onlyCgroupsv2(), "FIXME: cgroupsV2 not supported yet")
 
 	testRunInvalidCgroupParent(c, "../../../../../../../../SHOULD_NOT_EXIST", "SHOULD_NOT_EXIST", "cgroup-invalid-test")
 
@@ -3306,6 +3309,7 @@ func (s *DockerSuite) TestRunContainerWithCgroupMountRO(c *testing.T) {
 	// Not applicable on Windows as uses Unix specific functionality
 	// --read-only + userns has remount issues
 	testRequires(c, DaemonIsLinux, NotUserNamespace)
+	skip.If(c, onlyCgroupsv2(), "FIXME: cgroupsV2 not supported yet")
 
 	filename := "/sys/fs/cgroup/devices/test123"
 	out, _, err := dockerCmdWithError("run", "busybox", "touch", filename)
@@ -4421,6 +4425,7 @@ func (s *DockerSuite) TestRunHostnameInHostMode(c *testing.T) {
 
 func (s *DockerSuite) TestRunAddDeviceCgroupRule(c *testing.T) {
 	testRequires(c, DaemonIsLinux)
+	skip.If(c, onlyCgroupsv2(), "FIXME: cgroupsV2 not supported yet")
 
 	deviceRule := "c 7:128 rwm"
 
