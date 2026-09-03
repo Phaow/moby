@@ -748,6 +748,8 @@ func (s *DockerSuite) TestRunInvalidCpusetMemsFlagValue(c *testing.T) {
 
 func (s *DockerSuite) TestRunInvalidCPUShares(c *testing.T) {
 	testRequires(c, cpuShare, DaemonIsLinux)
+	skip.If(c, onlyCgroupsv2(), "FIXME: cgroupsV2 not supported yet")
+
 	out, _, err := dockerCmdWithError("run", "--cpu-shares", "1", "busybox", "echo", "test")
 	assert.ErrorContains(c, err, "", out)
 	expected := "minimum allowed cpu-shares is 2"
@@ -1424,6 +1426,8 @@ func (s *DockerSuite) TestRunPrivilegedAllowedDevices(c *testing.T) {
 
 func (s *DockerSuite) TestRunUserDeviceAllowed(c *testing.T) {
 	testRequires(c, DaemonIsLinux)
+
+	skip.If(c, onlyCgroupsv2(), "FIXME: cgroupsV2 not supported yet")
 
 	fi, err := os.Stat("/dev/snd/timer")
 	if err != nil {

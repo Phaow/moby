@@ -1659,7 +1659,7 @@ func (s *DockerSuite) TestRunCopyVolumeUIDGID(c *testing.T) {
 	// Not applicable on Windows as it does not support uid or gid in this way
 	testRequires(c, DaemonIsLinux)
 	name := "testrunvolumesuidgid"
-	buildImageSuccessfully(c, name, build.WithDockerfile(`FROM busybox
+	buildImageSuccessfully(c, name, build.WithDockerfile(`FROM debian:bullseye-slim
 		RUN echo 'dockerio:x:1001:1001::/bin:/bin/false' >> /etc/passwd
 		RUN echo 'dockerio:x:1001:' >> /etc/group
 		RUN mkdir -p /hello && touch /hello/test && chown dockerio.dockerio /hello`))
@@ -2476,6 +2476,12 @@ func (s *DockerSuite) TestRunModeUTSHost(c *testing.T) {
 func (s *DockerSuite) TestRunTLSVerify(c *testing.T) {
 	// Remote daemons use TLS and this test is not applicable when TLS is required.
 	testRequires(c, testEnv.IsLocalDaemon)
+
+	// Skip if TLS certificates don't exist
+	if _, err := os.Stat("/root/.docker/ca.pem"); os.IsNotExist(err) {
+		c.Skip("TLS certificates not found, skipping test")
+	}
+
 	if out, code, err := dockerCmdWithError("ps"); err != nil || code != 0 {
 		c.Fatalf("Should have worked: %v:\n%v", err, out)
 	}

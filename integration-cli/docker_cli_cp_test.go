@@ -351,6 +351,15 @@ func (s *DockerSuite) TestCpUnprivilegedUser(c *testing.T) {
 	testRequires(c, DaemonIsLinux, testEnv.IsLocalDaemon)
 	testRequires(c, UnixCli) // uses chmod/su: not available on windows
 
+	// Ensure unprivilegeduser exists, create if needed
+	result := icmd.RunCommand("id", "unprivilegeduser")
+	if result.ExitCode != 0 {
+		icmd.RunCommand("useradd", "-m", "unprivilegeduser")
+	}
+
+	// Ensure user is in docker group for socket access
+	icmd.RunCommand("usermod", "-aG", "docker", "unprivilegeduser")
+
 	out, _ := dockerCmd(c, "run", "-d", "busybox", "/bin/sh", "-c", "touch "+cpTestName)
 
 	containerID := strings.TrimSpace(out)
@@ -366,7 +375,7 @@ func (s *DockerSuite) TestCpUnprivilegedUser(c *testing.T) {
 	err = os.Chmod(tmpdir, 0777)
 	assert.NilError(c, err)
 
-	result := icmd.RunCommand("su", "unprivilegeduser", "-c",
+	result = icmd.RunCommand("su", "unprivilegeduser", "-c",
 		fmt.Sprintf("%s cp %s:%s %s", dockerBinary, containerID, cpTestName, tmpdir))
 	result.Assert(c, icmd.Expected{})
 }
